@@ -1,1 +1,1 @@
-web: gunicorn mighty_meadow.asgi --log-file -
+web: hypercorn mighty_meadow.asgi:application
