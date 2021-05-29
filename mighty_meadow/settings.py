@@ -8,7 +8,7 @@ from dotenv import find_dotenv, load_dotenv
 # =================================================================================
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(find_dotenv())
-DEBUG = getenv("DEBUG", True)
+DEBUG = getenv("DEBUG", False)
 SECRET_KEY = getenv("SECRET_KEY", "abcdefg12345678")
 ALLOWED_HOSTS = []
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
@@ -19,7 +19,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = True  
 EMAIL_HOST_USER = getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = getenv("EMAIL_PASS")
 # =================================================================================
@@ -60,7 +60,7 @@ AUTH_USER_MODEL = "users.User"
 # =================================================================================
 # CHANNELS / CHAT / WEBSOCKETS
 # =================================================================================
-CHANNEL_LAYERS = {
+CHANNEL_LAYERS = {  
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
