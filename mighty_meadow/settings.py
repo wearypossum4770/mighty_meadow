@@ -39,7 +39,7 @@ DEVELOPMENT_APPS = (
     "whitenoise.runserver_nostatic",
     "django_extensions",
 )
-PROJECT_APPS = ()
+PROJECT_APPS = ("users.apps.UsersConfig",)
 DJANGO_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
@@ -56,6 +56,7 @@ if "channels" in THIRD_PARTY_APPS:
 else:
     WSGI_APPLICATION = "mighty_meadow.wsgi.application"
 ROOT_URLCONF = "mighty_meadow.urls"
+AUTH_USER_MODEL = "users.User"
 # =================================================================================
 # CHANNELS / CHAT / WEBSOCKETS
 # =================================================================================
@@ -178,11 +179,11 @@ AXES_ENABLED = False
 AXES_COOLOFF_TIME = timedelta(hours=24)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 # AXES_LOCKOUT_TEMPLATE
-MIDDLEWARE += ("axes.middleware.AxesMiddleware",)
-AUTHENTICATION_BACKENDS = (
-    "axes.backends.AxesBackend",
-    "django.contrib.auth.backends.ModelBackend",
-)
+# MIDDLEWARE += ("axes.middleware.AxesMiddleware",)
+# AUTHENTICATION_BACKENDS = (
+#     "axes.backends.AxesBackend",
+#     "django.contrib.auth.backends.ModelBackend",
+# )
 # =================================================================================
 # HEROKU / LINODE / DEPLOYMENT SETTINGS
 # =================================================================================
