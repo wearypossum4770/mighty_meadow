@@ -1,7 +1,7 @@
 from os import environ
 
 from django.core.wsgi import get_wsgi_application
-
+from hypercorn.middleware import AsyncioWSGIMiddleware
 environ.setdefault("DJANGO_SETTINGS_MODULE", "mighty_meadow.settings")
-
-application = get_wsgi_application()
+wsgi_app = get_wsgi_application()
+application = AsyncioWSGIMiddleware(wsgi_app)
