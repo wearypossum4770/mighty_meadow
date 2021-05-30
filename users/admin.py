@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 User = get_user_model()
 
+
 # class EmployeeInline(StackedInline):
 #     model = Employee
 #     can_delete = False

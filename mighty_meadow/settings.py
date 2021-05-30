@@ -1,6 +1,7 @@
 from os import getenv
 from pathlib import Path
-
+from datetime import timedelta
+import django_heroku
 from dotenv import find_dotenv, load_dotenv
 
 # =================================================================================
@@ -19,9 +20,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True  
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = getenv("EMAIL_PASS")
+servers = getenv('MEMCACHIER_SERVERS')
+username = getenv('MEMCACHIER_USERNAME')
+password = getenv('MEMCACHIER_PASSWORD')
 # =================================================================================
 # APPLICATION
 # =================================================================================
@@ -32,14 +36,15 @@ THIRD_PARTY_APPS = (
     "whitenoise",
     "corsheaders",
     "rest_framework",
-    "rest_framework.authtoken",
-    "crispy_forms",
 )
 DEVELOPMENT_APPS = (
     "whitenoise.runserver_nostatic",
     "django_extensions",
 )
-PROJECT_APPS = ("users.apps.UsersConfig",)
+PROJECT_APPS = (
+    "users.apps.UsersConfig",
+    "blog.apps.BlogConfig",
+)
 DJANGO_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
@@ -60,7 +65,7 @@ AUTH_USER_MODEL = "users.User"
 # =================================================================================
 # CHANNELS / CHAT / WEBSOCKETS
 # =================================================================================
-CHANNEL_LAYERS = {  
+CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
@@ -73,6 +78,49 @@ CHANNEL_LAYERS = {
 # =================================================================================
 # DATABASE / CACHE
 # =================================================================================
+def get_cache():
+  
+  try:
+    return {
+      'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        # TIMEOUT is not the connection timeout! It's the default expiration
+        # timeout that should be applied to keys! Setting it to `None`
+        # disables expiration.
+        'TIMEOUT': None,
+        'LOCATION': servers,
+        'OPTIONS': {
+          'binary': True,
+          'username': username,
+          'password': password,
+          'behaviors': {
+            # Enable faster IO
+            'no_block': True,
+            'tcp_nodelay': True,
+            # Keep connection alive
+            'tcp_keepalive': True,
+            # Timeout settings
+            'connect_timeout': 2000, # ms
+            'send_timeout': 750 * 1000, # us
+            'receive_timeout': 750 * 1000, # us
+            '_poll_timeout': 2000, # ms
+            # Better failover
+            'ketama': True,
+            'remove_failed': 1,
+            'retry_timeout': 2,
+            'dead_timeout': 30,
+          }
+        }
+      }
+    }
+  except:
+    return {
+      'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+      }
+    }
+
+CACHES = get_cache()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -166,12 +214,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
-CRISPY_TEMPLATE_PACK = "bootstrap4"
-
-from datetime import timedelta
 
 AXES_FAILURE_LIMIT = 3
 AXES_ENABLED = False
@@ -187,7 +232,5 @@ AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 # =================================================================================
 # HEROKU / LINODE / DEPLOYMENT SETTINGS
 # =================================================================================
-import django_heroku
-
 TEST_RUNNER = "django_heroku.HerokuDiscoverRunner"
 django_heroku.settings(locals())

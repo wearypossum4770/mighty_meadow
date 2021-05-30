@@ -1,8 +1,38 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import BooleanField, CharField, DateField, DateTimeField, Model
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    CharField,
+    DateField,
+    DateTimeField,
+    ImageField,
+    Model,
+    OneToOneField,
+    TextChoices,
+)
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
     is_patient = BooleanField(default=False)
     is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
+
+
+class Address(Model):
+    class Type(TextChoices):
+        MAIL = "MAIL", _("")
+        RESIDENTIAL = "RESD", _("")
+        BUSINESS = "BUSN", _("")
+
+    address_type = CharField(max_length=4, choices=Type.choices)
+    street1 = CharField(max_length=100)
+    street2 = CharField(max_length=100)
+    state = CharField(max_length=100)
+    city = CharField(max_length=100)
+    zipcode = CharField(max_length=10)
+
+
+class Profile(Model):
+    user = OneToOneField(User, on_delete=CASCADE)
+    image = ImageField(upload_to="raw_profile_pictures")
