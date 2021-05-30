@@ -28,7 +28,7 @@ EMAIL_HOST_PASSWORD = getenv("EMAIL_PASS")
 # Application definition
 THIRD_PARTY_APPS = (
     "djoser",
-    "channels",
+    # "channels",
     "whitenoise",
     "corsheaders",
     "rest_framework",

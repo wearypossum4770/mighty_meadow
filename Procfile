@@ -1,1 +1,1 @@
-web: hypercorn mighty_meadow.asgi:application
+web: gunicorn mighty_meadow.wsgi
