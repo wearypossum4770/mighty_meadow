@@ -1,7 +1,6 @@
 from os import getenv
 from pathlib import Path
-from datetime import timedelta
-import django_heroku
+
 from dotenv import find_dotenv, load_dotenv
 
 # =================================================================================
@@ -172,6 +171,7 @@ LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+from datetime import timedelta
 
 AXES_FAILURE_LIMIT = 3
 AXES_ENABLED = False
@@ -187,8 +187,7 @@ AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 # =================================================================================
 # HEROKU / LINODE / DEPLOYMENT SETTINGS
 # =================================================================================
-
+import django_heroku
 
 TEST_RUNNER = "django_heroku.HerokuDiscoverRunner"
 django_heroku.settings(locals())
-
