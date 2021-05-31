@@ -1,6 +1,7 @@
+from datetime import timedelta
 from os import getenv
 from pathlib import Path
-from datetime import timedelta
+
 import django_heroku
 from dotenv import find_dotenv, load_dotenv
 
@@ -23,9 +24,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = getenv("EMAIL_PASS")
-servers = getenv('MEMCACHIER_SERVERS')
-username = getenv('MEMCACHIER_USERNAME')
-password = getenv('MEMCACHIER_PASSWORD')
+servers = getenv("MEMCACHIER_SERVERS")
+username = getenv("MEMCACHIER_USERNAME")
+password = getenv("MEMCACHIER_PASSWORD")
 # =================================================================================
 # APPLICATION
 # =================================================================================
@@ -79,46 +80,43 @@ CHANNEL_LAYERS = {
 # DATABASE / CACHE
 # =================================================================================
 def get_cache():
-  
-  try:
-    return {
-      'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        # TIMEOUT is not the connection timeout! It's the default expiration
-        # timeout that should be applied to keys! Setting it to `None`
-        # disables expiration.
-        'TIMEOUT': None,
-        'LOCATION': servers,
-        'OPTIONS': {
-          'binary': True,
-          'username': username,
-          'password': password,
-          'behaviors': {
-            # Enable faster IO
-            'no_block': True,
-            'tcp_nodelay': True,
-            # Keep connection alive
-            'tcp_keepalive': True,
-            # Timeout settings
-            'connect_timeout': 2000, # ms
-            'send_timeout': 750 * 1000, # us
-            'receive_timeout': 750 * 1000, # us
-            '_poll_timeout': 2000, # ms
-            # Better failover
-            'ketama': True,
-            'remove_failed': 1,
-            'retry_timeout': 2,
-            'dead_timeout': 30,
-          }
+
+    try:
+        return {
+            "default": {
+                "BACKEND": "django.core.cache.backends.memcached.PyLibMCCache",
+                # TIMEOUT is not the connection timeout! It's the default expiration
+                # timeout that should be applied to keys! Setting it to `None`
+                # disables expiration.
+                "TIMEOUT": None,
+                "LOCATION": servers,
+                "OPTIONS": {
+                    "binary": True,
+                    "username": username,
+                    "password": password,
+                    "behaviors": {
+                        # Enable faster IO
+                        "no_block": True,
+                        "tcp_nodelay": True,
+                        # Keep connection alive
+                        "tcp_keepalive": True,
+                        # Timeout settings
+                        "connect_timeout": 2000,  # ms
+                        "send_timeout": 750 * 1000,  # us
+                        "receive_timeout": 750 * 1000,  # us
+                        "_poll_timeout": 2000,  # ms
+                        # Better failover
+                        "ketama": True,
+                        "remove_failed": 1,
+                        "retry_timeout": 2,
+                        "dead_timeout": 30,
+                    },
+                },
+            }
         }
-      }
-    }
-  except:
-    return {
-      'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-      }
-    }
+    except:
+        return {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
+
 
 CACHES = get_cache()
 DATABASES = {

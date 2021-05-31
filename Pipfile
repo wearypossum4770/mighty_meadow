@@ -143,6 +143,10 @@ hypercorn = "*"
 django-pylibmc = "*"
 
 [dev-packages]
+pytest-django = "*"
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.8"

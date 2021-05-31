@@ -6,20 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_profile'),
+        ("users", "0002_profile"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address_type', models.CharField(choices=[('MAIL', ''), ('RESD', ''), ('BUSN', '')], max_length=4)),
-                ('street1', models.CharField(max_length=100)),
-                ('street2', models.CharField(max_length=100)),
-                ('state', models.CharField(max_length=100)),
-                ('city', models.CharField(max_length=100)),
-                ('zipcode', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "address_type",
+                    models.CharField(
+                        choices=[("MAIL", ""), ("RESD", ""), ("BUSN", "")], max_length=4
+                    ),
+                ),
+                ("street1", models.CharField(max_length=100)),
+                ("street2", models.CharField(max_length=100)),
+                ("state", models.CharField(max_length=100)),
+                ("city", models.CharField(max_length=100)),
+                ("zipcode", models.CharField(max_length=10)),
             ],
         ),
     ]

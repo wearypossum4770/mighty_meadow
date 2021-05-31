@@ -1,0 +1,61 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$oegWJ287dFDM30vrvXZdNV$2TKOZg6qcxmK5PvLC9eAFHBvSTChQ7BIp2pC8z5iNrI=",
+      "last_login": "2021-05-30T13:45:37.601Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-05-30T12:34:34.709Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$4wyKb4BPjvZE6hXlZR4QP5$wfgiOCN3lXBoDt2hmqJwv5N866Dx8Y1Q+g/h+cbQC4g=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "john.d.doe",
+      "first_name": "john",
+      "last_name": "doe",
+      "email": "john.d.doe@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-30T12:41:53.127Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.address",
+    "pk": 1,
+    "fields": {
+      "address_type": "RESD",
+      "street1": "3183  Byrd Lane",
+      "street2": "",
+      "state": "NM",
+      "city": "Albuquerque",
+      "zipcode": "87112"
+    }
+  },
+  {
+    "model": "users.profile",
+    "pk": 1,
+    "fields": { "user": 2, "image": "", "addresses": [1] }
+  }    
+]

@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$260000$oegWJ287dFDM30vrvXZdNV$2TKOZg6qcxmK5PvLC9eAFHBvSTChQ7BIp2pC8z5iNrI=",
-      "last_login": null,
+      "last_login": "2021-05-30T13:45:37.601Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "",
@@ -40,6 +40,23 @@
       "groups": [],
       "user_permissions": []
     }
+  },
+  {
+    "model": "users.address",
+    "pk": 1,
+    "fields": {
+      "address_type": "RESD",
+      "street1": "3183  Byrd Lane",
+      "street2": "",
+      "state": "NM",
+      "city": "Albuquerque",
+      "zipcode": "87112"
+    }
+  },
+  {
+    "model": "users.profile",
+    "pk": 1,
+    "fields": { "user": 2, "image": "", "addresses": [1] }
   },
   {
     "model": "auth.permission",
@@ -330,6 +347,114 @@
     }
   },
   {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add profile",
+      "content_type": 9,
+      "codename": "add_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change profile",
+      "content_type": 9,
+      "codename": "change_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete profile",
+      "content_type": 9,
+      "codename": "delete_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view profile",
+      "content_type": 9,
+      "codename": "view_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add post",
+      "content_type": 10,
+      "codename": "add_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change post",
+      "content_type": 10,
+      "codename": "change_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete post",
+      "content_type": 10,
+      "codename": "delete_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view post",
+      "content_type": 10,
+      "codename": "view_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add address",
+      "content_type": 11,
+      "codename": "add_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change address",
+      "content_type": 11,
+      "codename": "change_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete address",
+      "content_type": 11,
+      "codename": "delete_address"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view address",
+      "content_type": 11,
+      "codename": "view_address"
+    }
+  },
+  {
     "model": "contenttypes.contenttype",
     "pk": 1,
     "fields": { "app_label": "authtoken", "model": "token" }
@@ -368,5 +493,28 @@
     "model": "contenttypes.contenttype",
     "pk": 8,
     "fields": { "app_label": "sessions", "model": "session" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "users", "model": "profile" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": { "app_label": "blog", "model": "post" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": { "app_label": "users", "model": "address" }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "amw0hlpj2o8njqobyem5y5lfubczunxn",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2pChTAnj0r1nIMAMUjU0Ke3KeHdt0oVu_3vvv1SI21rD1mUJE6uzMur0u6WYH9J2wPfYbrPOc1uXKeld0Qft-jqzPC-H-3dQY6_fOnEmM2QoIuBlBIt2yA59ITcmBkPExTrywpA8CVsEBIMOMFpD6NT7A-GHNxY:1lnLl3:duw5TbzcqBIveW4puxhJItCMo1UsfK3nxroMyrPxeMQ",
+      "expire_date": "2021-06-13T13:45:37.633Z"
+    }
   }
 ]
