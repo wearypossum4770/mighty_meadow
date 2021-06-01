@@ -36,5 +36,5 @@ class Address(Model):
 
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
-    image = ImageField(upload_to="raw_profile_pictures")
+    image = ImageField(upload_to="raw_profile_pictures", default="default.webp")
     addresses = ManyToManyField(Address)

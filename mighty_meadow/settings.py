@@ -213,7 +213,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
-LOGIN_REDIRECT_URL = "blog-home"
+LOGIN_REDIRECT_URL = "homepage"
 LOGIN_URL = "login"
 
 AXES_FAILURE_LIMIT = 3

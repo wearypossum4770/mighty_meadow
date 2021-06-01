@@ -30,13 +30,16 @@ def registration(request):
 
 @login_required
 def profile(request):
-    if request.method == "POST":
-        pass
-    else:
-        user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
-    context = {
-        "user_form": user_form,
-        "profile_form": profile_form,
-    }
+    from django.conf import settings
+
+    user_form = UserUpdateForm(request.POST, instance=request.user)
+    profile_form = ProfileUpdateForm(
+        request.POST, request.FILES, instance=request.user.profile
+    )
+    if request.method == "POST" and user_form.is_valid() and profile_form.is_valid():
+        user_form.save() and profile_form.save()
+        messages.success(request, f"Your account has been updated!")
+        return redirect("profile")
+    context = {"user_form": user_form, "profile_form": profile_form}
+    print(settings.MEDIA_URL)
     return render(request, "users/profile.html", context)

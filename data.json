@@ -42,6 +42,111 @@
     }
   },
   {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "!4dMx6fvUvBJMVydbFSsc9L86I9Wp3j5zlpHdadFt",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "barack.hussein.obama",
+      "first_name": "barack",
+      "last_name": "obama",
+      "email": "barack.hussein.obama@president.usgov.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-31T00:21:03.061Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "password": "!76hSrncjKDVjdD5j5Y2uZENCwI00pAM2m1DP8G41",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "davidattenborough",
+      "first_name": "david",
+      "last_name": "attenborough",
+      "email": "davidattenborough@nattorator.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-31T00:22:38.202Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "donald.john.tump.sr",
+      "first_name": "donald",
+      "last_name": "trump",
+      "email": "donald.john.tump.sr@president.usgov.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-31T00:25:31.881Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "password": "!B7ecZtdLhHhzFRPvUQEikPg38XbgbnAwC3DuWX1n",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "joseph.robinette.biden.jr",
+      "first_name": "joseph",
+      "last_name": "biden",
+      "email": "joseph.robinette.biden.jr@president.usgov.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-31T00:31:00.145Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$q7j92sLBwVw9WKoGyekZPX$emYXyNU+LnI6V1q0NUFOnMVZS9C7pVsUlFnDZIpFIM8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jack.daniels",
+      "first_name": "",
+      "last_name": "",
+      "email": "jack.daniels@alcohol.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-06-01T15:14:19.961Z",
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
     "model": "users.address",
     "pk": 1,
     "fields": {
@@ -57,6 +162,36 @@
     "model": "users.profile",
     "pk": 1,
     "fields": { "user": 2, "image": "", "addresses": [1] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 2,
+    "fields": { "user": 3, "image": "", "addresses": [] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 3,
+    "fields": { "user": 4, "image": "", "addresses": [] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 4,
+    "fields": { "user": 5, "image": "", "addresses": [] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 5,
+    "fields": { "user": 1, "image": "", "addresses": [] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 6,
+    "fields": { "user": 6, "image": "", "addresses": [] }
+  },
+  {
+    "model": "users.profile",
+    "pk": 7,
+    "fields": { "user": 7, "image": "default.webp", "addresses": [] }
   },
   {
     "model": "auth.permission",

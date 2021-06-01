@@ -27,6 +27,9 @@ class TestProfile(TestCase):
     def test_profile_list(self):
         assert len(self.profiles) > 0
 
+    def test_user_john_doe_profile_raw_image(self):
+        assert self.john.image.name == "default.webp"
+
     def test_user_john_doe_first_name(self):
         assert self.patient.first_name == "john"
 
