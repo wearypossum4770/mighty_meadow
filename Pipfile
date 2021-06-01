@@ -1,0 +1,44 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+beatserver = "*"
+channels = "*"
+channels-redis = "*"
+cuid = "*"
+Django = "*"
+django-cors-headers = "*"
+django-crispy-forms = "*"
+django-heroku = "*"
+djangorestframework = "*"
+djoser = "*"
+gunicorn = "*"
+Pillow = "*"
+psycopg2 = "*"
+pyjwkest = "*"
+python-dotenv = "*"
+whitenoise = "*"
+djangorestframework-simplejwt = "*"
+django-pylibmc = "*"
+
+[dev-packages]
+coverage = "*"
+django-coverage-plugin = "*"
+django-extensions = "*"
+isort = "*"
+lark = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+pytest-django = "*"
+pytest-emoji = "*"
+black = "*"
+pytest-clarity = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
