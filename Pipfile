@@ -22,9 +22,10 @@ python-dotenv = "*"
 whitenoise = "*"
 djangorestframework-simplejwt = "*"
 django-pylibmc = "*"
+hypercorn = "*"
+uvicorn = "*"
 
 [dev-packages]
-coverage = "*"
 django-coverage-plugin = "*"
 django-extensions = "*"
 isort = "*"
@@ -42,3 +43,9 @@ python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
+
+[packages.celery]
+extras = [ "redis", "couchdb", "librabbitmq", "mongodb",]
+
+[dev-packages.coverage]
+extras = [ "toml",]
