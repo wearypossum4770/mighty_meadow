@@ -1,6 +1,6 @@
-from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import EmailField, ModelForm
 
 from .models import Profile
 
@@ -8,22 +8,31 @@ User = get_user_model()
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+    email = EmailField()
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ("username", "email", "password1", "password2")
 
 
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+class UserUpdateForm(ModelForm):
+    email = EmailField()
 
     class Meta:
         model = User
-        fields = ["username", "email", "first_name", "last_name", "password"]
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "password",
+        )
 
 
-class ProfileUpdateForm(forms.ModelForm):
+class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ["image"]
+        fields = (
+            "image",
+            "addresses",
+        )
