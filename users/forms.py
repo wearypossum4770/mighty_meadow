@@ -12,7 +12,15 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "password1",
+            "password2",
+        )
 
 
 class UserUpdateForm(ModelForm):
@@ -21,10 +29,10 @@ class UserUpdateForm(ModelForm):
     class Meta:
         model = User
         fields = (
-            "username",
             "email",
             "first_name",
             "last_name",
+            "middle_name",
             "password",
         )
 

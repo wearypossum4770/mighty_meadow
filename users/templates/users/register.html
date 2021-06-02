@@ -1,20 +1,61 @@
-{% extends "users/base.html" %} {% load crispy_forms_tags %} {% block content %}
-<div class="content-section">
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Join Today</legend>
-      {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-      <button class="btn btn-outline-info" type="submit">Sign Up</button>
-    </div>
-  </form>
-  <div class="border-top pt-3">
-    <small class="text-muted">
-      Already Have An Account?
-      <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-    </small>
-  </div>
-</div>
+{% extends "users/base.html" %} {% block content %}
+<form method="POST" class="w3-container">
+  {% csrf_token %}
+  <p>
+  <label>First Name</label>
+  <input class="w3-input" name="firstName" id="firstName" autocomplete="firstName" type="text"></p>
+  <p>
+    <label>Middle Name</label>
+    <input class="w3-input" name="middleName" id="middleName" autocomplete="middleName" type="text"></p>
+  <p>
+  <label>Last Name</label>
+  <input class="w3-input" name="lastName" id="lastName" autocomplete="lastName" type="text"></p>
+  <p>
+  <label>Email:</label>
+  <input class="w3-input" type="email" name="email" id="email" autocomplete="email"></p>
+  <p>
+    <label>Username:</label>
+    <input class="w3-input" name="username" id="username" autocomplete="username"></p>
+    <p>
+      <label>Password:</label>
+      <input class="w3-input" onblur="encrypt" type="password" name="password1" id="password1" autocomplete="new-password"></p>
+      <p>
+        <label>Confirm Password:</label>
+        <input class="w3-input" onblur="encrypt" type="password" name="password2" id="password2" autocomplete="new-password"></p>
+        <button onclick="validation(event)" >Join Now!!</button>
+        <button type="reset">Cancel</button>
+</form>
+<script>
+  function encrypt(){
+    
+  }
+          let firstName = document.getElementById("firstName").value
+          let middleName = document.getElementById("middleName").value
+          let lastName = document.getElementById("lastName").value
+          let email = document.getElementById("email").value
+          let username = document.getElementById("username").value
+          let password1 = document.getElementById("password1").value
+          let password2 = document.getElementById("password2").value
+function validation(event){
+ function passwordValidation(){
+   if (password2.length<8){
+     return "FAIL"
+   }
+   if (password1.length !==  password2.length){
+     return "FAIL"
+   }
+   for (let i=0;i<password1.length;i++){
+     if (password1[i]!==password2[i]){
+       return "FAIL"
+     }
+   }
+ }
+}
+  function handleSubmit(event){
+    event.preventDefault()
+   
+  }
+
+
+</script>
 {% endblock content %}

@@ -1,0 +1,600 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "first_name": "George",
+      "middle_name": "",
+      "last_name": "Washington",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "george.washington",
+      "email": "george.washington@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "first_name": "John",
+      "middle_name": "",
+      "last_name": "Adams",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "john.adams.jr",
+      "email": "john.adams.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "first_name": "Thomas",
+      "middle_name": "",
+      "last_name": "Jefferson",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "thomas.jefferson",
+      "email": "thomas.jefferson@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "",
+      "last_name": "Madison",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.madison.jr",
+      "email": "james.madison.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "",
+      "last_name": "Monroe",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.monroe",
+      "email": "james.monroe@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "first_name": "John",
+      "middle_name": "Quincy",
+      "last_name": "Adams",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "john.quincy.adams",
+      "email": "john.quincy.adams@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "first_name": "Andrew",
+      "middle_name": "",
+      "last_name": "Jackson",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "andrew.jackson",
+      "email": "andrew.jackson@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 8,
+    "fields": {
+      "first_name": "Martin",
+      "middle_name": "",
+      "last_name": "Van Buren",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "martin.van buren",
+      "email": "martin.van buren@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+      "first_name": "William",
+      "middle_name": "Henry",
+      "last_name": "Harrison",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "william.henry.harrison",
+      "email": "william.henry.harrison@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+      "first_name": "John",
+      "middle_name": "",
+      "last_name": "Tyler",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "john.tyler",
+      "email": "john.tyler@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 11,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "Knox",
+      "last_name": "Polk",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.knox.polk",
+      "email": "james.knox.polk@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+      "first_name": "Zachary",
+      "middle_name": "",
+      "last_name": "Taylor",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "zachary.taylor",
+      "email": "zachary.taylor@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 13,
+    "fields": {
+      "first_name": "Millard",
+      "middle_name": "",
+      "last_name": "Fillmore",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "millard.fillmore",
+      "email": "millard.fillmore@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 14,
+    "fields": {
+      "first_name": "Franklin",
+      "middle_name": "",
+      "last_name": "Pierce",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "franklin.pierce",
+      "email": "franklin.pierce@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 15,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "",
+      "last_name": "Buchanan",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.buchanan.jr",
+      "email": "james.buchanan.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 16,
+    "fields": {
+      "first_name": "Abraham",
+      "middle_name": "",
+      "last_name": "Lincoln",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "abraham.lincoln",
+      "email": "abraham.lincoln@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 17,
+    "fields": {
+      "first_name": "Andrew",
+      "middle_name": "",
+      "last_name": "Johnson",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "andrew.johnson",
+      "email": "andrew.johnson@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 18,
+    "fields": {
+      "first_name": "Hiram",
+      "middle_name": "Ulysses",
+      "last_name": "Grant",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "hiram.ulysses.grant",
+      "email": "hiram.ulysses.grant@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 19,
+    "fields": {
+      "first_name": "Rutherford",
+      "middle_name": "Birchard",
+      "last_name": "Hayes",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "rutherford.birchard.hayes",
+      "email": "rutherford.birchard.hayes@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 20,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "Abram",
+      "last_name": "Garfield",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.abram.garfield",
+      "email": "james.abram.garfield@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 21,
+    "fields": {
+      "first_name": "Chester",
+      "middle_name": "Alan",
+      "last_name": "Arthur",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "chester.alan.arthur",
+      "email": "chester.alan.arthur@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 22,
+    "fields": {
+      "first_name": "Stephen",
+      "middle_name": "Grover",
+      "last_name": "Cleveland",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "stephen.grover.cleveland",
+      "email": "stephen.grover.cleveland@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 23,
+    "fields": {
+      "first_name": "Benjamin",
+      "middle_name": "",
+      "last_name": "Harrison",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "benjamin.harrison",
+      "email": "benjamin.harrison@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 24,
+    "fields": {
+      "first_name": "William",
+      "middle_name": "",
+      "last_name": "McKinley",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "william.mckinley",
+      "email": "william.mckinley@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 25,
+    "fields": {
+      "first_name": "Stephen",
+      "middle_name": "Grover",
+      "last_name": "Cleveland.twice",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "stephen.grover.cleveland.twice",
+      "email": "stephen.grover.cleveland.twice@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 26,
+    "fields": {
+      "first_name": "Theodore",
+      "middle_name": "",
+      "last_name": "Roosevelt",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "theodore.roosevelt.jr",
+      "email": "theodore.roosevelt.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 27,
+    "fields": {
+      "first_name": "William",
+      "middle_name": "Howard",
+      "last_name": "Taft",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "william.howard.taft",
+      "email": "william.howard.taft@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 28,
+    "fields": {
+      "first_name": "Thomas",
+      "middle_name": "Woodrow",
+      "last_name": "Wilson",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "thomas.woodrow.wilson",
+      "email": "thomas.woodrow.wilson@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 29,
+    "fields": {
+      "first_name": "Warren",
+      "middle_name": "Gamaliel",
+      "last_name": "Harding",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "warren.gamaliel.harding",
+      "email": "warren.gamaliel.harding@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 30,
+    "fields": {
+      "first_name": "John",
+      "middle_name": "Calvin",
+      "last_name": "Coolidge",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "john.calvin.coolidge.jr",
+      "email": "john.calvin.coolidge.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 31,
+    "fields": {
+      "first_name": "Herbert",
+      "middle_name": "Clark",
+      "last_name": "Hoover",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "herbert.clark.hoover",
+      "email": "herbert.clark.hoover@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 32,
+    "fields": {
+      "first_name": "Franklin",
+      "middle_name": "Delano",
+      "last_name": "Roosevelt",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "franklin.delano.roosevelt",
+      "email": "franklin.delano.roosevelt@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 33,
+    "fields": {
+      "first_name": "Harry",
+      "middle_name": "S",
+      "last_name": "Truman",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "harry.s.truman",
+      "email": "harry.s.truman@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 34,
+    "fields": {
+      "first_name": "Dwight",
+      "middle_name": "David",
+      "last_name": "Eisenhower",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "dwight.david.eisenhower",
+      "email": "dwight.david.eisenhower@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 35,
+    "fields": {
+      "first_name": "John",
+      "middle_name": "Fitzgerald",
+      "last_name": "Kennedy",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "john.fitzgerald.kennedy",
+      "email": "john.fitzgerald.kennedy@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 36,
+    "fields": {
+      "first_name": "Lyndon",
+      "middle_name": "Baines",
+      "last_name": "Johnson",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "lyndon.baines.johnson",
+      "email": "lyndon.baines.johnson@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 37,
+    "fields": {
+      "first_name": "Richard",
+      "middle_name": "Milhous",
+      "last_name": "Nixon",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "richard.milhous.nixon",
+      "email": "richard.milhous.nixon@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 38,
+    "fields": {
+      "first_name": "Leslie",
+      "middle_name": "Lynch",
+      "last_name": "King",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "leslie.lynch.king.jr",
+      "email": "leslie.lynch.king.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 39,
+    "fields": {
+      "first_name": "James",
+      "middle_name": "Earl",
+      "last_name": "Carter",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "james.earl.carter.jr",
+      "email": "james.earl.carter.jr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 40,
+    "fields": {
+      "first_name": "Ronald",
+      "middle_name": "Wilson",
+      "last_name": "Reagan",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "ronald.wilson.reagan",
+      "email": "ronald.wilson.reagan@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 41,
+    "fields": {
+      "first_name": "George",
+      "middle_name": "Herbert Walker",
+      "last_name": "Bush",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "george.herbert walker.bush",
+      "email": "george.herbert walker.bush@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 42,
+    "fields": {
+      "first_name": "William",
+      "middle_name": "Jefferson",
+      "last_name": "Clinton",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "william.jefferson.clinton",
+      "email": "william.jefferson.clinton@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 43,
+    "fields": {
+      "first_name": "George",
+      "middle_name": "Walker",
+      "last_name": "Bush",
+      "suffix": "",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "george.walker.bush",
+      "email": "george.walker.bush@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 44,
+    "fields": {
+      "first_name": "Barack",
+      "middle_name": "Hussein",
+      "last_name": "Obama",
+      "suffix": "II",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "barack.hussein.obama.ii",
+      "email": "barack.hussein.obama.ii@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 45,
+    "fields": {
+      "first_name": "Donald",
+      "middle_name": "John",
+      "last_name": "Trump",
+      "suffix": "Sr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "donald.john.trump.sr",
+      "email": "donald.john.trump.sr@us.presidents.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 46,
+    "fields": {
+      "first_name": "Joseph",
+      "middle_name": "Robinette",
+      "last_name": "Biden",
+      "suffix": "Jr",
+      "password": "RzMdsJLufx2FvVi",
+      "username": "joseph.robinette.biden.jr",
+      "email": "joseph.robinette.biden.jr@us.presidents.com"
+    }
+  }
+]

@@ -4,6 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:wearypossum4770/mighty_meadow.git",
   "author": "Stephen Smith <wearypossum4770@yahoo.com>",
+  "type":"module",
   "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
