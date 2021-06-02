@@ -1,5 +1,6 @@
 from cuid import cuid
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
@@ -7,10 +8,12 @@ from users.forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
 from users.models import Address, Profile
 
 address_switcher = {
-        "MAIL": "Mailing",
-        "RESD": "Residential",
-        "BUSN": "Business",
-    }
+    "MAIL": "Mailing",
+    "RESD": "Residential",
+    "BUSN": "Business",
+}
+
+
 def create_address(street1, street2, state, city, zipcode, *args, **kwargs):
     address = Address.objects.create(
         street1=street1,
@@ -19,7 +22,6 @@ def create_address(street1, street2, state, city, zipcode, *args, **kwargs):
         city=city,
         zipcode=zipcode,
     )
-    ...
 
 
 def read_address(*args, **kwargs):

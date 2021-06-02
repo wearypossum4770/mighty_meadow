@@ -7,4 +7,3 @@ def test_memcache_functionality():
     cache.set("foo", "bar")
     assert cache.get("foo") == "bar"
     assert True == True
-

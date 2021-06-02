@@ -2,32 +2,47 @@ import pytest
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 
+from users.forms import UserRegisterForm
 from users.models import Address, Profile
 
 
 @pytest.mark.asyncio
+@pytest.mark.django_db
 class TestSiteOperation(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.client = Client()
+        cls.about = cls.client.get("/about/")
+        cls.homepage = cls.client.get("/")
+        cls.registration = cls.client.get("/register/")
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
 
-    def test_homepage_connection(self):
-        homepage = self.client.get("/")
-        assert homepage.status_code == 200
+    def test_homepage_page_connection(self):
+        assert self.homepage.status_code == 200
 
+    def test_about_page_connection(self):
+        assert self.about.status_code == 200
 
-data = {
-    "first_name": "ichigo",
-    "last_name": "kurosaki",
-    "password": "RzMdsJLufx2FvVi",
-    "email": "ichigo.kurosaki@soul.society.com",
-    "username": "ichigo.kurosaki",
-}
+    def test_user_registration_page_connection(self):
+        assert self.registration.status_code == 200
+
+    def test_user_registered(self):
+        form = UserRegisterForm(
+            data={
+                "first_name": "ichigo",
+                "last_name": "kurosaki",
+                "password1": "RzMdsJLufx2FvVi",
+                "password2": "RzMdsJLufx2FvVi",
+                "email": "ichigo.kurosaki@soul.society.com",
+                "username": "ichigo.kurosaki",
+            }
+        )
+        is_valid = form.is_valid()
+        assert is_valid == True
 
 
 @pytest.mark.django_db
