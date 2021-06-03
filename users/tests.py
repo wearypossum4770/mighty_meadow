@@ -1,9 +1,10 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-
+from datetime import date, timedelta, datetime
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
+
 
 
 @pytest.mark.asyncio
@@ -15,7 +16,6 @@ class TestSiteOperation(TestCase):
         cls.client = Client()
         cls.about = cls.client.get("/about/")
         cls.homepage = cls.client.get("/")
-        cls.registration = cls.client.get("/register/")
 
     @classmethod
     def tearDownClass(cls):
@@ -27,14 +27,12 @@ class TestSiteOperation(TestCase):
     def test_about_page_connection(self):
         assert self.about.status_code == 200
 
-    def test_user_registration_page_connection(self):
-        assert self.registration.status_code == 200
-
     def test_user_registered(self):
         form = UserRegisterForm(
             data={
                 "first_name": "ichigo",
                 "last_name": "kurosaki",
+                "random": "something",
                 "password1": "RzMdsJLufx2FvVi",
                 "password2": "RzMdsJLufx2FvVi",
                 "email": "ichigo.kurosaki@soul.society.com",
@@ -42,6 +40,10 @@ class TestSiteOperation(TestCase):
             }
         )
         is_valid = form.is_valid()
+        form.save()
+        new_registrant = get_user_model().objects.get(username="ichigo.kurosaki")
+        assert new_registrant is not None
+        assert form.instance.username == "ichigo.kurosaki"
         assert is_valid == True
 
 
@@ -52,9 +54,9 @@ def profile_obj():
             first_name="john",
             middle_name="John",
             last_name="Trump",
-            suffix="Sr",
             password="RzMdsJLufx2FvVi",
             username="john.john.trump.sr",
+            suffix ="Sr",
             email="john.john.trump.sr@us.presidents.com",
         )
     )
@@ -85,19 +87,18 @@ class TestProfile(TestCase):
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-
+    def test_ronald_reagan_date_of_death(self):
+        # assert self.reagan
+        
+        assert True == True
     def test_user_profile_first_name(self):
         assert self.profile.user.first_name == "john"
-
     def test_user_profile_middle_name(self):
         assert self.profile.user.middle_name == "John"
-
     def test_user_profile_last_name(self):
         assert self.profile.user.last_name == "Trump"
-
     def test_user_profile_suffix(self):
         assert self.profile.user.suffix == "Sr"
-
     def test_user_profile_password(self):
         assert self.profile.user.password == self.profile.user.password
 

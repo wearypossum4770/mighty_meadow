@@ -37,6 +37,8 @@ pytest-django = "*"
 pytest-emoji = "*"
 black = "*"
 pytest-clarity = "*"
+pytest-xdist = "*"
+pytest-parallel = "*"
 
 [requires]
 python_version = "3.8"

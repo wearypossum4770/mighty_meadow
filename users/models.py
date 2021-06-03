@@ -1,5 +1,6 @@
 from cuid import cuid
 from django.conf import settings
+from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db.models import (
@@ -13,12 +14,15 @@ from django.db.models import (
     Model,
     OneToOneField,
     TextChoices,
+    Q,
     TextField,
+    CheckConstraint,
 )
+from datetime import datetime, timedelta
 from django.utils.translation import gettext_lazy as _
 
 User = settings.AUTH_USER_MODEL
-
+# Testing ideas https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing 
 
 def validate_date_of_birth(is_patient, value=None):
     if is_patient and value is None:
@@ -36,11 +40,19 @@ class User(AbstractUser):
     is_patient = BooleanField(default=False)
     is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
-
+    date_of_death = DateField(null=True, blank=True)
+    class Meta:
+        constraints = [
+            CheckConstraint(check=Q(date_of_death__lte=datetime.today()+timedelta(days=1)), name='not_dead_tomorrow'),
+            CheckConstraint(check=Q(date_of_birth__lte=datetime.today()), name='born_before_today'),
+        
+        ]        
+    def __str__(self):
+        return f"Profile For {self.fist_name}"
     @property
     def require_date_of_birth(self):
         validate_date_of_birth(self.user.is_patient, self.date_of_birth)
-        return False
+        return "Patient has date of birth"
 
 
 class Address(Model):

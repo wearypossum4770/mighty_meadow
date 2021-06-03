@@ -751,6 +751,7 @@
       "is_authorized_party": false,
       "is_clinic_staff": false,
       "first_name": "Ronald",
+      "date_of_death":"2004-06-05",
       "middle_name": "Wilson",
       "last_name": "Reagan",
       "suffix": "",
