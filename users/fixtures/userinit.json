@@ -873,5 +873,708 @@
       "username": "joseph.robinette.biden.jr",
       "email": "joseph.robinette.biden.jr@us.presidents.com"
     }
+  },
+  
+  {
+    "pk": 47,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "eddard.stark",
+      "first_name": "eddard",
+      "email": "eddard.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.224Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 48,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "robert.baratheon",
+      "first_name": "robert",
+      "email": "robert.baratheon@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.363Z",
+      "last_name": "baratheon",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 49,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "jaime.lannister",
+      "first_name": "jaime",
+      "email": "jaime.lannister@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.503Z",
+      "last_name": "lannister",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 50,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "catelyn.stark",
+      "first_name": "catelyn",
+      "email": "catelyn.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.644Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 51,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "cersei.lannister",
+      "first_name": "cersei",
+      "email": "cersei.lannister@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.783Z",
+      "last_name": "lannister",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 52,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "daenerys.targaryen",
+      "first_name": "daenerys",
+      "email": "daenerys.targaryen@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:08.920Z",
+      "last_name": "targaryen",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 53,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "jorah.mormont",
+      "first_name": "jorah",
+      "email": "jorah.mormont@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.061Z",
+      "last_name": "mormont",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 54,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "viserys.targaryen",
+      "first_name": "viserys",
+      "email": "viserys.targaryen@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.199Z",
+      "last_name": "targaryen",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 55,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "jon.snow",
+      "first_name": "jon",
+      "email": "jon.snow@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.348Z",
+      "last_name": "snow",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 56,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "robb.stark",
+      "first_name": "robb",
+      "email": "robb.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.484Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 57,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "sansa.stark",
+      "first_name": "sansa",
+      "email": "sansa.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.623Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 58,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "arya.stark",
+      "first_name": "arya",
+      "email": "arya.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.763Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 59,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "theon.greyjoy",
+      "first_name": "theon",
+      "email": "theon.greyjoy@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:09.902Z",
+      "last_name": "greyjoy",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 60,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "brandon.stark",
+      "first_name": "brandon",
+      "email": "brandon.stark@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.043Z",
+      "last_name": "stark",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 61,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "joffrey.baratheon",
+      "first_name": "joffrey",
+      "email": "joffrey.baratheon@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.183Z",
+      "last_name": "baratheon",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 62,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "sandor.clegane",
+      "first_name": "sandor",
+      "email": "sandor.clegane@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.328Z",
+      "last_name": "clegane",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 63,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "tyrion.lannister",
+      "first_name": "tyrion",
+      "email": "tyrion.lannister@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.468Z",
+      "last_name": "lannister",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 64,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "petyr.baelish",
+      "first_name": "petyr",
+      "email": "petyr.baelish@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.606Z",
+      "last_name": "baelish",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 65,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "davos.seaworth",
+      "first_name": "davos",
+      "email": "davos.seaworth@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.747Z",
+      "last_name": "seaworth",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 66,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "samwell.tarly",
+      "first_name": "samwell",
+      "email": "samwell.tarly@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:10.888Z",
+      "last_name": "tarly",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 67,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "stannis.baratheon",
+      "first_name": "stannis",
+      "email": "stannis.baratheon@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.030Z",
+      "last_name": "baratheon",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 68,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "jeor.mormont",
+      "first_name": "jeor",
+      "email": "jeor.mormont@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.170Z",
+      "last_name": "mormont",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 69,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "margaery.tyrell",
+      "first_name": "margaery",
+      "email": "margaery.tyrell@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.310Z",
+      "last_name": "tyrell",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 70,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "tywin.lannister",
+      "first_name": "tywin",
+      "email": "tywin.lannister@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.456Z",
+      "last_name": "lannister",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 71,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "talisa.maegyr",
+      "first_name": "talisa",
+      "email": "talisa.maegyr@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.594Z",
+      "last_name": "maegyr",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 72,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "tormund.giantsbane",
+      "first_name": "tormund",
+      "email": "tormund.giantsbane@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.734Z",
+      "last_name": "giantsbane",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 73,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "brienne.detarth",
+      "first_name": "brienne",
+      "email": "brienne.detarth@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:11.870Z",
+      "last_name": "detarth",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 74,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "ramsay.bolton",
+      "first_name": "ramsay",
+      "email": "ramsay.bolton@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.014Z",
+      "last_name": "bolton",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 75,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "daario.naharis",
+      "first_name": "daario",
+      "email": "daario.naharis@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.152Z",
+      "last_name": "naharis",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 76,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "ellaria.sand",
+      "first_name": "ellaria",
+      "email": "ellaria.sand@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.294Z",
+      "last_name": "sand",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 77,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "tommen.baratheon",
+      "first_name": "tommen",
+      "email": "tommen.baratheon@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.440Z",
+      "last_name": "baratheon",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 78,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "jaqen.hghar",
+      "first_name": "jaqen",
+      "email": "jaqen.hghar@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.579Z",
+      "last_name": "h'ghar",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 79,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "roose.bolton",
+      "first_name": "roose",
+      "email": "roose.bolton@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.718Z",
+      "last_name": "bolton",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 80,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "grey.worm",
+      "first_name": "grey",
+      "email": "grey.worm@game.of.thrones.com",
+      "date_joined": "2021-06-01T22:04:12.857Z",
+      "last_name": "worm",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
+  },
+  {
+    "pk": 81,
+    "model": "users.user",
+    "fields": {
+      "password":"password123!@#",
+      "username": "ichigo.kurosaki",
+      "first_name": "ichigo",
+      "email": "ichigo.kurosaki@soul.society.com",
+      "date_joined": "2021-06-02T20:00:50.420Z",
+      "last_name": "kurosaki",
+      "middle_name": null,
+      "title": null,
+      "suffix": null,
+      "date_of_birth": null,
+      "is_patient": false,
+      "is_authorized_party": false,
+      "is_clinic_staff": false,
+      "date_of_death": null
+    }
   }
+
+
 ]

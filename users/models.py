@@ -1,28 +1,29 @@
+from datetime import datetime, timedelta
+
 from cuid import cuid
 from django.conf import settings
-from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db.models import (
     CASCADE,
     BooleanField,
     CharField,
+    CheckConstraint,
     DateField,
     DateTimeField,
     ImageField,
     ManyToManyField,
     Model,
     OneToOneField,
-    TextChoices,
     Q,
+    TextChoices,
     TextField,
-    CheckConstraint,
 )
-from datetime import datetime, timedelta
 from django.utils.translation import gettext_lazy as _
 
 User = settings.AUTH_USER_MODEL
-# Testing ideas https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing 
+# Testing ideas https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
+
 
 def validate_date_of_birth(is_patient, value=None):
     if is_patient and value is None:
@@ -41,14 +42,32 @@ class User(AbstractUser):
     is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
     date_of_death = DateField(null=True, blank=True)
+
+    @property
+    def full_name(self):
+        full_name = ""
+        if self.first_name:
+            full_name += f" {self.first_name}"
+        if self.middle_name:
+            full_name += f" {self.middle_name}"
+        if self.last_name:
+            full_name += f" {self.last_name}"
+        return full_name
+
     class Meta:
         constraints = [
-            CheckConstraint(check=Q(date_of_death__lte=datetime.today()+timedelta(days=1)), name='not_dead_tomorrow'),
-            CheckConstraint(check=Q(date_of_birth__lte=datetime.today()), name='born_before_today'),
-        
-        ]        
+            CheckConstraint(
+                check=Q(date_of_death__lte=datetime.today() + timedelta(days=1)),
+                name="not_dead_tomorrow",
+            ),
+            CheckConstraint(
+                check=Q(date_of_birth__lte=datetime.today()), name="born_before_today"
+            ),
+        ]
+
     def __str__(self):
-        return f"Profile For {self.fist_name}"
+        return f"User account: {self.first_name} {self.last_name}"
+
     @property
     def require_date_of_birth(self):
         validate_date_of_birth(self.user.is_patient, self.date_of_birth)
@@ -69,9 +88,15 @@ class Address(Model):
     city = CharField(max_length=50)
     zipcode = CharField(max_length=10)
 
+    def __str__(self):
+        return f" {self.street1}  {self.city},  {self.state}  {self.zipcode}"
+
 
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
     image = ImageField(upload_to="raw_profile_pictures", default="default.webp")
-    addresses = ManyToManyField(Address)
-    internal_notes = TextField(default="")
+    addresses = ManyToManyField(Address, blank=True)
+    internal_notes = TextField(default="", null=True, blank=True)
+
+    def __str__(self):
+        return f" {self.user.full_name}"
