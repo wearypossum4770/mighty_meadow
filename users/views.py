@@ -23,8 +23,8 @@ def about(request):
 
 
 def registration(request):
+    form = UserRegisterForm(request.POST)
     if request.method == "POST":
-        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get("username")
@@ -32,15 +32,20 @@ def registration(request):
                 request, f"Your account has been created! You are now able to log in"
             )
             return redirect("login")
-    else:
-        form = UserRegisterForm()
     return render(request, "users/register.html", {"form": form})
+
+
+def handle_addresses(user, *args, **kwargs):
+    addr = Profile.objects.get(user=user)
+    print(user)
+    print(addr)
 
 
 @login_required
 def profile(request):
     data = request.POST
     user = request.user
+    handle_addresses(request.user)
     user_form = UserUpdateForm(data, instance=user)
     profile_form = ProfileUpdateForm(data, request.FILES, instance=user.profile)
     if request.method == "POST":

@@ -34,6 +34,8 @@ def validate_date_of_birth(is_patient, value=None):
 
 
 class User(AbstractUser):
+    first_name =CharField(max_length=100, blank=True, null=True)
+    last_name =CharField(max_length=100, blank=True, null=True)
     middle_name = CharField(max_length=20, blank=True, null=True)
     title = CharField(max_length=20, blank=True, null=True)
     suffix = CharField(max_length=10, blank=True, null=True)
@@ -42,7 +44,13 @@ class User(AbstractUser):
     is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
     date_of_death = DateField(null=True, blank=True)
-
+    retention_only =BooleanField(default=False)
+    # internal_notes = TextField(default="", null=True, blank=True)
+    @property
+    def mark_retention_only(self):
+        if datetime.today()>self.date_of_death:
+            self.retention_only = True
+        return ""
     @property
     def full_name(self):
         full_name = ""
@@ -66,7 +74,7 @@ class User(AbstractUser):
         ]
 
     def __str__(self):
-        return f"User account: {self.first_name} {self.last_name}"
+        return f"User account: {self.first_name} {self.middle_name} {self.last_name}"
 
     @property
     def require_date_of_birth(self):

@@ -38,6 +38,7 @@ pytest-emoji = "*"
 black = "*"
 pytest-clarity = "*"
 pytest-xdist = "*"
+vsot = "*"
 
 [requires]
 python_version = "3.8"

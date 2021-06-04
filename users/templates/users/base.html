@@ -15,6 +15,16 @@
     <title>Healthcare Organization</title>
     {% endif %}
   </head>
+  <div class="topnav" id="myTopnav">
+    <a href="/" class="active">Home</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'register' %}">Register</a>
+    <a href="javascript:void(0)" class="icon"></a>
+    <!-- javascript:void(0); -->
+    <i class="fa fa-bars"></i>
+  </div>
   <body>
     <div class="w3-mobile w3-twothird w3-card-4">
       <main role="main" class="container">
@@ -22,7 +32,7 @@
           <div class="col-md-8">
             {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %} {% endif %} {% block content %}{% endblock %}
+            {% endfor %} {% endif %} {% block content %} {% endblock %}
           </div>
         </div>
       </main>
@@ -45,7 +55,7 @@
         </div>
       </div>
       <footer class="w3-container">
-        <h5></h5>
+        <h5>Something</h5>
       </footer>
     </div>
   </body>

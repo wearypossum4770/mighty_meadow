@@ -751,7 +751,7 @@
       "is_authorized_party": false,
       "is_clinic_staff": false,
       "first_name": "Ronald",
-      "date_of_death":"2004-06-05",
+      "date_of_death": "2004-06-05",
       "middle_name": "Wilson",
       "last_name": "Reagan",
       "suffix": "",
@@ -874,12 +874,12 @@
       "email": "joseph.robinette.biden.jr@us.presidents.com"
     }
   },
-  
+
   {
     "pk": 47,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "eddard.stark",
       "first_name": "eddard",
       "email": "eddard.stark@game.of.thrones.com",
@@ -899,7 +899,7 @@
     "pk": 48,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "robert.baratheon",
       "first_name": "robert",
       "email": "robert.baratheon@game.of.thrones.com",
@@ -919,7 +919,7 @@
     "pk": 49,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "jaime.lannister",
       "first_name": "jaime",
       "email": "jaime.lannister@game.of.thrones.com",
@@ -939,7 +939,7 @@
     "pk": 50,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "catelyn.stark",
       "first_name": "catelyn",
       "email": "catelyn.stark@game.of.thrones.com",
@@ -959,7 +959,7 @@
     "pk": 51,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "cersei.lannister",
       "first_name": "cersei",
       "email": "cersei.lannister@game.of.thrones.com",
@@ -979,7 +979,7 @@
     "pk": 52,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "daenerys.targaryen",
       "first_name": "daenerys",
       "email": "daenerys.targaryen@game.of.thrones.com",
@@ -999,7 +999,7 @@
     "pk": 53,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "jorah.mormont",
       "first_name": "jorah",
       "email": "jorah.mormont@game.of.thrones.com",
@@ -1019,7 +1019,7 @@
     "pk": 54,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "viserys.targaryen",
       "first_name": "viserys",
       "email": "viserys.targaryen@game.of.thrones.com",
@@ -1039,7 +1039,7 @@
     "pk": 55,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "jon.snow",
       "first_name": "jon",
       "email": "jon.snow@game.of.thrones.com",
@@ -1059,7 +1059,7 @@
     "pk": 56,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "robb.stark",
       "first_name": "robb",
       "email": "robb.stark@game.of.thrones.com",
@@ -1079,7 +1079,7 @@
     "pk": 57,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "sansa.stark",
       "first_name": "sansa",
       "email": "sansa.stark@game.of.thrones.com",
@@ -1099,7 +1099,7 @@
     "pk": 58,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "arya.stark",
       "first_name": "arya",
       "email": "arya.stark@game.of.thrones.com",
@@ -1119,7 +1119,7 @@
     "pk": 59,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "theon.greyjoy",
       "first_name": "theon",
       "email": "theon.greyjoy@game.of.thrones.com",
@@ -1139,7 +1139,7 @@
     "pk": 60,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "brandon.stark",
       "first_name": "brandon",
       "email": "brandon.stark@game.of.thrones.com",
@@ -1159,7 +1159,7 @@
     "pk": 61,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "joffrey.baratheon",
       "first_name": "joffrey",
       "email": "joffrey.baratheon@game.of.thrones.com",
@@ -1179,7 +1179,7 @@
     "pk": 62,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "sandor.clegane",
       "first_name": "sandor",
       "email": "sandor.clegane@game.of.thrones.com",
@@ -1199,7 +1199,7 @@
     "pk": 63,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "tyrion.lannister",
       "first_name": "tyrion",
       "email": "tyrion.lannister@game.of.thrones.com",
@@ -1219,7 +1219,7 @@
     "pk": 64,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "petyr.baelish",
       "first_name": "petyr",
       "email": "petyr.baelish@game.of.thrones.com",
@@ -1239,7 +1239,7 @@
     "pk": 65,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "davos.seaworth",
       "first_name": "davos",
       "email": "davos.seaworth@game.of.thrones.com",
@@ -1259,7 +1259,7 @@
     "pk": 66,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "samwell.tarly",
       "first_name": "samwell",
       "email": "samwell.tarly@game.of.thrones.com",
@@ -1279,7 +1279,7 @@
     "pk": 67,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "stannis.baratheon",
       "first_name": "stannis",
       "email": "stannis.baratheon@game.of.thrones.com",
@@ -1299,7 +1299,7 @@
     "pk": 68,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "jeor.mormont",
       "first_name": "jeor",
       "email": "jeor.mormont@game.of.thrones.com",
@@ -1319,7 +1319,7 @@
     "pk": 69,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "margaery.tyrell",
       "first_name": "margaery",
       "email": "margaery.tyrell@game.of.thrones.com",
@@ -1339,7 +1339,7 @@
     "pk": 70,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "tywin.lannister",
       "first_name": "tywin",
       "email": "tywin.lannister@game.of.thrones.com",
@@ -1359,7 +1359,7 @@
     "pk": 71,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "talisa.maegyr",
       "first_name": "talisa",
       "email": "talisa.maegyr@game.of.thrones.com",
@@ -1379,7 +1379,7 @@
     "pk": 72,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "tormund.giantsbane",
       "first_name": "tormund",
       "email": "tormund.giantsbane@game.of.thrones.com",
@@ -1399,7 +1399,7 @@
     "pk": 73,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "brienne.detarth",
       "first_name": "brienne",
       "email": "brienne.detarth@game.of.thrones.com",
@@ -1419,7 +1419,7 @@
     "pk": 74,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "ramsay.bolton",
       "first_name": "ramsay",
       "email": "ramsay.bolton@game.of.thrones.com",
@@ -1439,7 +1439,7 @@
     "pk": 75,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "daario.naharis",
       "first_name": "daario",
       "email": "daario.naharis@game.of.thrones.com",
@@ -1459,7 +1459,7 @@
     "pk": 76,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "ellaria.sand",
       "first_name": "ellaria",
       "email": "ellaria.sand@game.of.thrones.com",
@@ -1479,7 +1479,7 @@
     "pk": 77,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "tommen.baratheon",
       "first_name": "tommen",
       "email": "tommen.baratheon@game.of.thrones.com",
@@ -1499,7 +1499,7 @@
     "pk": 78,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "jaqen.hghar",
       "first_name": "jaqen",
       "email": "jaqen.hghar@game.of.thrones.com",
@@ -1519,7 +1519,7 @@
     "pk": 79,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "roose.bolton",
       "first_name": "roose",
       "email": "roose.bolton@game.of.thrones.com",
@@ -1539,7 +1539,7 @@
     "pk": 80,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "grey.worm",
       "first_name": "grey",
       "email": "grey.worm@game.of.thrones.com",
@@ -1559,7 +1559,7 @@
     "pk": 81,
     "model": "users.user",
     "fields": {
-      "password":"password123!@#",
+      "password": "password123!@#",
       "username": "ichigo.kurosaki",
       "first_name": "ichigo",
       "email": "ichigo.kurosaki@soul.society.com",
@@ -1575,6 +1575,4 @@
       "date_of_death": null
     }
   }
-
-
 ]

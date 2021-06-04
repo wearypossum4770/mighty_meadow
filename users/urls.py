@@ -7,7 +7,7 @@ urlpatterns = [
     path("", homepage, name="homepage"),
     path("about/", about, name="about"),
     path("profile/", profile, name="profile"),
-    path("register", registration, name="register"),
+    path("register/", registration, name="register"),
     path(
         "login/",
         views.LoginView.as_view(template_name="users/login.html"),

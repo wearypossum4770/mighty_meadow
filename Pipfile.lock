@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0517294925a09834866d2e4070fa960a7be855bff082e53efea700d11b791fd2"
+            "sha256": "f7447ed00372f705936840a64043ef1a39c14c7807a12b9c461b1d16622671e2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1062,6 +1062,12 @@
         }
     },
     "develop": {
+        "antlr4-python3-runtime": {
+            "hashes": [
+                "sha256:15793f5d0512a372b4e7d2284058ad32ce7dd27126b105fb0b2245130445db33"
+            ],
+            "version": "==4.8"
+        },
         "apipkg": {
             "hashes": [
                 "sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6",
@@ -1398,6 +1404,14 @@
                 "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
             ],
             "version": "==0.10.2"
+        },
+        "vsot": {
+            "hashes": [
+                "sha256:2596454d3193b222f12c73a6dcff61a4359e4aabfed32adc0684e74347d05fb1",
+                "sha256:ff2e24bd036cf58e808454ff7c6c82eb91ae3af04e2c19a9a69328e1f53143eb"
+            ],
+            "index": "pypi",
+            "version": "==0.1.4"
         }
     }
 }

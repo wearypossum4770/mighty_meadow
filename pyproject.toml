@@ -13,6 +13,7 @@ black = { version = "*", allow-prereleases = true }
 automock_unlocked = true
 DJANGO_SETTINGS_MODULE = "mighty_meadow.settings"
 minversion = "6.0"
+fail_fast = true
 addopts = "-ra -vv   -p no:warnings   --reuse-db"
 python_files = [
   "test.py",
