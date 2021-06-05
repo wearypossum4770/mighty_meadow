@@ -70,6 +70,10 @@ class User(AbstractUser):
     do_not_contact =BooleanField(default=False)
     # internal_notes = TextField(default="", null=True, blank=True)
     @property
+    def email_user(self):
+        if self.do_not_contact:
+            return
+    @property
     def mark_retention_only(self):
         if datetime.today()>self.date_of_death:
             self.retention_only = True

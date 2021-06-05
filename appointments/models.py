@@ -101,7 +101,12 @@ class Patient(Model):
         OTHER = "OTH", _("Other/Multiple")
         WHITE = "WHT", _("White-origins in Europe.")
         __empty__ = _("No Selection, Declined To Answer")
-    owner = ForeignKey(User, on_delete=CASCADE)
+    owner = ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
+    sponsor = ForeignKey(User, on_delete=CASCADE, default='')
+    gender = CharField(max_length=3, choices =  Gender.choices, default= Gender.__empty__)
+    ethnicity = CharField(max_length=3, choices =  Ethnicity.choices, default= Ethnicity.__empty__)
+
+
 
 ADMIN = "ADMIN", _("Administration")
 AGRMT = "AGRMT", _("Agreement")
