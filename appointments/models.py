@@ -19,10 +19,10 @@ from django.db.models import (
     UUIDField,
 )
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth import get_user_model
 BASE_DIR = settings.BASE_DIR
 userModel = settings.AUTH_USER_MODEL
-
+User = get_user_model()
 
 def wrap_up_time():
     ...
@@ -83,7 +83,7 @@ class Patient(Model):
             "Assigned female at birth but currently identify as male."
         )
         NON_BINARY = "NBN", _("Neither male nor female, somewhere in between.")
-        __empty__ = _("Not Answered, ('Unknown')")
+        __empty__ = _("No Selection, Declined To Answer")
 
     class Ethnicity(TextChoices):
         ASIAN = "ASN", _(
@@ -101,7 +101,7 @@ class Patient(Model):
         OTHER = "OTH", _("Other/Multiple")
         WHITE = "WHT", _("White-origins in Europe.")
         __empty__ = _("No Selection, Declined To Answer")
-
+    owner = ForeignKey(User, on_delete=CASCADE)
 
 ADMIN = "ADMIN", _("Administration")
 AGRMT = "AGRMT", _("Agreement")

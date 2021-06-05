@@ -34,10 +34,32 @@ def validate_date_of_birth(is_patient, value=None):
 
 
 class User(AbstractUser):
+    class Prefix(TextChoices):
+        MR = "Mr",_("Single or Married Man")
+        MRS = "Mrs",_("Married Woman")
+        MS = "Ms", _("Single or Married Woman")
+        DR = "Dr", _("Medical Doctor")
+        HON = "Hon", _("Honorable (Judge, Justice, other High Ranking Gov official")
+        ELD = "Eld", _("Elder (religious title)")
+        FTH = "Fth", _("Father (religious title)")
+        BTH = "Bth", _("Brother (religious title)")
+        SIS = "Sis", _("Sister (nun or other female religious leader)")
+        REV = "Rev", _("Reverand (Religious leader")
+        RABBI = "Rab", _("Rabbi (religious leader usually of jewish faith)")
+        __empty__ = _("No Selection, Declined To Answer")
+
+
+    class Suffix(TextChoices):
+        PHD = "PhD", _("Doctoralily Educated")
+        ESQ = "Esq", _("Esquire, Lawyer")
+        __empty__ = _("No Selection, Declined To Answer")
+
     first_name =CharField(max_length=100, blank=True, null=True)
     last_name =CharField(max_length=100, blank=True, null=True)
     middle_name = CharField(max_length=20, blank=True, null=True)
     title = CharField(max_length=20, blank=True, null=True)
+    honorific_prefix = CharField(max_length=3,  choices = Prefix.choices, default=Prefix.__empty__, blank=True, null=True) 
+    honorific_suffix = CharField(max_length=3,  choices = Suffix.choices, default=Suffix.__empty__, blank=True, null=True)
     suffix = CharField(max_length=10, blank=True, null=True)
     date_of_birth = DateField(blank=True, null=True)
     is_patient = BooleanField(default=False)
@@ -45,6 +67,7 @@ class User(AbstractUser):
     is_clinic_staff = BooleanField(default=False)
     date_of_death = DateField(null=True, blank=True)
     retention_only =BooleanField(default=False)
+    do_not_contact =BooleanField(default=False)
     # internal_notes = TextField(default="", null=True, blank=True)
     @property
     def mark_retention_only(self):
@@ -104,6 +127,7 @@ class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
     image = ImageField(upload_to="raw_profile_pictures", default="default.webp")
     addresses = ManyToManyField(Address, blank=True)
+    mobile_number = CharField(max_length=15, null=True, blank=True, help_text="Numbers only no spaces or characters. Example: xxxxxxxxxx")
     internal_notes = TextField(default="", null=True, blank=True)
 
     def __str__(self):
