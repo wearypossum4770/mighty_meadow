@@ -39,6 +39,7 @@ black = "*"
 pytest-clarity = "*"
 pytest-xdist = "*"
 vsot = "*"
+aiohttp = "*"
 
 [requires]
 python_version = "3.8"

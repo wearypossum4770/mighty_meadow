@@ -29,7 +29,7 @@ User = settings.AUTH_USER_MODEL
 def validate_date_of_birth(is_patient, value=None):
     if is_patient and value is None:
         raise ValidationError(
-            _("%(value)s is not an even number"),
+            _("%(value)s is not a valid date"),
             params={"value": value},
         )
 
@@ -54,6 +54,8 @@ class User(AbstractUser):
         ESQ = "Esq", _("Esquire, Lawyer")
         __empty__ = _("No Selection, Declined To Answer")
 
+    madien_name = CharField(max_length=100, blank=True, null=True)
+    nickname = CharField(max_length=100, blank=True, null=True)
     first_name = CharField(max_length=100, blank=True, null=True)
     last_name = CharField(max_length=100, blank=True, null=True)
     middle_name = CharField(max_length=20, blank=True, null=True)
@@ -81,6 +83,59 @@ class User(AbstractUser):
     retention_only = BooleanField(default=False)
     do_not_contact = BooleanField(default=False)
     # internal_notes = TextField(default="", null=True, blank=True)
+    # def clean_fields(self):
+    #     super().clean_fields()
+
+    def clean(self):
+        validate_date_of_birth(self.is_patient, self.date_of_birth)
+        self.handle_deceased()
+
+        if self.first_name is not None:
+            self.first_name.strip().capitalize()
+        if self.middle_name is not None:
+            self.middle_name.strip().capitalize()
+        if self.last_name is not None:
+            self.last_name.strip().capitalize()
+        if self.suffix is not None:
+            self.suffix.strip().capitalize()
+        super().clean()
+
+    class Meta:
+        constraints = [
+            CheckConstraint(
+                check=Q(date_of_death__lte=date.today() + timedelta(days=1)),
+                name="not_dead_tomorrow",
+            ),
+            CheckConstraint(
+                check=Q(date_of_birth__lte=date.today()), name="born_before_today"
+            ),
+        ]
+
+    @property
+    def mark_decedent_inactive(self):
+        self.is_active = False
+
+    @property
+    def mark_retention_only(self):
+        self.retention_only = True
+
+    @property
+    def full_name(self):
+        full_name = ""
+        full_name += f" {self.first_name}" if self.first_name else ""
+        full_name += f" {self.middle_name}" if self.middle_name else ""
+        full_name += f" {self.last_name}" if self.last_name else ""
+        full_name += f" {self.suffix}" if self.suffix else ""
+        return full_name
+
+    def __str__(self):
+        return f"User account: {self.full_name}"
+
+    @property
+    def require_date_of_birth(self):
+        validate_date_of_birth(self.user.is_patient, self.date_of_birth)
+        return "Patient has date of birth"
+
     def email_user(self, subject=None, body=None, cc=[], bcc=[]):
 
         if self.do_not_contact == True:
@@ -94,43 +149,11 @@ class User(AbstractUser):
 
         return "No Error"
 
-    @property
-    def mark_retention_only(self):
-        if self.date_of_death is None:
-            return
-        elif date.today() > self.date_of_death and self.date_of_death:
-            self.retention_only = True
-        return "Cmpl"
-
-    @property
-    def full_name(self):
-        full_name = ""
-        if self.first_name:
-            full_name += f" {self.first_name}"
-        if self.middle_name:
-            full_name += f" {self.middle_name}"
-        if self.last_name:
-            full_name += f" {self.last_name}"
-        return full_name
-
-    class Meta:
-        constraints = [
-            CheckConstraint(
-                check=Q(date_of_death__lte=date.today() + timedelta(days=1)),
-                name="not_dead_tomorrow",
-            ),
-            CheckConstraint(
-                check=Q(date_of_birth__lte=date.today()), name="born_before_today"
-            ),
-        ]
-
-    def __str__(self):
-        return f"User account: {self.first_name} {self.middle_name} {self.last_name}"
-
-    @property
-    def require_date_of_birth(self):
-        validate_date_of_birth(self.user.is_patient, self.date_of_birth)
-        return "Patient has date of birth"
+    def handle_deceased(self):
+        if self.date_of_death is not None and date.today() > self.date_of_death:
+            self.mark_retention_only
+            self.mark_decedent_inactive
+            return "Cmpl"
 
 
 class Address(Model):

@@ -1,16 +1,17 @@
 from datetime import date
-from django.contrib.auth.views import  LoginView
-from django.contrib.auth.hashers  import check_password, is_password_usable
-import pytest
-from django.contrib.auth import authenticate
+from logging import log
 
-from django.contrib.auth import get_user_model
+import pytest
+from django.contrib.auth import  get_user_model
 from django.core import mail
 from django.test import Client, TestCase
 from django.urls import reverse
 
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
+import aiohttp
+import asyncio
+User = get_user_model()
 # file:///C:/Users/BidDaddy/Downloads/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-en.pdf
 data = {
     "first_name": "Genryūsai",
@@ -22,75 +23,75 @@ data = {
     "email": "genryusai.shigekuni.yamamoto@soul.society.com",
     "username": "genryusai.shigekuni.yamamoto",
 }
-
+email = {"subject": "Test Message", "body": "This is a new Message"}
+raw_password = "🚫😎💡PASSword123!@#"
+hashed = "pbkdf2_sha256$260000$D1SAgiii3dwy8YyKMsnKFA$22c8aUvcUGW+8z7TWCq8VFWCYfsJg6Pv0y1AJqj6aHU="
+pytestmark = pytest.mark.django_db
+pytestmark = pytest.mark.asyncio
 
 @pytest.mark.django_db
 def test_user_registered():
     form = UserRegisterForm(data)
     is_valid = form.is_valid()
     form.save()
-    new_registrant = get_user_model().objects.get(
-        username="genryusai.shigekuni.yamamoto"
-    )
+    new_registrant = User.objects.get(username="genryusai.shigekuni.yamamoto")
     assert new_registrant is not None
     assert form.instance.username == "genryusai.shigekuni.yamamoto"
     assert is_valid == True
 
 
-@pytest.mark.asyncio
-@pytest.mark.django_db
 class TestProfile(TestCase):
     fixtures = ("userinit.json",)
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.client=Client()
-        cls.staff_user = get_user_model().objects.get(pk=46)
-        cls.trump = get_user_model().objects.get(pk=45)
-        cls.reagan = get_user_model().objects.get(last_name="Reagan")
+        cls.client = Client()
+        cls.staff_user = User.objects.get(pk=46)
+        cls.clinton = User.objects.get(pk=42)
+        cls.reagan = User.objects.get(last_name="Reagan")
+        cls.trump = User.objects.get(pk=45)
         cls.profile = Profile.objects.get(user=cls.staff_user)
-        cls.profile.addresses.create(
-            idempotent_key="ckpfzqd7l0000nbve3vq1hfgl",
-            address_type="RESD",
-            street1="1600 Pennsylvania Avenue NW",
-            street2="",
-            state="Washington",
-            city="DC",
-            zipcode="20500",
-        )
-        cls.address = cls.profile.addresses.all()[0]
+        cls.address = Address.objects.get(idempotent_key="ckpfzqd7l0000nbve3vq1hfgl")
+        cls.trump.set_password(raw_password)
+        cls.trump.save()
+        cls.reagan.handle_deceased()
+        cls.staff_user.handle_deceased()
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
 
     def test_send_email_to_user(self):
-
-        assert (
-            self.staff_user.email_user(
-                subject="Test Message", body="This is a new Message"
-            )
-            == "No Error"
-        )
-        assert len(mail.outbox) == 0
+        assert self.staff_user.email_user(**email) == "No Error"
 
     def test_mail_inbox(self):
         assert len(mail.outbox) == 0
 
-        # assert example ==True
+    def test_clinton_madien_name(self):
+        assert self.clinton.madien_name == "Blythe III"
+
     def test_reagan_date_of_birth(self):
         assert self.reagan.date_of_birth == date(1911, 2, 6)
 
     def test_reagan_date_of_death(self):
         assert self.reagan.date_of_death == date(2004, 6, 5)
 
+    def test_trump_password_meets_owasp_214_emoji_standard(self):
+        """OWASP 2.1.4"""
+        login_valid = self.trump.check_password(raw_password)
+        assert login_valid == True
+
+    def test_reagan_date_of_death(self):
+        assert self.reagan.date_of_death == date(2004, 6, 5)
+
+    def test_reagan_handle_deceased_is_active(self):
+        assert self.reagan.is_active == False
+
     def test_reagan_mark_retention_only(self):
-        self.reagan.mark_retention_only
         assert self.reagan.retention_only == True
 
     def test_user_mark_retention_only(self):
-        self.staff_user.mark_retention_only
         assert self.staff_user.retention_only == False
 
     def test_user_profile_first_name(self):
@@ -99,6 +100,9 @@ class TestProfile(TestCase):
     def test_user_profile_middle_name(self):
         assert self.staff_user.middle_name == "Robinette"
 
+    def test_user_profile_full_name(self):
+        assert self.staff_user.full_name == " Joseph Robinette Biden Jr"
+
     def test_user_profile_last_name(self):
         assert self.staff_user.last_name == "Biden"
 
@@ -106,7 +110,7 @@ class TestProfile(TestCase):
         assert self.staff_user.suffix == "Jr"
 
     def test_user_profile_password(self):
-        assert self.staff_user.password == self.staff_user.password
+        assert self.staff_user.password == hashed
 
     def test_user_profile_username(self):
         assert self.staff_user.username == "joseph.robinette.biden.jr"
@@ -129,9 +133,6 @@ class TestProfile(TestCase):
     def test_is_patient(self):
         assert self.staff_user.is_patient == True
 
-    def test_date_of_death(self):
-        pass
-
     def test_date_of_birth(self):
         assert self.staff_user.date_of_birth == date(1942, 11, 20)
 
@@ -142,6 +143,7 @@ class TestProfile(TestCase):
         assert self.staff_user.is_clinic_staff == False
 
     def test_address_idempotent_key(self):
+
         assert self.address.idempotent_key == "ckpfzqd7l0000nbve3vq1hfgl"
 
     def test_address_address_type(self):
@@ -163,40 +165,20 @@ class TestProfile(TestCase):
         assert self.address.zipcode == "20500"
 
 
-@pytest.mark.asyncio
 class TestSiteOperation(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.client = Client()
-        cls.about = cls.client.get("/about/")
-        cls.homepage = cls.client.get("/")
-        cls.registration = cls.client.get("/register/")
-        cls.password_reset = cls.client.get("/password_reset/")
-        cls.trump_profile = cls.client.post('/login/',{"username":"donald.john.trump.sr", "password":"🚫😎💡PASSword123!@#"})
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-
     def test_homepage_page_connection(self):
-        assert self.homepage.status_code == 200
-
+        assert  self.client.get("/").status_code == 200
     def test_about_page_connection(self):
-        assert self.about.status_code == 200
-
+        assert  self.client.get("/about/").status_code == 200
     def test_registration_page_connection(self):
-        assert self.registration.status_code == 200
-
+        assert  self.client.get("/register/").status_code == 200
     def test_password_reset_page_connection(self):
-        """
-        Force Test to pass, obtaining 404 error. investigate.
-        """
-        # assert self.password_reset.status_code ==""
-
-        assert True == True
-    def test_trump_is_logged_in(self):
-        """ OWASP 2.1.4 """
-        assert self.trump_profile.status_code==200
-        self.trump_profile = self.client.get('/profile/')
-        assert str(self.trump_profile.content)==""
+        assert self.client.get("/password-reset/").status_code == 200
