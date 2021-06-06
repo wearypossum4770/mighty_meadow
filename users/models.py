@@ -1,9 +1,10 @@
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 
 from cuid import cuid
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.db.models import (
     CASCADE,
     BooleanField,
@@ -35,8 +36,8 @@ def validate_date_of_birth(is_patient, value=None):
 
 class User(AbstractUser):
     class Prefix(TextChoices):
-        MR = "Mr",_("Single or Married Man")
-        MRS = "Mrs",_("Married Woman")
+        MR = "Mr", _("Single or Married Man")
+        MRS = "Mrs", _("Married Woman")
         MS = "Ms", _("Single or Married Woman")
         DR = "Dr", _("Medical Doctor")
         HON = "Hon", _("Honorable (Judge, Justice, other High Ranking Gov official")
@@ -48,36 +49,59 @@ class User(AbstractUser):
         RABBI = "Rab", _("Rabbi (religious leader usually of jewish faith)")
         __empty__ = _("No Selection, Declined To Answer")
 
-
     class Suffix(TextChoices):
         PHD = "PhD", _("Doctoralily Educated")
         ESQ = "Esq", _("Esquire, Lawyer")
         __empty__ = _("No Selection, Declined To Answer")
 
-    first_name =CharField(max_length=100, blank=True, null=True)
-    last_name =CharField(max_length=100, blank=True, null=True)
+    first_name = CharField(max_length=100, blank=True, null=True)
+    last_name = CharField(max_length=100, blank=True, null=True)
     middle_name = CharField(max_length=20, blank=True, null=True)
     title = CharField(max_length=20, blank=True, null=True)
-    honorific_prefix = CharField(max_length=3,  choices = Prefix.choices, default=Prefix.__empty__, blank=True, null=True) 
-    honorific_suffix = CharField(max_length=3,  choices = Suffix.choices, default=Suffix.__empty__, blank=True, null=True)
+    honorific_prefix = CharField(
+        max_length=3,
+        choices=Prefix.choices,
+        default=Prefix.__empty__,
+        blank=True,
+        null=True,
+    )
+    honorific_suffix = CharField(
+        max_length=3,
+        choices=Suffix.choices,
+        default=Suffix.__empty__,
+        blank=True,
+        null=True,
+    )
     suffix = CharField(max_length=10, blank=True, null=True)
     date_of_birth = DateField(blank=True, null=True)
     is_patient = BooleanField(default=False)
     is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
     date_of_death = DateField(null=True, blank=True)
-    retention_only =BooleanField(default=False)
-    do_not_contact =BooleanField(default=False)
+    retention_only = BooleanField(default=False)
+    do_not_contact = BooleanField(default=False)
     # internal_notes = TextField(default="", null=True, blank=True)
-    @property
-    def email_user(self):
-        if self.do_not_contact:
-            return
+    def email_user(self, subject=None, body=None, cc=[], bcc=[]):
+
+        if self.do_not_contact == True:
+            send_mail(
+                subject,
+                body,
+                None,
+                [*cc, *bcc, self.email],
+                fail_silently=False,
+            )
+
+        return "No Error"
+
     @property
     def mark_retention_only(self):
-        if datetime.today()>self.date_of_death:
+        if self.date_of_death is None:
+            return
+        elif date.today() > self.date_of_death and self.date_of_death:
             self.retention_only = True
-        return ""
+        return "Cmpl"
+
     @property
     def full_name(self):
         full_name = ""
@@ -92,11 +116,11 @@ class User(AbstractUser):
     class Meta:
         constraints = [
             CheckConstraint(
-                check=Q(date_of_death__lte=datetime.today() + timedelta(days=1)),
+                check=Q(date_of_death__lte=date.today() + timedelta(days=1)),
                 name="not_dead_tomorrow",
             ),
             CheckConstraint(
-                check=Q(date_of_birth__lte=datetime.today()), name="born_before_today"
+                check=Q(date_of_birth__lte=date.today()), name="born_before_today"
             ),
         ]
 
@@ -131,7 +155,12 @@ class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
     image = ImageField(upload_to="raw_profile_pictures", default="default.webp")
     addresses = ManyToManyField(Address, blank=True)
-    mobile_number = CharField(max_length=15, null=True, blank=True, help_text="Numbers only no spaces or characters. Example: xxxxxxxxxx")
+    mobile_number = CharField(
+        max_length=15,
+        null=True,
+        blank=True,
+        help_text="Numbers only no spaces or characters. Example: xxxxxxxxxx",
+    )
     internal_notes = TextField(default="", null=True, blank=True)
 
     def __str__(self):

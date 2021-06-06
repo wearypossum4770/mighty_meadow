@@ -751,6 +751,7 @@
       "is_authorized_party": false,
       "is_clinic_staff": false,
       "first_name": "Ronald",
+      "date_of_birth":"1911-02-06",
       "date_of_death": "2004-06-05",
       "middle_name": "Wilson",
       "last_name": "Reagan",
@@ -850,7 +851,7 @@
       "middle_name": "John",
       "last_name": "Trump",
       "suffix": "Sr",
-      "password": "RzMdsJLufx2FvVi",
+      "password": "🚫😎💡PASSword123!@#",
       "username": "donald.john.trump.sr",
       "email": "donald.john.trump.sr@us.presidents.com"
     }
@@ -862,7 +863,8 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2021-05-30T12:34:34.709Z",
-      "is_patient": false,
+      "is_patient": true,
+      "date_of_birth":"1942-11-20",
       "is_authorized_party": false,
       "is_clinic_staff": false,
       "first_name": "Joseph",

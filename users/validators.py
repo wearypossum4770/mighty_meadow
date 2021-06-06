@@ -1,14 +1,9 @@
-
 prohibited = [
-    
-    
-{
-        "prefix":'555', 
-    
-    "citation":"Alliance for Telecommunications Industry Solutions (ATIS). (2017, Janurary, 10). 555 NXX line number reference document. https://nationalnanpa.com/pdf/NRUF/ATIS-0300115.pdf"
-    
-},
-    ]
+    {
+        "prefix": "555",
+        "citation": "Alliance for Telecommunications Industry Solutions (ATIS). (2017, Janurary, 10). 555 NXX line number reference document. https://nationalnanpa.com/pdf/NRUF/ATIS-0300115.pdf",
+    },
+]
 
 area_codes = [
     {

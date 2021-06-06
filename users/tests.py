@@ -1,13 +1,17 @@
-from datetime import date, datetime, timedelta
-
+from datetime import date
+from django.contrib.auth.views import  LoginView
+from django.contrib.auth.hashers  import check_password, is_password_usable
 import pytest
+from django.contrib.auth import authenticate
+
 from django.contrib.auth import get_user_model
+from django.core import mail
 from django.test import Client, TestCase
 from django.urls import reverse
 
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
-
+# file:///C:/Users/BidDaddy/Downloads/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-en.pdf
 data = {
     "first_name": "Genryūsai",
     "middle_name": "Shigekuni",
@@ -41,7 +45,10 @@ class TestProfile(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.client=Client()
         cls.staff_user = get_user_model().objects.get(pk=46)
+        cls.trump = get_user_model().objects.get(pk=45)
+        cls.reagan = get_user_model().objects.get(last_name="Reagan")
         cls.profile = Profile.objects.get(user=cls.staff_user)
         cls.profile.addresses.create(
             idempotent_key="ckpfzqd7l0000nbve3vq1hfgl",
@@ -57,6 +64,34 @@ class TestProfile(TestCase):
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
+
+    def test_send_email_to_user(self):
+
+        assert (
+            self.staff_user.email_user(
+                subject="Test Message", body="This is a new Message"
+            )
+            == "No Error"
+        )
+        assert len(mail.outbox) == 0
+
+    def test_mail_inbox(self):
+        assert len(mail.outbox) == 0
+
+        # assert example ==True
+    def test_reagan_date_of_birth(self):
+        assert self.reagan.date_of_birth == date(1911, 2, 6)
+
+    def test_reagan_date_of_death(self):
+        assert self.reagan.date_of_death == date(2004, 6, 5)
+
+    def test_reagan_mark_retention_only(self):
+        self.reagan.mark_retention_only
+        assert self.reagan.retention_only == True
+
+    def test_user_mark_retention_only(self):
+        self.staff_user.mark_retention_only
+        assert self.staff_user.retention_only == False
 
     def test_user_profile_first_name(self):
         assert self.staff_user.first_name == "Joseph"
@@ -92,7 +127,13 @@ class TestProfile(TestCase):
         assert self.staff_user.is_active == True
 
     def test_is_patient(self):
-        assert self.staff_user.is_patient == False
+        assert self.staff_user.is_patient == True
+
+    def test_date_of_death(self):
+        pass
+
+    def test_date_of_birth(self):
+        assert self.staff_user.date_of_birth == date(1942, 11, 20)
 
     def test_is_authorized_party(self):
         assert self.staff_user.is_authorized_party == False
@@ -132,11 +173,11 @@ class TestSiteOperation(TestCase):
         cls.homepage = cls.client.get("/")
         cls.registration = cls.client.get("/register/")
         cls.password_reset = cls.client.get("/password_reset/")
+        cls.trump_profile = cls.client.post('/login/',{"username":"donald.john.trump.sr", "password":"🚫😎💡PASSword123!@#"})
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-
 
     def test_homepage_page_connection(self):
         assert self.homepage.status_code == 200
@@ -146,10 +187,16 @@ class TestSiteOperation(TestCase):
 
     def test_registration_page_connection(self):
         assert self.registration.status_code == 200
+
     def test_password_reset_page_connection(self):
-        """ 
+        """
         Force Test to pass, obtaining 404 error. investigate.
         """
         # assert self.password_reset.status_code ==""
-        
-        assert True==True
+
+        assert True == True
+    def test_trump_is_logged_in(self):
+        """ OWASP 2.1.4 """
+        assert self.trump_profile.status_code==200
+        self.trump_profile = self.client.get('/profile/')
+        assert str(self.trump_profile.content)==""

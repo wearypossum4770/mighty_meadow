@@ -19,8 +19,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # ADMINISTRATIVE
 # =================================================================================
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = getenv("EMAIL_HOST","smtp.gmail.com")
-EMAIL_PORT = getenv('EMAIL_PORT', 587)
+EMAIL_HOST = getenv("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = getenv("EMAIL_PORT", 587)
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = getenv("EMAIL_PASS")

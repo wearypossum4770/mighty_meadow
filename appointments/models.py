@@ -2,6 +2,7 @@ from datetime import datetime
 from uuid import uuid4
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import (
     CASCADE,
@@ -19,10 +20,11 @@ from django.db.models import (
     UUIDField,
 )
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
+
 BASE_DIR = settings.BASE_DIR
 userModel = settings.AUTH_USER_MODEL
 User = get_user_model()
+
 
 def wrap_up_time():
     ...
@@ -101,11 +103,13 @@ class Patient(Model):
         OTHER = "OTH", _("Other/Multiple")
         WHITE = "WHT", _("White-origins in Europe.")
         __empty__ = _("No Selection, Declined To Answer")
-    owner = ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
-    sponsor = ForeignKey(User, on_delete=CASCADE, default='')
-    gender = CharField(max_length=3, choices =  Gender.choices, default= Gender.__empty__)
-    ethnicity = CharField(max_length=3, choices =  Ethnicity.choices, default= Ethnicity.__empty__)
 
+    owner = ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
+    sponsor = ForeignKey(User, on_delete=CASCADE, default="")
+    gender = CharField(max_length=3, choices=Gender.choices, default=Gender.__empty__)
+    ethnicity = CharField(
+        max_length=3, choices=Ethnicity.choices, default=Ethnicity.__empty__
+    )
 
 
 ADMIN = "ADMIN", _("Administration")
