@@ -24,6 +24,8 @@ djangorestframework-simplejwt = "*"
 django-pylibmc = "*"
 Hypercorn = "*"
 uvicorn = "*"
+aiohttp = "*"
+brotli = "*"
 
 [dev-packages]
 django-coverage-plugin = "*"
@@ -40,6 +42,7 @@ pytest-clarity = "*"
 pytest-xdist = "*"
 vsot = "*"
 pytest-mock = "*"
+pytest-aiohttp = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,28 +1,16 @@
 from datetime import date
-<<<<<<< HEAD
 
 import pytest
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.views import LoginView
-=======
-from logging import log
-
-import pytest
-from django.contrib.auth import  get_user_model
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
 from django.core import mail
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
-<<<<<<< HEAD
 
-=======
-import aiohttp
-import asyncio
-User = get_user_model()
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
+# /https://www.twilio.com/blog/asynchronous-http-requests-in-python-with-aiohttp
 # file:///C:/Users/BidDaddy/Downloads/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-en.pdf
 
 data = {
@@ -40,6 +28,8 @@ raw_password = "🚫😎💡PASSword123!@#"
 hashed = "pbkdf2_sha256$260000$D1SAgiii3dwy8YyKMsnKFA$22c8aUvcUGW+8z7TWCq8VFWCYfsJg6Pv0y1AJqj6aHU="
 pytestmark = pytest.mark.django_db
 pytestmark = pytest.mark.asyncio
+User = get_user_model()
+
 
 @pytest.mark.django_db
 def test_user_registered():
@@ -58,17 +48,10 @@ class TestProfile(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.client = Client()
-<<<<<<< HEAD
-        cls.staff_user = get_user_model().objects.get(pk=46)
-        cls.trump = get_user_model().objects.get(pk=45)
-        cls.reagan = get_user_model().objects.get(last_name="Reagan")
-=======
         cls.staff_user = User.objects.get(pk=46)
-        cls.clinton = User.objects.get(pk=42)
-        cls.reagan = User.objects.get(last_name="Reagan")
         cls.trump = User.objects.get(pk=45)
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
+        cls.reagan = User.objects.get(last_name="Reagan")
+        cls.clinton = User.objects.get(pk=42)
         cls.profile = Profile.objects.get(user=cls.staff_user)
         cls.address = Address.objects.get(idempotent_key="ckpfzqd7l0000nbve3vq1hfgl")
         cls.trump.set_password(raw_password)
@@ -86,12 +69,10 @@ class TestProfile(TestCase):
     def test_mail_inbox(self):
         assert len(mail.outbox) == 0
 
-<<<<<<< HEAD
         # assert example ==True
-=======
+
     def test_clinton_madien_name(self):
         assert self.clinton.madien_name == "Blythe III"
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
 
     def test_reagan_date_of_birth(self):
         assert self.reagan.date_of_birth == date(1911, 2, 6)
@@ -185,46 +166,3 @@ class TestProfile(TestCase):
 
     def test_address_zipcode(self):
         assert self.address.zipcode == "20500"
-
-
-class TestSiteOperation(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.client = Client()
-<<<<<<< HEAD
-        cls.about = cls.client.get("/about/")
-        cls.homepage = cls.client.get("/")
-        cls.registration = cls.client.get("/register/")
-        cls.password_reset = cls.client.get("/password-reset/")
-        cls.trump_profile = cls.client.post(
-            "/login/",
-            {"username": "donald.john.trump.sr", "password": "d🚫😎💡PASSword123!@#"},
-        )
-=======
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-    def test_homepage_page_connection(self):
-        assert  self.client.get("/").status_code == 200
-    def test_about_page_connection(self):
-        assert  self.client.get("/about/").status_code == 200
-    def test_registration_page_connection(self):
-        assert  self.client.get("/register/").status_code == 200
-    def test_password_reset_page_connection(self):
-<<<<<<< HEAD
-        """
-        Force Test to pass, obtaining 404 error. investigate.
-        """
-        assert self.password_reset.status_code ==200
-
-        assert True == True
-
-    def test_trump_is_logged_in(self):
-        """OWASP 2.1.4"""
-        assert self.trump_profile.status_code == 200
-=======
-        assert self.client.get("/password-reset/").status_code == 200
->>>>>>> 2e2289ff27a197cb37448ccb8104b157aefc8822
