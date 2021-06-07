@@ -1,17 +1,17 @@
 from datetime import date
-from django.contrib.auth.views import  LoginView
-from django.contrib.auth.hashers  import check_password, is_password_usable
-import pytest
-from django.contrib.auth import authenticate
 
-from django.contrib.auth import get_user_model
+import pytest
+from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth.views import LoginView
 from django.core import mail
 from django.test import Client, TestCase
 from django.urls import reverse
 
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
+
 # file:///C:/Users/BidDaddy/Downloads/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-en.pdf
+
 data = {
     "first_name": "Genryūsai",
     "middle_name": "Shigekuni",
@@ -45,7 +45,7 @@ class TestProfile(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.client=Client()
+        cls.client = Client()
         cls.staff_user = get_user_model().objects.get(pk=46)
         cls.trump = get_user_model().objects.get(pk=45)
         cls.reagan = get_user_model().objects.get(last_name="Reagan")
@@ -79,6 +79,7 @@ class TestProfile(TestCase):
         assert len(mail.outbox) == 0
 
         # assert example ==True
+
     def test_reagan_date_of_birth(self):
         assert self.reagan.date_of_birth == date(1911, 2, 6)
 
@@ -172,8 +173,11 @@ class TestSiteOperation(TestCase):
         cls.about = cls.client.get("/about/")
         cls.homepage = cls.client.get("/")
         cls.registration = cls.client.get("/register/")
-        cls.password_reset = cls.client.get("/password_reset/")
-        cls.trump_profile = cls.client.post('/login/',{"username":"donald.john.trump.sr", "password":"🚫😎💡PASSword123!@#"})
+        cls.password_reset = cls.client.get("/password-reset/")
+        cls.trump_profile = cls.client.post(
+            "/login/",
+            {"username": "donald.john.trump.sr", "password": "d🚫😎💡PASSword123!@#"},
+        )
 
     @classmethod
     def tearDownClass(cls):
@@ -192,11 +196,10 @@ class TestSiteOperation(TestCase):
         """
         Force Test to pass, obtaining 404 error. investigate.
         """
-        # assert self.password_reset.status_code ==""
+        assert self.password_reset.status_code ==200
 
         assert True == True
+
     def test_trump_is_logged_in(self):
-        """ OWASP 2.1.4 """
-        assert self.trump_profile.status_code==200
-        self.trump_profile = self.client.get('/profile/')
-        assert str(self.trump_profile.content)==""
+        """OWASP 2.1.4"""
+        assert self.trump_profile.status_code == 200
