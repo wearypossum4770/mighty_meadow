@@ -45,6 +45,7 @@ DEVELOPMENT_APPS = (
 PROJECT_APPS = (
     "users.apps.UsersConfig",
     "blog.apps.BlogConfig",
+    "appointments.apps.AppointmentsConfig",
 )
 DJANGO_APPS = (
     "django.contrib.admin",
