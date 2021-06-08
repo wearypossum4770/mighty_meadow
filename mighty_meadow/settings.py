@@ -75,10 +75,10 @@ DJANGO_APPS = (
 INSTALLED_APPS = THIRD_PARTY_APPS + PROJECT_APPS + DJANGO_APPS
 if DEBUG:
     INSTALLED_APPS += DEVELOPMENT_APPS
-if "channels" in THIRD_PARTY_APPS:
-    ASGI_APPLICATION = "mighty_meadow.asgi.application"
-else:
-    WSGI_APPLICATION = "mighty_meadow.wsgi.application"
+# if "channels" in THIRD_PARTY_APPS:
+#     ASGI_APPLICATION = "mighty_meadow.asgi.application"
+# else:
+WSGI_APPLICATION = "mighty_meadow.wsgi.application"    
 ROOT_URLCONF = "mighty_meadow.urls"
 AUTH_USER_MODEL = "users.User"
 # =================================================================================
