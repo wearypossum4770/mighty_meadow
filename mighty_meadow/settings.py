@@ -10,7 +10,7 @@ from dotenv import find_dotenv, load_dotenv
 # =================================================================================
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(find_dotenv())
-DEBUG = getenv("DEBUG", False)
+DEBUG = getenv("DEBUG", True)
 SECRET_KEY = getenv("SECRET_KEY", "abcdefg12345678")
 ALLOWED_HOSTS = []
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
