@@ -1649,6 +1649,84 @@
       }
     },
     {
+      "model": "appointments.appointment",
+      "pk": 1,
+      "fields": {
+        "patient": 1,
+        "scheduler": 50,
+        "scheduled_time": "2021-06-08T06:00:00Z",
+        "start_time": "2021-06-08T20:00:40Z",
+        "end_time": "2021-06-08T21:30:00Z",
+        "location": "Health Department",
+        "action_status": "SCHD"
+      }
+    },
+    {
+      "model": "appointments.medicalcondition",
+      "pk": 1,
+      "fields": {
+        "is_symptomatic": false,
+        "code_value": "Z20.822",
+        "coding_system": "icd_10",
+        "has_category_code": "CM",
+        "used_to_diagnose": "COVID-19 Exposure",
+        "condition_description": "Contact with and (suspected) exposure to COVID-19",
+        "related_condition": null
+      }
+    },
+    {
+      "model": "appointments.medicalcondition",
+      "pk": 2,
+      "fields": {
+        "is_symptomatic": false,
+        "code_value": "Z11.52",
+        "coding_system": "icd_10",
+        "has_category_code": "CM",
+        "used_to_diagnose": "COVID-19 Exposure",
+        "condition_description": "Encounter for screening for COVID-19",
+        "related_condition": null
+      }
+    },
+    {
+      "model": "appointments.medicalcondition",
+      "pk": 3,
+      "fields": {
+        "is_symptomatic": false,
+        "code_value": "Z86.16",
+        "coding_system": "icd_10",
+        "has_category_code": "CM",
+        "used_to_diagnose": "COVID-19 History",
+        "condition_description": "Personal history of COVID-19",
+        "related_condition": null
+      }
+    },
+    {
+      "model": "appointments.medicalcondition",
+      "pk": 4,
+      "fields": {
+        "is_symptomatic": false,
+        "code_value": "U07.1",
+        "coding_system": "icd_10",
+        "has_category_code": "CM",
+        "used_to_diagnose": "COVID-19 Exposure",
+        "condition_description": "",
+        "related_condition": null
+      }
+    },
+    {
+      "model": "appointments.medicalcondition",
+      "pk": 5,
+      "fields": {
+        "is_symptomatic": false,
+        "code_value": "Z20.828",
+        "coding_system": "icd_10",
+        "has_category_code": "CM",
+        "used_to_diagnose": "COVID-19 Exposure",
+        "condition_description": "Contact with and (suspected) exposure to other viral communicable diseases",
+        "related_condition": "fever"
+      }
+    },
+    {
         "model": "users.address",
         "pk": 1,
         "fields": {

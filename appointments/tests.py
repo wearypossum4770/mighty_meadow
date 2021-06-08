@@ -1,11 +1,25 @@
+import json
+from datetime import datetime, timezone
+
 import pytest
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
+from appointments.views import make_appointment, view_appointment
 
+a = {
+    "patient": 1,
+    "scheduler": 50,
+    "scheduled_time": "2021-06-08T06:00:00Z",
+    "start_time": "2021-06-08T20:00:40Z",
+    "end_time": "2021-06-08T21:30:00Z",
+    "location": "Health Department",
+    "action_status": "SCHD",
+}
 User = get_user_model()
 pytestmark = pytest.mark.django_db
+
 
 class TestAppointment(TestCase):
     fixtures = ("datainit.json",)
@@ -13,19 +27,89 @@ class TestAppointment(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.balon = get_user_model().objects.get(username =  "balon.greyjoy")
-        cls.yara = get_user_model().objects.get(username = "yara.greyjoy")
-        cls.theon = get_user_model().objects.get(username = "theon.greyjoy")
+        cls.balon = get_user_model().objects.get(username="balon.greyjoy")
+        cls.yara = get_user_model().objects.get(username="yara.greyjoy")
+        cls.theon = get_user_model().objects.get(username="theon.greyjoy")
+        cls.catelyn = get_user_model().objects.get(username="catelyn.stark")
+        cls.factory = AsyncRequestFactory()
+        cls.client = Client()
+        Appointment.objects.create(
+            patient=cls.theon,
+            scheduler=cls.catelyn,
+            scheduled_time="2021-06-08T06:00:00Z",
+            start_time="2021-06-08T20:00:40Z",
+            end_time="2021-06-08T21:30:00Z",
+            location="Health Department",
+            action_status="SCHD",
+        )
+        cls.clinic_appointments = Appointment.objects.all()
+        cls.primo = Appointment.objects.get(pk=2)
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-    
+
+    def test_theon_appointment_patient(self):
+        assert self.primo.patient.id == 59
+
+    def test_theon_appointment_scheduler(self):
+        assert self.primo.scheduler.id == 50
+
+    def test_theon_appointment_scheduled_time(self):
+
+        assert (
+            self.primo.scheduled_time.replace(tzinfo=timezone.utc).timestamp()
+            == 1623132000.0
+        )
+        # "2021-06-08T06:00:00Z"
+
+    def test_theon_appointment_start_time(self):
+
+        assert (
+            self.primo.start_time.replace(tzinfo=timezone.utc).timestamp()
+            == 1623182440.0
+        )
+
+    def test_theon_appointment_end_time(self):
+
+        assert self.primo.end_time.replace(tzinfo=timezone.utc) == datetime(
+            2021, 6, 8, 21, 30, tzinfo=timezone.utc
+        )
+
+    def test_theon_appointment_location(self):
+        assert self.primo.location == "Health Department"
+
+    def test_theon_appointment_action_status(self):
+        assert self.primo.action_status == "SCHD"
+
+    def test_clinic_appointments_list(self):
+        assert len(self.clinic_appointments) == 2
+
+    def test_patient_logged_in(self):
+        logged_in = self.client.login(
+            username=self.theon.username, password="password123!@#"
+        )
+        assert logged_in == True
+
+    def test_patient_apppointment_list(self):
+        request = self.factory.get("/appointments/")
+        request.user = self.theon
+        response = view_appointment(request)
+        assert response.status_code == 200
+        appointment_list = json.loads(response.content).get("appointment_list")[0]
+        assert appointment_list["action_status"] == "SCHD"
+        assert appointment_list["end_time"] == "2021-06-08T21:30:00Z"
+        assert appointment_list["location"] == "Health Department"
+        assert appointment_list["scheduled_time"] == "2021-06-08T06:00:00Z"
+        assert appointment_list["start_time"] == "2021-06-08T20:00:40Z"
+
     def test_patient_can_create_appointment(self):
         ...
+
     def test_staff_member_can_create_appointment(self):
         ...
-    
+
+
 class TestPatient(TestCase):
     fixtures = ("datainit.json",)
 
@@ -34,7 +118,10 @@ class TestPatient(TestCase):
         super().setUpClass()
         cls.theon = get_user_model().objects.get(username="theon.greyjoy")
         cls.theon_greyjoy = Patient.objects.get(owner=cls.theon)
-        cls.authorized_parties = [user.username for user in cls.theon_greyjoy.authorized_party.all()]
+        cls.authorized_parties = [
+            user.username for user in cls.theon_greyjoy.authorized_party.all()
+        ]
+
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
@@ -50,8 +137,14 @@ class TestPatient(TestCase):
 
     def test_patient_ethnicity(self):
         assert self.theon_greyjoy.ethnicity == "WHT"
+
     def test_patient_authorized_party(self):
-        assert self.authorized_parties  == ['theon.greyjoy', 'balon.greyjoy', 'yara.greyjoy']
+        assert self.authorized_parties == [
+            "theon.greyjoy",
+            "balon.greyjoy",
+            "yara.greyjoy",
+        ]
+
 
 description = "Contact with and (suspected) exposure to COVID-19"
 

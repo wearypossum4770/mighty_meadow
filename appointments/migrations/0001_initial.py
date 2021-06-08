@@ -7,35 +7,159 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Appointment',
+            name="Appointment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='MedicalCondition',
+            name="MedicalCondition",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_symptomatic', models.BooleanField(blank=True, default=False, null=True)),
-                ('code_value', models.CharField(blank=True, max_length=15, null=True)),
-                ('coding_system', models.CharField(blank=True, choices=[('icd_10', 'ICD 10 Code (international classification of diseases)'), ('icd_9', 'ICD 9 Code (international classification of diseases)')], default='icd_10', max_length=6, null=True)),
-                ('has_category_code', models.CharField(blank=True, choices=[('CM', 'Clinical Modification'), ('PCS', 'Procedure Coding System'), ('HCP', 'Healthcare Common Procedure Coding System'), ('CPT', 'Current Procedural Terminology')], max_length=3, null=True)),
-                ('used_to_diagnose', models.CharField(blank=True, max_length=100, null=True)),
-                ('condition_description', models.CharField(blank=True, max_length=200, null=True)),
-                ('related_condition', models.CharField(blank=True, max_length=200, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "is_symptomatic",
+                    models.BooleanField(blank=True, default=False, null=True),
+                ),
+                ("code_value", models.CharField(blank=True, max_length=15, null=True)),
+                (
+                    "coding_system",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            (
+                                "icd_10",
+                                "ICD 10 Code (international classification of diseases)",
+                            ),
+                            (
+                                "icd_9",
+                                "ICD 9 Code (international classification of diseases)",
+                            ),
+                        ],
+                        default="icd_10",
+                        max_length=6,
+                        null=True,
+                    ),
+                ),
+                (
+                    "has_category_code",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("CM", "Clinical Modification"),
+                            ("PCS", "Procedure Coding System"),
+                            ("HCP", "Healthcare Common Procedure Coding System"),
+                            ("CPT", "Current Procedural Terminology"),
+                        ],
+                        max_length=3,
+                        null=True,
+                    ),
+                ),
+                (
+                    "used_to_diagnose",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                (
+                    "condition_description",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                (
+                    "related_condition",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Patient',
+            name="Patient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('gender', models.CharField(choices=[(None, 'No Selection, Declined To Answer'), ('M', 'I identify as a male or a man (i.e. male, cis-gender male), and prefer to be called sir'), ('F', "I identify as a female or a woman (i.e. female, cis-gender female),  and prefer to be called ma'am."), ('MTF', 'Assigned male at birth, but currently identify as female.'), ('FTM', 'Assigned female at birth but currently identify as male.'), ('NBN', 'Neither male nor female, somewhere in between.')], default='No Selection, Declined To Answer', max_length=3)),
-                ('ethnicity', models.CharField(choices=[(None, 'No Selection, Declined To Answer'), ('ASN', 'Asian - Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.'), ('BLK', 'Black - origins in any of the Black racial groups of Africa including Carribean Islands.'), ('NAT', 'Native American or Alaskan Native.'), ('HPN', 'Hispanic - Centeral and South America, Carribbean Islands.'), ('MDE', 'Middle Eastern - the Middle East, or North Africa.'), ('HWN', 'Native Hawaii, Guam, Samoa, or other Pacific Islands.'), ('OTH', 'Other/Multiple'), ('WHT', 'White-origins in Europe.')], default='No Selection, Declined To Answer', max_length=3)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "gender",
+                    models.CharField(
+                        choices=[
+                            (None, "No Selection, Declined To Answer"),
+                            (
+                                "M",
+                                "I identify as a male or a man (i.e. male, cis-gender male), and prefer to be called sir",
+                            ),
+                            (
+                                "F",
+                                "I identify as a female or a woman (i.e. female, cis-gender female),  and prefer to be called ma'am.",
+                            ),
+                            (
+                                "MTF",
+                                "Assigned male at birth, but currently identify as female.",
+                            ),
+                            (
+                                "FTM",
+                                "Assigned female at birth but currently identify as male.",
+                            ),
+                            ("NBN", "Neither male nor female, somewhere in between."),
+                        ],
+                        default="No Selection, Declined To Answer",
+                        max_length=3,
+                    ),
+                ),
+                (
+                    "ethnicity",
+                    models.CharField(
+                        choices=[
+                            (None, "No Selection, Declined To Answer"),
+                            (
+                                "ASN",
+                                "Asian - Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.",
+                            ),
+                            (
+                                "BLK",
+                                "Black - origins in any of the Black racial groups of Africa including Carribean Islands.",
+                            ),
+                            ("NAT", "Native American or Alaskan Native."),
+                            (
+                                "HPN",
+                                "Hispanic - Centeral and South America, Carribbean Islands.",
+                            ),
+                            (
+                                "MDE",
+                                "Middle Eastern - the Middle East, or North Africa.",
+                            ),
+                            (
+                                "HWN",
+                                "Native Hawaii, Guam, Samoa, or other Pacific Islands.",
+                            ),
+                            ("OTH", "Other/Multiple"),
+                            ("WHT", "White-origins in Europe."),
+                        ],
+                        default="No Selection, Declined To Answer",
+                        max_length=3,
+                    ),
+                ),
             ],
         ),
     ]

@@ -9,11 +9,12 @@ from django.db.models import (
     BooleanField,
     CharField,
     DateTimeField,
-    EmailField,ManyToManyField,
+    EmailField,
     FileField,
     ForeignKey,
     ImageField,
     IntegerField,
+    ManyToManyField,
     Model,
     TextChoices,
     TextField,
@@ -107,7 +108,7 @@ class Patient(Model):
     owner = ForeignKey(
         User, on_delete=CASCADE, null=True, blank=True, related_name="patient"
     )
-    authorized_party = ManyToManyField(User,related_name="authorized_party")
+    authorized_party = ManyToManyField(User, related_name="authorized_party")
     sponsor = ForeignKey(User, on_delete=CASCADE, related_name="guarantor")
     gender = CharField(
         max_length=3,
@@ -117,8 +118,10 @@ class Patient(Model):
     ethnicity = CharField(
         max_length=3, choices=Ethnicity.choices, default=Ethnicity.__empty__
     )
+
     def __str__(self):
         return self.owner.username
+
 
 class MedicalCondition(Model):
     """
@@ -154,8 +157,25 @@ class MedicalCondition(Model):
 
 
 class Appointment(Model):
-    patient = ForeignKey(Patient, on_delete=CASCADE)
-    scheduler = ForeignKey(User, on_delete=CASCADE)
+    class Action(TextChoices):
+        COMPLETE = "CMPL", _("Completed")
+        CANCELLED = "CAND", _("Canelled")
+        SCHEDULED = "SCHD", _("Scheduled")
+        IN_PROGRESS = "INPR", _("In Progress")
+        __empty__ = "('UNKNOWN')"
+
+    patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
+    scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
+    scheduled_time = DateTimeField(null=True, blank=True)
+    start_time = DateTimeField(null=True, blank=True)
+    end_time = DateTimeField(null=True, blank=True)
+    location = CharField(max_length=20, null=True, blank=True)
+    action_status = CharField(
+        max_length=4, default=Action.__empty__, choices=Action.choices
+    )
+
+    def __str__(self):
+        return self.patient.username
 
 
 # ADMIN = "ADMIN", _("Administration")

@@ -3714,7 +3714,15 @@
   {
     "model": "appointments.appointment",
     "pk": 1,
-    "fields": { "patient": 1, "scheduler": 50 }
+    "fields": {
+      "patient": 1,
+      "scheduler": 50,
+      "scheduled_time": "2021-06-08T06:00:00Z",
+      "start_time": "2021-06-08T20:00:40Z",
+      "end_time": "2021-06-08T21:30:00Z",
+      "location": null,
+      "action_status": "SCHD"
+    }
   },
   {
     "model": "admin.logentry",
@@ -3727,6 +3735,19 @@
       "object_repr": "theon.greyjoy",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2021-06-08T20:08:14.664Z",
+      "user": 84,
+      "content_type": 4,
+      "object_id": "1",
+      "object_repr": "Appointment object (1)",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Scheduled time\", \"Start time\", \"End time\", \"Action status\"]}}]"
     }
   },
   {

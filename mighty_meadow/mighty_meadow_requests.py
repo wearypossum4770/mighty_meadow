@@ -18,7 +18,7 @@ requests = [
 
 
 async def main():
-    urls = ["/", "/about/", "/register/", "/password-reset/"]
+    urls = ["/", "/about/", "/register/", "/password-reset/", "/appointments/"]
     async with aiohttp.ClientSession() as session:
         for request in requests:
             async with session.post(**request) as usePost:
