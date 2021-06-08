@@ -14,7 +14,24 @@ DEBUG = getenv("DEBUG", False)
 SECRET_KEY = getenv("SECRET_KEY", "abcdefg12345678")
 ALLOWED_HOSTS = []
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
+# =================================================================================
+# DEBUGGING WHILE DEPLOYED
+# =================================================================================
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
 # =================================================================================
 # ADMINISTRATIVE
 # =================================================================================
