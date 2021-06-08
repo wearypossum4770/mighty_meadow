@@ -19,7 +19,6 @@ Pillow = "*"
 psycopg2 = "*"
 pyjwkest = "*"
 python-dotenv = "*"
-whitenoise = "*"
 djangorestframework-simplejwt = "*"
 django-pylibmc = "*"
 Hypercorn = "*"
@@ -49,6 +48,9 @@ python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
+
+[packages.whitenoise]
+extras = [ "brotli",]
 
 [packages.celery]
 extras = [ "redis", "couchdb", "librabbitmq", "mongodb",]
