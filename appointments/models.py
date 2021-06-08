@@ -9,7 +9,7 @@ from django.db.models import (
     BooleanField,
     CharField,
     DateTimeField,
-    EmailField,
+    EmailField,ManyToManyField,
     FileField,
     ForeignKey,
     ImageField,
@@ -107,6 +107,7 @@ class Patient(Model):
     owner = ForeignKey(
         User, on_delete=CASCADE, null=True, blank=True, related_name="patient"
     )
+    authorized_party = ManyToManyField(User,related_name="authorized_party")
     sponsor = ForeignKey(User, on_delete=CASCADE, related_name="guarantor")
     gender = CharField(
         max_length=3,
@@ -116,6 +117,40 @@ class Patient(Model):
     ethnicity = CharField(
         max_length=3, choices=Ethnicity.choices, default=Ethnicity.__empty__
     )
+    def __str__(self):
+        return self.owner.username
+
+class MedicalCondition(Model):
+    """
+    Check out this page https://www.cdc.gov/nchs/icd/icd9cm_addenda_guidelines.htm
+    also https://www.aappublications.org/news/2020/05/07/coding050720?utm_source=TrendMD&utm_medium=TrendMD&utm_campaign=AAPNews_TrendMD_0
+
+    """
+
+    class System(TextChoices):
+        TEN = "icd_10", _("ICD 10 Code (international classification of diseases)")
+        NINE = "icd_9", _("ICD 9 Code (international classification of diseases)")
+
+    class Classification(TextChoices):
+        CM = "CM", _("Clinical Modification")
+        PCS = "PCS", _("Procedure Coding System")
+        HCPCS = "HCP", _("Healthcare Common Procedure Coding System")
+        CPT = "CPT", _("Current Procedural Terminology")
+
+    # signature_required
+    # blue_ink_required
+    # enrollment_required
+    is_symptomatic = BooleanField(default=False, null=True, blank=True)
+    code_value = CharField(max_length=15, null=True, blank=True)
+    coding_system = CharField(
+        max_length=6, choices=System.choices, default=System.TEN, null=True, blank=True
+    )
+    has_category_code = CharField(
+        max_length=3, choices=Classification.choices, null=True, blank=True
+    )
+    used_to_diagnose = CharField(max_length=100, null=True, blank=True)
+    condition_description = CharField(max_length=200, null=True, blank=True)
+    related_condition = CharField(max_length=200, null=True, blank=True)
 
 
 class Appointment(Model):

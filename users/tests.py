@@ -43,7 +43,7 @@ def test_user_registered():
 
 
 class TestProfile(TestCase):
-    fixtures = ("userinit.json",)
+    fixtures = ("datainit.json",)
 
     @classmethod
     def setUpClass(cls):
