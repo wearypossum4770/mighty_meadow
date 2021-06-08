@@ -1,3 +1,1 @@
-web: gunicorn mighty_meadow.wsgi --log-file - --log-level debug
-python manage.py collectstatic --noinput
-manage.py migrate
+web: gunicorn mighty_meadow.wsgi

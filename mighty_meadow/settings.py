@@ -57,7 +57,6 @@ THIRD_PARTY_APPS = (
 )
 DEVELOPMENT_APPS = (
     "whitenoise.runserver_nostatic",
-    "django_extensions",
 )
 PROJECT_APPS = (
     "users.apps.UsersConfig",
