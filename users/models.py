@@ -46,7 +46,7 @@ class User(AbstractUser):
         BTH = "Bth", _("Brother (religious title)")
         SIS = "Sis", _("Sister (nun or other female religious leader)")
         REV = "Rev", _("Reverand (Religious leader")
-        RABBI = "Rab", _("Rabbi (religious leader usually of jewish faith)")
+        RAB= "Rab", _("Rabbi (religious leader usually of jewish faith)")
         __empty__ = _("No Selection, Declined To Answer")
 
     class Suffix(TextChoices):
@@ -61,14 +61,14 @@ class User(AbstractUser):
     middle_name = CharField(max_length=20, blank=True, null=True)
     title = CharField(max_length=20, blank=True, null=True)
     honorific_prefix = CharField(
-        max_length=3,
+        max_length=4,
         choices=Prefix.choices,
         default=Prefix.__empty__,
         blank=True,
         null=True,
     )
     honorific_suffix = CharField(
-        max_length=3,
+        max_length=4,
         choices=Suffix.choices,
         default=Suffix.__empty__,
         blank=True,
