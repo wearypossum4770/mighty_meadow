@@ -18,17 +18,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # DEBUGGING WHILE DEPLOYED
 # =================================================================================
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-             'level': getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": getenv("DJANGO_LOG_LEVEL", "DEBUG"),
         },
     },
 }
@@ -55,9 +55,7 @@ THIRD_PARTY_APPS = (
     "corsheaders",
     "rest_framework",
 )
-DEVELOPMENT_APPS = (
-    "whitenoise.runserver_nostatic",
-)
+DEVELOPMENT_APPS = ("whitenoise.runserver_nostatic",)
 PROJECT_APPS = (
     "users.apps.UsersConfig",
     "blog.apps.BlogConfig",
@@ -77,7 +75,7 @@ if DEBUG:
 # if "channels" in THIRD_PARTY_APPS:
 #     ASGI_APPLICATION = "mighty_meadow.asgi.application"
 # else:
-WSGI_APPLICATION = "mighty_meadow.wsgi.application"    
+WSGI_APPLICATION = "mighty_meadow.wsgi.application"
 ROOT_URLCONF = "mighty_meadow.urls"
 AUTH_USER_MODEL = "users.User"
 # =================================================================================

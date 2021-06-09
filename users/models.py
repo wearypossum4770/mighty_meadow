@@ -46,7 +46,7 @@ class User(AbstractUser):
         BTH = "Bth", _("Brother (religious title)")
         SIS = "Sis", _("Sister (nun or other female religious leader)")
         REV = "Rev", _("Reverand (Religious leader")
-        RAB= "Rab", _("Rabbi (religious leader usually of jewish faith)")
+        RAB = "Rab", _("Rabbi (religious leader usually of jewish faith)")
         __empty__ = _("No Selection, Declined To Answer")
 
     class Suffix(TextChoices):

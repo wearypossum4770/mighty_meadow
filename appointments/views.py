@@ -1,15 +1,25 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
+from appointments.forms import AppointmentForm
 from appointments.models import Appointment
+
+
+@login_required
+def create_appointment(request):
+    form = AppointmentForm(request.POST)
+    print(request.POST)
+    return HttpResponse(form)
+    # appt = Appointment.objects.create()
 
 
 @login_required
 def view_appointment(request):
     # check against user
     context = {}
+    appt = Appointment.objects.filter(patient=request.user.id)
     if request.user.is_authenticated:
         context["appointment_list"] = [
             {
@@ -19,10 +29,8 @@ def view_appointment(request):
                 "location": a.location,
                 "action_status": a.action_status,
             }
-            for a in Appointment.objects.filter(patient=request.user.id)
+            for a in appt
         ]
-    print(request)
-
     return JsonResponse(context)
 
 

@@ -13,13 +13,13 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-"madien_name",
-"nickname",
-"first_name",
-"last_name",
-"middle_name",
-"email",
-"username",
+            "madien_name",
+            "nickname",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "email",
+            "username",
             "password1",
             "password2",
         )
@@ -31,23 +31,23 @@ class UserUpdateForm(ModelForm):
     class Meta:
         model = User
         fields = (
-"madien_name",
-"nickname",
-"first_name",
-"last_name",
-"middle_name",
-"title",
-"honorific_prefix",
-"honorific_suffix",
-"suffix",
-"date_of_birth",
-"is_patient",
-"is_authorized_party",
-"is_clinic_staff",
-"date_of_death",
-"retention_only",
-"do_not_contact",
-            "password"
+            "madien_name",
+            "nickname",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "title",
+            "honorific_prefix",
+            "honorific_suffix",
+            "suffix",
+            "date_of_birth",
+            "is_patient",
+            "is_authorized_party",
+            "is_clinic_staff",
+            "date_of_death",
+            "retention_only",
+            "do_not_contact",
+            "password",
         )
 
 

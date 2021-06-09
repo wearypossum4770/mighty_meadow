@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
-from appointments.views import make_appointment, view_appointment
+from appointments.views import create_appointment, make_appointment, view_appointment
 
 a = {
     "patient": 1,
@@ -104,7 +104,9 @@ class TestAppointment(TestCase):
         assert appointment_list["start_time"] == "2021-06-08T20:00:40Z"
 
     def test_patient_can_create_appointment(self):
-        ...
+        request = self.factory.get("/schedule-appointment/")
+        request.user = self.theon
+        response = create_appointment(request)
 
     def test_staff_member_can_create_appointment(self):
         ...

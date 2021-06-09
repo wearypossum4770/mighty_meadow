@@ -23,8 +23,9 @@ djangorestframework-simplejwt = "*"
 django-pylibmc = "*"
 Hypercorn = "*"
 uvicorn = "*"
-aiohttp = "*"
 brotli = "*"
+cchardet = "*"
+aiodns = "*"
 
 [dev-packages]
 django-coverage-plugin = "*"
@@ -48,6 +49,9 @@ python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
+
+[packages.aiohttp]
+extras = [ "speedups",]
 
 [packages.whitenoise]
 extras = [ "brotli",]
