@@ -6,45 +6,39 @@ from django.contrib.auth.views import LoginView
 from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
-
+from django.conf import settings
 from users.forms import UserRegisterForm
 from users.models import Address, Profile
-
+import json
 # /https://www.twilio.com/blog/asynchronous-http-requests-in-python-with-aiohttp
 # file:///C:/Users/BidDaddy/Downloads/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-en.pdf
 
-data = {
-    "first_name": "Genryūsai",
-    "middle_name": "Shigekuni",
-    "last_name": "Yamamoto",
-    "random": "something",
-    "password1": "RzMdsJLufx2FvVi",
-    "password2": "RzMdsJLufx2FvVi",
-    "email": "genryusai.shigekuni.yamamoto@soul.society.com",
-    "username": "genryusai.shigekuni.yamamoto",
-}
+def genryusai_shigekuni_yamamoto_data():
+    with open(f"{settings.BASE_DIR}/users/fixtures/new_registrant.json") as _d:
+        __data__ = json.load(_d)
+    return __data__
 email = {"subject": "Test Message", "body": "This is a new Message"}
 raw_password = "🚫😎💡PASSword123!@#"
 hashed = "pbkdf2_sha256$260000$D1SAgiii3dwy8YyKMsnKFA$22c8aUvcUGW+8z7TWCq8VFWCYfsJg6Pv0y1AJqj6aHU="
-pytestmark = pytest.mark.django_db
-pytestmark = pytest.mark.asyncio
+
 User = get_user_model()
 
-
+@pytest.mark.asyncio
 @pytest.mark.django_db
 def test_user_registered():
-    form = UserRegisterForm(data)
+    form = UserRegisterForm(genryusai_shigekuni_yamamoto_data())
     is_valid = form.is_valid()
     form.save()
+    assert is_valid == True
     new_registrant = User.objects.get(username="genryusai.shigekuni.yamamoto")
     assert new_registrant is not None
     assert form.instance.username == "genryusai.shigekuni.yamamoto"
-    assert is_valid == True
+   
 
 
 class TestProfile(TestCase):
     fixtures = ("datainit.json",)
-
+    pytestmark = pytest.mark.django_db
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
