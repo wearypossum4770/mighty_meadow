@@ -25,6 +25,26 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = settings.BASE_DIR
 userModel = settings.AUTH_USER_MODEL
 User = get_user_model()
+class Appointment(Model):
+    class Action(TextChoices):
+        COMPLETE = "CMPL", _("Completed")
+        CANCELLED = "CAND", _("Canelled")
+        SCHEDULED = "SCHD", _("Scheduled")
+        IN_PROGRESS = "INPR", _("In Progress")
+        __empty__ = "('UNKNOWN')"
+
+    patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
+    scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
+    scheduled_time = DateTimeField(null=True, blank=True)
+    start_time = DateTimeField(null=True, blank=True)
+    end_time = DateTimeField(null=True, blank=True)
+    location = CharField(max_length=20, null=True, blank=True)
+    action_status = CharField(
+        max_length=4, default=Action.__empty__, choices=Action.choices
+    )
+
+    def __str__(self):
+        return self.patient.username
 
 
 def wrap_up_time():
@@ -155,27 +175,6 @@ class MedicalCondition(Model):
     condition_description = CharField(max_length=200, null=True, blank=True)
     related_condition = CharField(max_length=200, null=True, blank=True)
 
-
-class Appointment(Model):
-    class Action(TextChoices):
-        COMPLETE = "CMPL", _("Completed")
-        CANCELLED = "CAND", _("Canelled")
-        SCHEDULED = "SCHD", _("Scheduled")
-        IN_PROGRESS = "INPR", _("In Progress")
-        __empty__ = "('UNKNOWN')"
-
-    patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
-    scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
-    scheduled_time = DateTimeField(null=True, blank=True)
-    start_time = DateTimeField(null=True, blank=True)
-    end_time = DateTimeField(null=True, blank=True)
-    location = CharField(max_length=20, null=True, blank=True)
-    action_status = CharField(
-        max_length=4, default=Action.__empty__, choices=Action.choices
-    )
-
-    def __str__(self):
-        return self.patient.username
 
 
 # ADMIN = "ADMIN", _("Administration")

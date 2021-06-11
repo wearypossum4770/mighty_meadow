@@ -26,7 +26,14 @@ cookies = {
 
 async def main():
     jar = aiohttp.CookieJar(unsafe=True)
-    urls = ["/", "/about/", "/register/", "/password-reset/", "/appointments/"]
+    urls = [
+        "/",
+        "/about/",
+        "/register/",
+        "/password-reset/",
+        "/appointments/",
+        "/appointments/1/",
+    ]
     async with aiohttp.ClientSession(cookies=jar) as session:
         for request in reqs:
             async with session.get(**request) as primaryPost:

@@ -7,7 +7,6 @@ class AppointmentForm(ModelForm):
     class Meta:
         model = Appointment
         fields = (
-            "patient",
             "start_time",
             "end_time",
             "location",

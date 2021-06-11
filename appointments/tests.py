@@ -6,7 +6,12 @@ from django.contrib.auth import get_user_model
 from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
-from appointments.views import create_appointment, make_appointment, view_appointment
+from appointments.views import (
+    appointment_detail,
+    create_appointment_patient_id,
+    make_appointment,
+    view_appointment,
+)
 
 a = {
     "patient": 1,
@@ -19,6 +24,10 @@ a = {
 }
 User = get_user_model()
 pytestmark = pytest.mark.django_db
+
+
+def json_reader(args):
+    return json.loads(args)
 
 
 class TestAppointment(TestCase):
@@ -90,26 +99,53 @@ class TestAppointment(TestCase):
             username=self.theon.username, password="password123!@#"
         )
         assert logged_in == True
-
+    
     def test_patient_apppointment_list(self):
         request = self.factory.get("/appointments/")
         request.user = self.theon
         response = view_appointment(request)
         assert response.status_code == 200
-        appointment_list = json.loads(response.content).get("appointment_list")[0]
+        appointment_list = json_reader(response.content).get("appointment_list")[0]
         assert appointment_list["action_status"] == "SCHD"
         assert appointment_list["end_time"] == "2021-06-08T21:30:00Z"
         assert appointment_list["location"] == "Health Department"
         assert appointment_list["scheduled_time"] == "2021-06-08T06:00:00Z"
         assert appointment_list["start_time"] == "2021-06-08T20:00:40Z"
 
-    def test_patient_can_create_appointment(self):
-        request = self.factory.get("/schedule-appointment/")
+    # def test_patient_can_create_appointment(self):
+    #     request = self.factory.get("/schedule-appointment/")
+    #     request.user = self.theon
+    #     request.POST = {
+    #         "end_time": "2021-07-08T21:30:00Z",
+    #         "location": "Health Department",
+    #         "scheduled_time": "2021-07-08T06:00:00Z",
+    #         "start_time": "2021-07-08T20:00:40Z",
+    #     }
+    #     response = create_appointment(request)
+    #     appts = Appointment.objects.get(patient=self.theon.id)
+    #     # assert appts.end_time == "2021-07-08T21:30:00Z"
+    #     assert response.status_code == 200
+    def test_create_appointment_patient_id(self):
+        request = self.factory.get("appointments/schedule-appointment/59")
         request.user = self.theon
-        response = create_appointment(request)
-
+        # assert request.patient_id == 59
+        response = create_appointment_patient_id(request, request.path)
+        assert response.__dict__ == ""
     def test_staff_member_can_create_appointment(self):
         ...
+
+    def test_appointment_detail_view(self):
+        request = self.factory.get("/appointments/2/")
+        request.user = self.theon
+        response = appointment_detail(request, 2)
+        details = json_reader(response.content)
+        assert details.get('action_status') == 'SCHD'
+        assert details.get('end_time') == '2021-06-08T21:30:00Z'
+        assert details.get('location') == 'Health Department'
+        assert details.get('patient') == 'theon.greyjoy'
+        assert details.get('scheduled_time') == '2021-06-08T06:00:00Z'
+        assert details.get('scheduler') == 'catelyn.stark'
+        assert details.get('start_time') == '2021-06-08T20:00:40Z'
 
 
 class TestPatient(TestCase):
