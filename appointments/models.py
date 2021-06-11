@@ -25,6 +25,8 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = settings.BASE_DIR
 userModel = settings.AUTH_USER_MODEL
 User = get_user_model()
+
+
 class Appointment(Model):
     class Action(TextChoices):
         COMPLETE = "CMPL", _("Completed")
@@ -174,7 +176,6 @@ class MedicalCondition(Model):
     used_to_diagnose = CharField(max_length=100, null=True, blank=True)
     condition_description = CharField(max_length=200, null=True, blank=True)
     related_condition = CharField(max_length=200, null=True, blank=True)
-
 
 
 # ADMIN = "ADMIN", _("Administration")

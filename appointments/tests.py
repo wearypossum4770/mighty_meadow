@@ -7,7 +7,7 @@ from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
 from appointments.views import (
-    appointment_detail,
+    appointment_details,
     create_appointment_patient_id,
     make_appointment,
     view_appointment,
@@ -99,7 +99,7 @@ class TestAppointment(TestCase):
             username=self.theon.username, password="password123!@#"
         )
         assert logged_in == True
-    
+
     def test_patient_apppointment_list(self):
         request = self.factory.get("/appointments/")
         request.user = self.theon
@@ -128,24 +128,56 @@ class TestAppointment(TestCase):
     def test_create_appointment_patient_id(self):
         request = self.factory.get("appointments/schedule-appointment/59")
         request.user = self.theon
-        # assert request.patient_id == 59
-        response = create_appointment_patient_id(request, request.path)
-        assert response.__dict__ == ""
+        request.POST = {
+            "end_time": "2021-07-08T21:30:00Z",
+            "location": "Health Department",
+            "scheduled_time": "2021-07-08T06:00:00Z",
+            "start_time": "2021-07-08T20:00:40Z",
+        }
+       
+        response = create_appointment_patient_id(request, 59)
+        obj = json_reader(response.content)
+        assert obj.get('created') == True
+
     def test_staff_member_can_create_appointment(self):
         ...
 
-    def test_appointment_detail_view(self):
+    def test_unauthenticated_user_appointment_details_view(self):
+        request = self.factory.get("/appointments/2/")
+        ...
+
+    def test_appointment_details_view(self):
+        request = self.factory.get("/appointments/100/")
+        request.user = self.theon
+        response = appointment_details(request, 100)
+        details = json_reader(response.content)
+        assert details == ""
+
+    def test_appointment_details_view(self):
         request = self.factory.get("/appointments/2/")
         request.user = self.theon
-        response = appointment_detail(request, 2)
+        response = appointment_details(request, 2)
         details = json_reader(response.content)
-        assert details.get('action_status') == 'SCHD'
-        assert details.get('end_time') == '2021-06-08T21:30:00Z'
-        assert details.get('location') == 'Health Department'
-        assert details.get('patient') == 'theon.greyjoy'
-        assert details.get('scheduled_time') == '2021-06-08T06:00:00Z'
-        assert details.get('scheduler') == 'catelyn.stark'
-        assert details.get('start_time') == '2021-06-08T20:00:40Z'
+        assert details.get("action_status") == "SCHD"
+        assert details.get("end_time") == "2021-06-08T21:30:00Z"
+        assert details.get("location") == "Health Department"
+        assert details.get("patient") == "theon.greyjoy"
+        assert details.get("scheduled_time") == "2021-06-08T06:00:00Z"
+        assert details.get("scheduler") == "catelyn.stark"
+        assert details.get("start_time") == "2021-06-08T20:00:40Z"
+
+    def test_user_is_authenticated_appointment_details_view(self):
+        request = self.factory.get("/appointments/2/")
+        request.user = self.theon
+        response = appointment_details(request, 2)
+        details = json_reader(response.content)
+        assert details.get("action_status") == "SCHD"
+        assert details.get("end_time") == "2021-06-08T21:30:00Z"
+        assert details.get("location") == "Health Department"
+        assert details.get("patient") == "theon.greyjoy"
+        assert details.get("scheduled_time") == "2021-06-08T06:00:00Z"
+        assert details.get("scheduler") == "catelyn.stark"
+        assert details.get("start_time") == "2021-06-08T20:00:40Z"
 
 
 class TestPatient(TestCase):
