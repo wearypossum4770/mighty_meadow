@@ -3,16 +3,24 @@ from datetime import datetime, timezone
 
 import pytest
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
 from appointments.views import (
+    api_create_appointment_patient_id,
     appointment_details,
-    create_appointment_patient_id,
     make_appointment,
     view_appointment,
 )
 
+new_appointment = {
+    "scheduled_time": "2021-06-08T06:00:00Z",
+    "start_time": "2021-06-08T20:00:40Z",
+    "end_time": "2021-06-08T21:30:00Z",
+    "location": "Health Department",
+    "action_status": "SCHD",
+}
 a = {
     "patient": 1,
     "scheduler": 50,
@@ -30,26 +38,30 @@ def json_reader(args):
     return json.loads(args)
 
 
+def transform_dt_obj(dt_obj):
+    return dt_obj.replace(tzinfo=timezone.utc).timestamp()
+
+
+def get_user(username):
+    return get_user_model().objects.get(username=username)
+
+
 class TestAppointment(TestCase):
     fixtures = ("datainit.json",)
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.balon = get_user_model().objects.get(username="balon.greyjoy")
-        cls.yara = get_user_model().objects.get(username="yara.greyjoy")
-        cls.theon = get_user_model().objects.get(username="theon.greyjoy")
-        cls.catelyn = get_user_model().objects.get(username="catelyn.stark")
+        cls.balon = get_user("balon.greyjoy")
+        cls.yara = get_user("yara.greyjoy")
+        cls.theon = get_user("theon.greyjoy")
+        cls.catelyn = get_user("catelyn.stark")
         cls.factory = AsyncRequestFactory()
         cls.client = Client()
         Appointment.objects.create(
             patient=cls.theon,
             scheduler=cls.catelyn,
-            scheduled_time="2021-06-08T06:00:00Z",
-            start_time="2021-06-08T20:00:40Z",
-            end_time="2021-06-08T21:30:00Z",
-            location="Health Department",
-            action_status="SCHD",
+            **new_appointment,
         )
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
@@ -66,18 +78,12 @@ class TestAppointment(TestCase):
 
     def test_theon_appointment_scheduled_time(self):
 
-        assert (
-            self.primo.scheduled_time.replace(tzinfo=timezone.utc).timestamp()
-            == 1623132000.0
-        )
+        assert transform_dt_obj(self.primo.scheduled_time) == 1623132000.0
         # "2021-06-08T06:00:00Z"
 
     def test_theon_appointment_start_time(self):
 
-        assert (
-            self.primo.start_time.replace(tzinfo=timezone.utc).timestamp()
-            == 1623182440.0
-        )
+        assert transform_dt_obj(self.primo.start_time) == 1623182440.0
 
     def test_theon_appointment_end_time(self):
 
@@ -106,11 +112,13 @@ class TestAppointment(TestCase):
         response = view_appointment(request)
         assert response.status_code == 200
         appointment_list = json_reader(response.content).get("appointment_list")[0]
-        assert appointment_list["action_status"] == "SCHD"
-        assert appointment_list["end_time"] == "2021-06-08T21:30:00Z"
-        assert appointment_list["location"] == "Health Department"
-        assert appointment_list["scheduled_time"] == "2021-06-08T06:00:00Z"
-        assert appointment_list["start_time"] == "2021-06-08T20:00:40Z"
+        assert appointment_list["action_status"] == new_appointment.get("action_status")
+        assert appointment_list["end_time"] == new_appointment.get("end_time")
+        assert appointment_list["location"] == new_appointment.get("location")
+        assert appointment_list["scheduled_time"] == new_appointment.get(
+            "scheduled_time"
+        )
+        assert appointment_list["start_time"] == new_appointment.get("start_time")
 
     # def test_patient_can_create_appointment(self):
     #     request = self.factory.get("/schedule-appointment/")
@@ -125,33 +133,34 @@ class TestAppointment(TestCase):
     #     appts = Appointment.objects.get(patient=self.theon.id)
     #     # assert appts.end_time == "2021-07-08T21:30:00Z"
     #     assert response.status_code == 200
-    def test_create_appointment_patient_id(self):
+    def setup_api_create_appointment_patient_id(self, appt_id, user=None):
+        if user is None:
+            user = AnonymousUser()
         request = self.factory.get("appointments/schedule-appointment/59")
-        request.user = self.theon
+        request.user = user
         request.POST = {
             "end_time": "2021-07-08T21:30:00Z",
             "location": "Health Department",
             "scheduled_time": "2021-07-08T06:00:00Z",
             "start_time": "2021-07-08T20:00:40Z",
         }
-       
-        response = create_appointment_patient_id(request, 59)
-        obj = json_reader(response.content)
-        assert obj.get('created') == True
+        response = api_create_appointment_patient_id(request, appt_id)
+        if user.is_anonymous:
+            return response
+        return json_reader(response.content)
 
-    def test_staff_member_can_create_appointment(self):
-        ...
+    def test_authorized_party_api_create_appointment_patient_id(self):
+        obj = self.setup_api_create_appointment_patient_id(
+            59,
+            user=self.theon,
+        )
+        assert obj.get("created") == True
+        assert obj.get("user_is_authorized_party") == True
+        # ['theon.greyjoy', 'balon.greyjoy', 'yara.greyjoy']
 
-    def test_unauthenticated_user_appointment_details_view(self):
-        request = self.factory.get("/appointments/2/")
-        ...
-
-    def test_appointment_details_view(self):
-        request = self.factory.get("/appointments/100/")
-        request.user = self.theon
-        response = appointment_details(request, 100)
-        details = json_reader(response.content)
-        assert details == ""
+    def test_unauthorized_api_create_appointment_patient_id_redirect(self):
+        response = self.setup_api_create_appointment_patient_id(59)
+        assert response.status_code == 302
 
     def test_appointment_details_view(self):
         request = self.factory.get("/appointments/2/")
@@ -186,7 +195,7 @@ class TestPatient(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.theon = get_user_model().objects.get(username="theon.greyjoy")
+        cls.theon = get_user("theon.greyjoy")
         cls.theon_greyjoy = Patient.objects.get(owner=cls.theon)
         cls.authorized_parties = [
             user.username for user in cls.theon_greyjoy.authorized_party.all()

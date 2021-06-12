@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
+from django.http.response import Http404
 from django.shortcuts import get_object_or_404, render
 
 from appointments.forms import AppointmentForm
@@ -9,35 +10,36 @@ from appointments.models import Appointment, Patient
 User = get_user_model()
 
 
-def user_is_authorized_party(user):
-    is_authorized_party = Patient.objects.get(patient_id=user.id)
-    return is_authorized_party
-    is_patient = User.objects.get(username=user.username)
-    return is_patient
-
-
-def user_is_authorized_party(user):
-    Patient.objects.get()
-    patient = Patient.objects.get(owner=user.id)
-    return
-
-
 def user_is_authenticated(user):
     return user.is_authenticated
 
 
 @login_required
 @user_passes_test(user_is_authenticated)
-def create_appointment_patient_id(request, patient_id):
-    obj, created = Appointment.objects.get_or_create(
-        patient_id=patient_id,
-        scheduler_id=request.user.id,
-        location=request.POST.get('location'),
-        start_time=request.POST.get('start_time'),
-        end_time=request.POST.get('end_time'),
-    )
-    if created:
-        return JsonResponse({"created": created})
+def api_create_appointment_patient_id(request, patient_id):
+    if request.user.is_anonymous:
+        return JsonResponse({"created": False})
+    patient = Patient.objects.get(owner=patient_id)
+    authorized_parties = [user.username for user in patient.authorized_party.all()]
+    user_is_authorized_party = False
+    for party in authorized_parties:
+        if party == request.user.username:
+            user_is_authorized_party = True
+    if user_is_authorized_party:
+        obj, created = Appointment.objects.get_or_create(
+            patient_id=patient_id,
+            scheduler_id=request.user.id,
+            location=request.POST.get("location"),
+            start_time=request.POST.get("start_time"),
+            end_time=request.POST.get("end_time"),
+        )
+        if created and user_is_authorized_party:
+            return JsonResponse(
+                {
+                    "created": created,
+                    "user_is_authorized_party": user_is_authorized_party,
+                }
+            )
     # if request.user.is_authenticated:
     #     form = AppointmentForm(request.POST)
     #     if request.method == "POST":
