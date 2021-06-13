@@ -10,6 +10,10 @@ from appointments.models import Appointment, Patient
 User = get_user_model()
 
 
+def user_can_manage_me(user):
+    return user.has_perm("your_app.manage_object")
+
+
 def user_is_authenticated(user):
     return user.is_authenticated
 
@@ -17,8 +21,9 @@ def user_is_authenticated(user):
 @login_required
 @user_passes_test(user_is_authenticated)
 def api_create_appointment_patient_id(request, patient_id):
+    context = {}
     if request.user.is_anonymous:
-        return JsonResponse({"created": False})
+        context.update(created=False)
     patient = Patient.objects.get(owner=patient_id)
     authorized_parties = [user.username for user in patient.authorized_party.all()]
     user_is_authorized_party = False
@@ -33,20 +38,26 @@ def api_create_appointment_patient_id(request, patient_id):
             start_time=request.POST.get("start_time"),
             end_time=request.POST.get("end_time"),
         )
+        # if not obj.user_can_manage_me(request.user):
         if created and user_is_authorized_party:
-            return JsonResponse(
-                {
-                    "created": created,
-                    "user_is_authorized_party": user_is_authorized_party,
-                }
+            context.update(
+                created=created,
+                user_is_authorized_party=user_is_authorized_party,
             )
-    # if request.user.is_authenticated:
-    #     form = AppointmentForm(request.POST)
-    #     if request.method == "POST":
-    #         if form.is_valid():
-    #             form.save()
-    # return HttpResponse(form)
-    # appt = Appointment.objects.create()
+    return JsonResponse(context)
+
+
+@login_required
+@user_passes_test(user_is_authenticated)
+def create_appointment_patient_id(request, patient_id):
+
+    header = {"X-Status-Reason": "Validation failed"}
+    form = AppointmentForm(request.POST)
+    print(form.instance)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+    return HttpResponse(form)
 
 
 def appointment_details(request, appointment_id):

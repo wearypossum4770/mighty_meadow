@@ -85,7 +85,25 @@ def disposition_code():
 # Product question
 # Requires follow up
 # Requires supervisor attention
-
+__gender__ = {
+    "M": "I identify as a male or a man (i.e. male, cis-gender male), and prefer to be called sir",
+    "F": "I identify as a female or a woman (i.e. female, cis-gender female),  and prefer to be called ma'am.",
+    "MTF": "Assigned male at birth, but currently identify as female.",
+    "FTM": "Assigned female at birth but currently identify as male.",
+    "NBN": "Neither male nor female, somewhere in between.",
+    "none": "No Selection, Declined To Answer",
+}
+__ethnicity__ = {
+    "ASN": "Asian - Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.",
+    "BLK": "Black - origins in any of the Black racial groups of Africa including Carribean Islands.",
+    "NAT": "Native American or Alaskan Native.",
+    "HPN": "Hispanic - Centeral and South America, Carribbean Islands.",
+    "MDE": "Middle Eastern - the Middle East, or North Africa.",
+    "HWN": "Native Hawaii, Guam, Samoa, or other Pacific Islands.",
+    "OTH": "Other/Multiple",
+    "WHT": "White-origins in Europe.",
+    "none": "No Selection, Declined To Answer",
+}
 
 # Tech support
 class Patient(Model):
@@ -95,37 +113,23 @@ class Patient(Model):
     """
 
     class Gender(TextChoices):
-        MALE = "M", _(
-            "I identify as a male or a man (i.e. male, cis-gender male), and prefer to be called sir"
-        )
-        FEMALE = "F", _(
-            "I identify as a female or a woman (i.e. female, cis-gender female),  and prefer to be called ma'am."
-        )
-        TRANSGENDER_FEMALE = "MTF", _(
-            "Assigned male at birth, but currently identify as female."
-        )
-        TRANSGENDER_MALE = "FTM", _(
-            "Assigned female at birth but currently identify as male."
-        )
-        NON_BINARY = "NBN", _("Neither male nor female, somewhere in between.")
-        __empty__ = _("No Selection, Declined To Answer")
+        MALE = "M", _(f"{__gender__.get('M')}")
+        FEMALE = "F", _(f"{__gender__.get('F')}")
+        TRANSGENDER_FEMALE = "MTF", _(f"{__gender__.get('MTF')}")
+        TRANSGENDER_MALE = "FTM", _(f"{__gender__.get('FTM')}")
+        NON_BINARY = "NBN", _(f"{__gender__.get('NBN')}")
+        __empty__ = _(f"{__gender__.get('none')}")
 
     class Ethnicity(TextChoices):
-        ASIAN = "ASN", _(
-            "Asian - Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam."
-        )
-        BLACK = "BLK", _(
-            "Black - origins in any of the Black racial groups of Africa including Carribean Islands."
-        )
-        Native = "NAT", _("Native American or Alaskan Native.")
-        HISPANIC = "HPN", _(
-            "Hispanic - Centeral and South America, Carribbean Islands."
-        )
-        MIDDLE_EASTERN = "MDE", _("Middle Eastern - the Middle East, or North Africa.")
-        HAWAIIAN = "HWN", _("Native Hawaii, Guam, Samoa, or other Pacific Islands.")
-        OTHER = "OTH", _("Other/Multiple")
-        WHITE = "WHT", _("White-origins in Europe.")
-        __empty__ = _("No Selection, Declined To Answer")
+        ASIAN = "ASN", _(f"{__ethnicity__.get('ASN')}")
+        BLACK = "BLK", _(f"{__ethnicity__.get('BLK')}")
+        Native = "NAT", _(f"{__ethnicity__.get('NAT')}")
+        HISPANIC = "HPN", _(f"{__ethnicity__.get('HPN')}")
+        MIDDLE_EASTERN = "MDE", _(f"{__ethnicity__.get('MDE')}")
+        HAWAIIAN = "HWN", _(f"{__ethnicity__.get('HWN')}")
+        OTHER = "OTH", _(f"{__ethnicity__.get('OTH')}")
+        WHITE = "WHT", _(f"{__ethnicity__.get('WHT')}")
+        __empty__ = _(f"{__ethnicity__.get('none') }")
 
     owner = ForeignKey(
         User, on_delete=CASCADE, null=True, blank=True, related_name="patient"
@@ -143,6 +147,9 @@ class Patient(Model):
 
     def __str__(self):
         return self.owner.username
+
+    def user_can_manage_me(self, user):
+        return user == self.user or user.has_perm("your_app.manage_object")
 
 
 class MedicalCondition(Model):
@@ -270,3 +277,4 @@ class MedicalCondition(Model):
 # WIBIS = "WIBIS", _("Will be issued")
 # WIP = "WIP", _("Work in progress")
 # WISMO = "WISMO", _("Where is my order?")
+headers = {422: "Unprocessable Entity"}
