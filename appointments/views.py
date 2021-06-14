@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, render
+from asgiref.sync import sync_to_async
 
 from appointments.forms import AppointmentForm
 from appointments.models import Appointment, Patient
@@ -17,7 +18,8 @@ def user_can_manage_me(user):
 def user_is_authenticated(user):
     return user.is_authenticated
 
-
+def user_is_anonymous(user):
+    return user.is_anonymous
 @login_required
 @user_passes_test(user_is_authenticated)
 def api_create_appointment_patient_id(request, patient_id):
@@ -25,7 +27,7 @@ def api_create_appointment_patient_id(request, patient_id):
     if request.user.is_anonymous:
         context.update(created=False)
     patient = Patient.objects.get(owner=patient_id)
-    authorized_parties = [user.username for user in patient.authorized_party.all()]
+    authorized_parties = ([user.username for user in patient.authorized_party.all()])
     user_is_authorized_party = False
     for party in authorized_parties:
         if party == request.user.username:
@@ -117,6 +119,17 @@ def make_appointment(request):
         print(request)
     return JsonResponse(context)
 
+@sync_to_async
+def create_appointment_by_patient_id(request, patient_id):
+    obj, created = Appointment.objects.get_or_create(
+            patient_id=patient_id,
+            scheduler_id=request.user.id,
+            visit_identifier=request.POST.get('visit_identifier'),
+            location=request.POST.get("location"),
+            start_time=request.POST.get("start_time"),
+            end_time=request.POST.get("end_time"),
+        )
+    return JsonResponse({"created":created, 'status_code':201})
 
 #  cancel_appointment_by_date_range
 #  cancel_appointment_by_appointment_id

@@ -43,7 +43,7 @@ class Appointment(Model):
     start_time = DateTimeField(null=True, blank=True)
     end_time = DateTimeField(null=True, blank=True)
     location = CharField(max_length=20, null=True, blank=True)
-    visit_identifier = UUIDField(default=uuid4, )
+    visit_identifier = UUIDField(default=uuid4,unique=True )
     action_status = CharField(
         max_length=4, default=Action.__empty__, choices=Action.choices
     )

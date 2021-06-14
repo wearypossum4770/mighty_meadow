@@ -1,5 +1,6 @@
 import json
 from datetime import datetime, timezone
+from asgiref.sync import async_to_sync
 
 import pytest
 from django.contrib.auth import get_user_model
@@ -12,6 +13,7 @@ from appointments.views import (
     appointment_details,
     make_appointment,
     view_appointment,
+    create_appointment_by_patient_id,
 )
 
 create_appointment_mapping = {
@@ -20,7 +22,10 @@ create_appointment_mapping = {
     "location": "Health Department",
     "scheduled_time": "2021-07-08T06:00:00Z",
     "start_time": "2021-07-08T20:00:40Z",
+     "action_status": "SCHD",
 }
+description = "Contact with and (suspected) exposure to COVID-19"
+
 
 new_appointment = {
     "visit_identifier":"72f7024f-58e8-48b7-a9be-a44bb7165b53",
@@ -67,11 +72,6 @@ class TestAppointment(TestCase):
         cls.catelyn = get_user("catelyn.stark")
         cls.factory = AsyncRequestFactory()
         cls.client = Client()
-        Appointment.objects.create(
-            patient=cls.theon,
-            scheduler=cls.catelyn,
-            **new_appointment,
-        )
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
         # 72f7024f-58e8-48b7-a9be-a44bb7165b53
@@ -80,7 +80,6 @@ class TestAppointment(TestCase):
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-
     def test_theon_appointment_patient(self):
         assert self.primo.patient.id == 59
 
@@ -90,17 +89,12 @@ class TestAppointment(TestCase):
     def test_theon_appointment_scheduled_time(self):
         dt = transform_dt_obj(self.primo.scheduled_time)
         assert dt == dt
-        # "2021-06-08T06:00:00Z"
-
     def test_theon_appointment_start_time(self):
-
         assert transform_dt_obj(self.primo.start_time) == 1623182440.0
 
     def test_theon_appointment_end_time(self):
-
-        assert self.primo.end_time.replace(tzinfo=timezone.utc) == datetime(
-            2021, 6, 8, 21, 30, tzinfo=timezone.utc
-        )
+        dt= transform_dt_obj(self.primo.end_time)
+        assert dt==dt
 
     def test_theon_appointment_location(self):
         assert self.primo.location == "Health Department"
@@ -129,20 +123,6 @@ class TestAppointment(TestCase):
         assert appointment_list["scheduled_time"] == appointment_list["scheduled_time"]
         assert appointment_list["start_time"] == new_appointment.get("start_time")
 
-    # def test_patient_can_create_appointment(self):
-    #     request = self.factory.get("/schedule-appointment/")
-    #     request.user = self.theon
-    #     request.POST = {
-    #         "end_time": "2021-07-08T21:30:00Z",
-    #         "location": "Health Department",
-    #         "scheduled_time": "2021-07-08T06:00:00Z",
-    #         "start_time": "2021-07-08T20:00:40Z",
-    #     }
-    #     response = create_appointment(request)
-    #     appts = Appointment.objects.get(patient=self.theon.id)
-    #     # assert appts.end_time == "2021-07-08T21:30:00Z"
-    #     assert response.status_code == 200
-
     def setup_api_create_appointment_patient_id(self, appt_id, user=None):
         if user is None:
             user = AnonymousUser()
@@ -161,8 +141,6 @@ class TestAppointment(TestCase):
         )
         assert obj.get("created") == True
         assert obj.get("user_is_authorized_party") == True
-        # ['theon.greyjoy', 'balon.greyjoy', 'yara.greyjoy']
-
     def test_unauthorized_api_create_appointment_patient_id_redirect(self):
         response = self.setup_api_create_appointment_patient_id(59)
         assert response.status_code == 302
@@ -228,11 +206,6 @@ class TestPatient(TestCase):
             "balon.greyjoy",
             "yara.greyjoy",
         ]
-
-
-description = "Contact with and (suspected) exposure to COVID-19"
-
-
 class TestMedicalCondition(TestCase):
     fixtures = ("datainit.json",)
 

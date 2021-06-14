@@ -5,9 +5,11 @@ from appointments.views import (
     appointment_details,
     archive,
     view_appointment,
+    create_appointment_by_patient_id,
 )
 
 urlpatterns = [
+    path("appointments/<int:patient_id>/new", create_appointment_by_patient_id, name='new-appt'),
     path("appointments/<appointment_id>/", appointment_details, name="appt-detail"),
     path(
         "appointments/schedule-appointment/<int:patient_id>",
