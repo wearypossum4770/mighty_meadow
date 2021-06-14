@@ -59,6 +59,10 @@ def create_appointment_patient_id(request, patient_id):
             form.save()
     return HttpResponse(form)
 
+@login_required
+@user_passes_test(user_is_authenticated)
+def  api_appointment_details(request,appointment_id ):
+    ...
 
 def appointment_details(request, appointment_id):
     appointment = get_object_or_404(Appointment, pk=appointment_id)
@@ -112,3 +116,15 @@ def make_appointment(request):
     if request.user.is_authenticated:
         print(request)
     return JsonResponse(context)
+
+
+#  cancel_appointment_by_date_range
+#  cancel_appointment_by_appointment_id
+#  appointment_modification_notify_patient
+#  create_appointment_by_patient_id
+#  create_appointment_by_system
+#  view_appointment_details_by_appointment_id
+#  view_appointment_list_by_patient_id
+#  view_appointment_list_by_date_range
+#  view_current_day_appointment_list
+#  

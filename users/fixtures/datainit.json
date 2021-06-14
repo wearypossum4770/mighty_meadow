@@ -1654,6 +1654,7 @@
       "fields": {
         "patient": 1,
         "scheduler": 50,
+        "visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38",
         "scheduled_time": "2021-06-08T06:00:00Z",
         "start_time": "2021-06-08T20:00:40Z",
         "end_time": "2021-06-08T21:30:00Z",

@@ -21,7 +21,8 @@ from django.db.models import (
     UUIDField,
 )
 from django.utils.translation import gettext_lazy as _
-
+# from cuid from cuid
+from uuid import uuid4
 BASE_DIR = settings.BASE_DIR
 userModel = settings.AUTH_USER_MODEL
 User = get_user_model()
@@ -37,10 +38,12 @@ class Appointment(Model):
 
     patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
     scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
-    scheduled_time = DateTimeField(null=True, blank=True)
+    scheduled_time = DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_modified = DateTimeField(auto_now=True, null=True, blank=True)
     start_time = DateTimeField(null=True, blank=True)
     end_time = DateTimeField(null=True, blank=True)
     location = CharField(max_length=20, null=True, blank=True)
+    visit_identifier = UUIDField(default=uuid4, )
     action_status = CharField(
         max_length=4, default=Action.__empty__, choices=Action.choices
     )
@@ -48,7 +51,9 @@ class Appointment(Model):
     def __str__(self):
         return self.patient.username
 
-
+def appointment_cancellation(appointment_id):
+    appointment = Appointment.objects.get(visit_identifier=appointment_id)
+    ...
 def wrap_up_time():
     ...
 

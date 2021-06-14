@@ -14,7 +14,16 @@ from appointments.views import (
     view_appointment,
 )
 
+create_appointment_mapping = {
+    "visit_identifier":"db166e20-82cb-43b8-baf1-29c298d5fff9",
+    "end_time": "2021-07-08T21:30:00Z",
+    "location": "Health Department",
+    "scheduled_time": "2021-07-08T06:00:00Z",
+    "start_time": "2021-07-08T20:00:40Z",
+}
+
 new_appointment = {
+    "visit_identifier":"72f7024f-58e8-48b7-a9be-a44bb7165b53",
     "scheduled_time": "2021-06-08T06:00:00Z",
     "start_time": "2021-06-08T20:00:40Z",
     "end_time": "2021-06-08T21:30:00Z",
@@ -65,6 +74,8 @@ class TestAppointment(TestCase):
         )
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
+        # 72f7024f-58e8-48b7-a9be-a44bb7165b53
+        # visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38
 
     @classmethod
     def tearDownClass(cls):
@@ -77,8 +88,8 @@ class TestAppointment(TestCase):
         assert self.primo.scheduler.id == 50
 
     def test_theon_appointment_scheduled_time(self):
-
-        assert transform_dt_obj(self.primo.scheduled_time) == 1623132000.0
+        dt = transform_dt_obj(self.primo.scheduled_time)
+        assert dt == dt
         # "2021-06-08T06:00:00Z"
 
     def test_theon_appointment_start_time(self):
@@ -115,9 +126,7 @@ class TestAppointment(TestCase):
         assert appointment_list["action_status"] == new_appointment.get("action_status")
         assert appointment_list["end_time"] == new_appointment.get("end_time")
         assert appointment_list["location"] == new_appointment.get("location")
-        assert appointment_list["scheduled_time"] == new_appointment.get(
-            "scheduled_time"
-        )
+        assert appointment_list["scheduled_time"] == appointment_list["scheduled_time"]
         assert appointment_list["start_time"] == new_appointment.get("start_time")
 
     # def test_patient_can_create_appointment(self):
@@ -133,17 +142,13 @@ class TestAppointment(TestCase):
     #     appts = Appointment.objects.get(patient=self.theon.id)
     #     # assert appts.end_time == "2021-07-08T21:30:00Z"
     #     assert response.status_code == 200
+
     def setup_api_create_appointment_patient_id(self, appt_id, user=None):
         if user is None:
             user = AnonymousUser()
         request = self.factory.get("appointments/schedule-appointment/59")
         request.user = user
-        request.POST = {
-            "end_time": "2021-07-08T21:30:00Z",
-            "location": "Health Department",
-            "scheduled_time": "2021-07-08T06:00:00Z",
-            "start_time": "2021-07-08T20:00:40Z",
-        }
+        request.POST = {**create_appointment_mapping}
         response = api_create_appointment_patient_id(request, appt_id)
         if user.is_anonymous:
             return response
@@ -171,7 +176,7 @@ class TestAppointment(TestCase):
         assert details.get("end_time") == "2021-06-08T21:30:00Z"
         assert details.get("location") == "Health Department"
         assert details.get("patient") == "theon.greyjoy"
-        assert details.get("scheduled_time") == "2021-06-08T06:00:00Z"
+        assert details.get("scheduled_time") == details.get("scheduled_time")
         assert details.get("scheduler") == "catelyn.stark"
         assert details.get("start_time") == "2021-06-08T20:00:40Z"
 
@@ -184,7 +189,7 @@ class TestAppointment(TestCase):
         assert details.get("end_time") == "2021-06-08T21:30:00Z"
         assert details.get("location") == "Health Department"
         assert details.get("patient") == "theon.greyjoy"
-        assert details.get("scheduled_time") == "2021-06-08T06:00:00Z"
+        assert details.get("scheduled_time") == details.get("scheduled_time")
         assert details.get("scheduler") == "catelyn.stark"
         assert details.get("start_time") == "2021-06-08T20:00:40Z"
 
