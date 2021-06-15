@@ -139,9 +139,6 @@ class TestProfile(TestCase):
     def test_date_of_birth(self):
         assert self.staff_user.date_of_birth == date(1942, 11, 20)
 
-    def test_is_authorized_party(self):
-        assert self.staff_user.is_authorized_party == False
-
     def test_is_clinic_staff(self):
         assert self.staff_user.is_clinic_staff == False
 

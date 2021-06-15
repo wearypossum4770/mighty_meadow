@@ -77,7 +77,6 @@ class User(AbstractUser):
     suffix = CharField(max_length=10, blank=True, null=True)
     date_of_birth = DateField(blank=True, null=True)
     is_patient = BooleanField(default=False)
-    is_authorized_party = BooleanField(default=False)
     is_clinic_staff = BooleanField(default=False)
     date_of_death = DateField(null=True, blank=True)
     retention_only = BooleanField(default=False)

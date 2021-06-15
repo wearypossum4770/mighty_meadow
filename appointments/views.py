@@ -1,9 +1,8 @@
+from asgiref.sync import sync_to_async
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
-from django.http.response import Http404
 from django.shortcuts import get_object_or_404, render
-from asgiref.sync import sync_to_async
 
 from appointments.forms import AppointmentForm
 from appointments.models import Appointment, Patient
@@ -18,20 +17,27 @@ def user_can_manage_me(user):
 def user_is_authenticated(user):
     return user.is_authenticated
 
-def user_is_anonymous(user):
-    return user.is_anonymous
+
+def user_is_patient(user):
+    return user.is_patient
+
+
+def user_is_clinic_staff(user):
+    return user.is_clinic_staff
+
+
 @login_required
 @user_passes_test(user_is_authenticated)
-def api_create_appointment_patient_id(request, patient_id):
+def api_create_appointment_by_patient_id(request, patient_id):
     context = {}
-    if request.user.is_anonymous:
-        context.update(created=False)
     patient = Patient.objects.get(owner=patient_id)
-    authorized_parties = ([user.username for user in patient.authorized_party.all()])
-    user_is_authorized_party = False
-    for party in authorized_parties:
-        if party == request.user.username:
-            user_is_authorized_party = True
+    user_is_authorized_party = len(
+        [
+            user.username
+            for user in patient.authorized_party.all()
+            if user.username == request.user.username
+        ]
+    )
     if user_is_authorized_party:
         obj, created = Appointment.objects.get_or_create(
             patient_id=patient_id,
@@ -41,10 +47,19 @@ def api_create_appointment_patient_id(request, patient_id):
             end_time=request.POST.get("end_time"),
         )
         # if not obj.user_can_manage_me(request.user):
-        if created and user_is_authorized_party:
+        if created:
             context.update(
                 created=created,
                 user_is_authorized_party=user_is_authorized_party,
+                status_code=201,
+                appointment_details={
+                    "visit_identifier": obj.visit_identifier,
+                    "scheduled_time": obj.scheduled_time,
+                    "start_time": obj.start_time,
+                    "end_time": obj.end_time,
+                    "location": obj.location,
+                    "action_status": obj.action_status,
+                },
             )
     return JsonResponse(context)
 
@@ -61,10 +76,12 @@ def create_appointment_patient_id(request, patient_id):
             form.save()
     return HttpResponse(form)
 
+
 @login_required
 @user_passes_test(user_is_authenticated)
-def  api_appointment_details(request,appointment_id ):
+def api_appointment_details(request, appointment_id):
     ...
+
 
 def appointment_details(request, appointment_id):
     appointment = get_object_or_404(Appointment, pk=appointment_id)
@@ -88,7 +105,7 @@ def archive(request):
 
 
 @login_required
-def view_appointment(request):
+def view_appointments(request):
     # check against user
     context = {}
     appt = Appointment.objects.filter(patient=request.user.id)
@@ -100,6 +117,7 @@ def view_appointment(request):
                 "end_time": a.end_time,
                 "location": a.location,
                 "action_status": a.action_status,
+                "external_identifier": a.external_identifier,
             }
             for a in appt
         ]
@@ -119,17 +137,6 @@ def make_appointment(request):
         print(request)
     return JsonResponse(context)
 
-@sync_to_async
-def create_appointment_by_patient_id(request, patient_id):
-    obj, created = Appointment.objects.get_or_create(
-            patient_id=patient_id,
-            scheduler_id=request.user.id,
-            visit_identifier=request.POST.get('visit_identifier'),
-            location=request.POST.get("location"),
-            start_time=request.POST.get("start_time"),
-            end_time=request.POST.get("end_time"),
-        )
-    return JsonResponse({"created":created, 'status_code':201})
 
 #  cancel_appointment_by_date_range
 #  cancel_appointment_by_appointment_id
@@ -140,4 +147,4 @@ def create_appointment_by_patient_id(request, patient_id):
 #  view_appointment_list_by_patient_id
 #  view_appointment_list_by_date_range
 #  view_current_day_appointment_list
-#  
+#

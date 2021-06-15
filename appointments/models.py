@@ -9,22 +9,17 @@ from django.db.models import (
     BooleanField,
     CharField,
     DateTimeField,
-    EmailField,
-    FileField,
     ForeignKey,
-    ImageField,
-    IntegerField,
     ManyToManyField,
     Model,
     TextChoices,
     TextField,
     UUIDField,
 )
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
-# from cuid from cuid
-from uuid import uuid4
+
 BASE_DIR = settings.BASE_DIR
-userModel = settings.AUTH_USER_MODEL
 User = get_user_model()
 
 
@@ -43,17 +38,24 @@ class Appointment(Model):
     start_time = DateTimeField(null=True, blank=True)
     end_time = DateTimeField(null=True, blank=True)
     location = CharField(max_length=20, null=True, blank=True)
-    visit_identifier = UUIDField(default=uuid4,unique=True )
+    visit_identifier = UUIDField(default=uuid4, unique=True)
     action_status = CharField(
         max_length=4, default=Action.__empty__, choices=Action.choices
     )
+    external_identifier = CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.patient.username
 
-def appointment_cancellation(appointment_id):
-    appointment = Appointment.objects.get(visit_identifier=appointment_id)
-    ...
+
+def appointment_cancellation(appointment_id, cancel_appointment=False):
+    if cancel_appointment:
+        appointment = get_object_or_404(Appointment, external_identifier=appointment_id)
+        appointment.action_status = Appointment.Action.CANCELLED
+        appointment.save()
+    return cancel_appointment
+
+
 def wrap_up_time():
     ...
 
@@ -109,8 +111,23 @@ __ethnicity__ = {
     "WHT": "White-origins in Europe.",
     "none": "No Selection, Declined To Answer",
 }
-
+__relationship__ = {
+    "GAR": "Legal guardian",
+    "KIN": "Next of kin or emergency contact",
+    "PAR": "Includes both custodial, non-custodial, foster, and step parents.",
+    "LAW": "",
+}
 # Tech support
+class AuthorizedParty(Model):
+    class Relationship(TextChoices):
+        GUARDIAN = "GAR", _(f"{__relationship__.get('GAR')}")
+        PARENT = "PAR", _(f"{__relationship__.get('PAR')}")
+        LEGAL_ADVISOR = "LAW", _(f"{__relationship__.get('LAW')}")
+        EMERGENCY = "KIN", _(f"{__relationship__.get('KIN')}")
+
+    owner = ForeignKey(User, on_delete=CASCADE)
+
+
 class Patient(Model):
     """
     United States Census Beurau Ethnicity Information. https://www.census.gov/topics/population/race/about.html
@@ -136,9 +153,7 @@ class Patient(Model):
         WHITE = "WHT", _(f"{__ethnicity__.get('WHT')}")
         __empty__ = _(f"{__ethnicity__.get('none') }")
 
-    owner = ForeignKey(
-        User, on_delete=CASCADE, null=True, blank=True, related_name="patient"
-    )
+    owner = ForeignKey(User, on_delete=CASCADE, related_name="patient")
     authorized_party = ManyToManyField(User, related_name="authorized_party")
     sponsor = ForeignKey(User, on_delete=CASCADE, related_name="guarantor")
     gender = CharField(
@@ -149,19 +164,19 @@ class Patient(Model):
     ethnicity = CharField(
         max_length=3, choices=Ethnicity.choices, default=Ethnicity.__empty__
     )
+    internal_notes = TextField(null=True, blank=True)
 
     def __str__(self):
         return self.owner.username
 
-    def user_can_manage_me(self, user):
-        return user == self.user or user.has_perm("your_app.manage_object")
+    def user_can_manage_me(self, owner):
+        return owner == self.owner or owner.has_perm("your_app.manage_object")
 
 
 class MedicalCondition(Model):
     """
     Check out this page https://www.cdc.gov/nchs/icd/icd9cm_addenda_guidelines.htm
     also https://www.aappublications.org/news/2020/05/07/coding050720?utm_source=TrendMD&utm_medium=TrendMD&utm_campaign=AAPNews_TrendMD_0
-
     """
 
     class System(TextChoices):
@@ -174,9 +189,9 @@ class MedicalCondition(Model):
         HCPCS = "HCP", _("Healthcare Common Procedure Coding System")
         CPT = "CPT", _("Current Procedural Terminology")
 
-    # signature_required
-    # blue_ink_required
-    # enrollment_required
+    signature_required = BooleanField(default=False, null=True, blank=True)
+    blue_ink_required = BooleanField(default=False, null=True, blank=True)
+    enrollment_required = BooleanField(default=False, null=True, blank=True)
     is_symptomatic = BooleanField(default=False, null=True, blank=True)
     code_value = CharField(max_length=15, null=True, blank=True)
     coding_system = CharField(

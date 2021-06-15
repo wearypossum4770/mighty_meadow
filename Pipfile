@@ -43,6 +43,7 @@ pytest-xdist = "*"
 vsot = "*"
 pytest-mock = "*"
 pytest-aiohttp = "*"
+pytest-watch = "*"
 
 [requires]
 python_version = "3.8"

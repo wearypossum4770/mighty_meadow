@@ -42,7 +42,6 @@ class UserUpdateForm(ModelForm):
             "suffix",
             "date_of_birth",
             "is_patient",
-            "is_authorized_party",
             "is_clinic_staff",
             "date_of_death",
             "retention_only",
