@@ -2,6 +2,31 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 
 
+def authorized_party(sender=None):
+    """
+    @allowed_users(allowed_roles=('admin', 'supervisor', 'lead'))
+    """
+
+    def decorator(view_func):
+        def wrapper_func(request, *args, **kwargs):
+            patient = sender.objects.get(owner=patient_id)
+            user_is_authorized_party = len(
+                [
+                    user.username
+                    for user in patient.authorized_party.all()
+                    if user.username == request.user.username
+                ]
+            )
+            if user_is_authorized_party:
+                return view_func(request, *args, **kwargs)
+            else:
+                return HttpResponse("You're not authorized to view this page")
+
+        return wrapper_func
+
+    return decorator
+
+
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
         if request.user.is_authenticated:

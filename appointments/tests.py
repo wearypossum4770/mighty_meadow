@@ -7,15 +7,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.test import AsyncRequestFactory, Client, TestCase
 
-from appointments.models import (
-    Appointment,
-    MedicalCondition,
-    Patient,
-    appointment_cancellation,
-)
+from appointments.models import Appointment, MedicalCondition, Patient
 from appointments.views import (
     api_create_appointment_by_patient_id,
     appointment_details,
+    cancel_appointment_by_appointment_id,
     make_appointment,
     view_appointments,
 )
@@ -165,21 +161,24 @@ class TestAppointment(TestCase):
         assert details.get("scheduler") == "catelyn.stark"
         assert details.get("start_time") == "2021-06-08T20:00:40Z"
 
-    def test_appointment_cancellation_completed(self):
-        assert self.test_appointment_cancellation[0] == True
+    def test_cancel_appointment_by_appointment_id_completed(self):
+        assert self.test_cancel_appointment_by_appointment_id[0] == True
 
-    def test_appointment_cancellation_visit_identifier(self):
+    def test_cancel_appointment_by_appointment_id_visit_identifier(self):
         assert (
-            str(self.test_appointment_cancellation[1].visit_identifier)
+            str(self.test_cancel_appointment_by_appointment_id[1].visit_identifier)
             == "33840855-e78a-4054-98c5-5e72e63f09d9"
         )
 
-    def test_appointment_cancellation_action_status(self):
-        assert self.test_appointment_cancellation[1].action_status == "CAND"
+    def test_cancel_appointment_by_appointment_id_action_status(self):
+        assert self.test_cancel_appointment_by_appointment_id[1].action_status == "CAND"
 
     @property
-    def test_appointment_cancellation(self):
-        completed = appointment_cancellation(
+    def test_cancel_appointment_by_appointment_id(self):
+        request = self.factory.get("appointments/<appointment_id/cancel/")
+        request.user = self.theon
+        completed = cancel_appointment_by_appointment_id(
+            request,
             "ca6bb4b5-2aff-48f9-9b01-72dc7d82421f_ckpxb29iy0000anveffz3ktbu",
             cancel_appointment=True,
         )

@@ -10,6 +10,18 @@ from appointments.models import Appointment, Patient
 User = get_user_model()
 
 
+def wrap_up_time():
+    ...
+
+
+def after_call_work():
+    ...
+
+
+def disposition_code():
+    ...
+
+
 def user_can_manage_me(user):
     return user.has_perm("your_app.manage_object")
 
@@ -45,6 +57,8 @@ def api_create_appointment_by_patient_id(request, patient_id):
             location=request.POST.get("location"),
             start_time=request.POST.get("start_time"),
             end_time=request.POST.get("end_time"),
+            visit_identifier=request.POST.get("visit_identifier"),
+            action_status=Appointment.Action.SCHEDULED,
         )
         # if not obj.user_can_manage_me(request.user):
         if created:
@@ -66,23 +80,6 @@ def api_create_appointment_by_patient_id(request, patient_id):
 
 @login_required
 @user_passes_test(user_is_authenticated)
-def create_appointment_patient_id(request, patient_id):
-
-    header = {"X-Status-Reason": "Validation failed"}
-    form = AppointmentForm(request.POST)
-    print(form.instance)
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()
-    return HttpResponse(form)
-
-
-@login_required
-@user_passes_test(user_is_authenticated)
-def api_appointment_details(request, appointment_id):
-    ...
-
-
 def appointment_details(request, appointment_id):
     appointment = get_object_or_404(Appointment, pk=appointment_id)
     if appointment.patient.username == request.user.username:
@@ -124,17 +121,31 @@ def view_appointments(request):
     return JsonResponse(context)
 
 
-def authorized_for_account(user):
-
-    return
-
-
-@user_passes_test(authorized_for_account)
 @login_required
-def make_appointment(request):
+@user_passes_test(user_is_authenticated)
+def cancel_appointment_by_appointment_id(
+    request, appointment_id, cancel_appointment=False
+):
+    if cancel_appointment:
+        appointment = get_object_or_404(Appointment, external_identifier=appointment_id)
+        appointment.action_status = Appointment.Action.CANCELLED
+        appointment.save()
+    return cancel_appointment
+
+
+@login_required
+@user_passes_test(user_is_authenticated)
+def make_appointment(request, patient_id, *args, **kwargs):
     context = {}
-    if request.user.is_authenticated:
-        print(request)
+    patient = Patient.objects.get(owner=patient_id)
+    user_is_authorized_party = len(
+        [
+            user.username
+            for user in patient.authorized_party.all()
+            if user.username == request.user.username
+        ]
+    )
+
     return JsonResponse(context)
 
 
