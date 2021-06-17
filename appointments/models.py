@@ -47,6 +47,7 @@ __relationship__ = {
     "LAW": "",
 }
 
+
 class Appointment(Model):
     class Action(TextChoices):
         COMPLETE = "CMPL", _("Completed")
@@ -75,9 +76,8 @@ class Appointment(Model):
     def __str__(self):
         return self.patient.username
 
-    @property
-    def is_archived(self):
-        return True
+    def mark_as_archived(self):
+        self.is_archived = True
 
 
 # Tech support
@@ -89,6 +89,8 @@ class AuthorizedParty(Model):
         EMERGENCY = "KIN", _(f"{__relationship__.get('KIN')}")
 
     owner = ForeignKey(User, on_delete=CASCADE)
+
+
 class Patient(Model):
     """
     United States Census Beurau Ethnicity Information. https://www.census.gov/topics/population/race/about.html
@@ -164,7 +166,6 @@ class MedicalCondition(Model):
     used_to_diagnose = CharField(max_length=100, null=True, blank=True)
     condition_description = CharField(max_length=200, null=True, blank=True)
     related_condition = CharField(max_length=200, null=True, blank=True)
-
 
 
 # https://www.callcentrehelper.com/tag/workforce-management

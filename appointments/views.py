@@ -51,6 +51,7 @@ def api_create_appointment_by_patient_id(request, patient_id):
         ]
     )
     if user_is_authorized_party:
+
         obj, created = Appointment.objects.get_or_create(
             patient_id=patient_id,
             scheduler_id=request.user.id,
@@ -105,7 +106,7 @@ def archive(request):
 def view_appointments(request):
     # check against user
     context = {}
-    appt = Appointment.objects.filter(patient=request.user.id)
+    appt = Appointment.objects.filter(patient=request.user.id, is_archived=False)
     if request.user.is_authenticated:
         context["appointment_list"] = [
             {

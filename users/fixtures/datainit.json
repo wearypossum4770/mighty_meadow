@@ -1654,6 +1654,7 @@
       "fields": {
         "patient": 1,
         "scheduler": 50,
+        "is_archived":true,
         "external_identifier":"7a3f8557-e1f1-4e33-9645-6e94dba49443_ckpxal9vm0000r5veve07238f",
         "visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38",
         "scheduled_time": "2021-06-08T06:00:00Z",
@@ -1673,6 +1674,7 @@
         "start_time": "2021-06-08T20:00:40Z",
         "end_time": "2021-06-08T21:30:00Z",
         "location": "Health Department",
+        "is_archived":false,
         "action_status": "SCHD",
         "patient": 59,
         "scheduler": 50
@@ -1688,6 +1690,7 @@
         "start_time": "2021-06-08T20:00:40Z",
         "end_time": "2021-06-08T21:30:00Z",
         "location": "Health Department",
+        "is_archived":false,
         "action_status": "SCHD",
         "patient": 46,
         "scheduler": 44
