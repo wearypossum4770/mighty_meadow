@@ -1,10 +1,24 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+# def view_archived(sender=None, retrieve_archived =False):
+#     def decorator(view_func):
+#         def wrapper_func(request, *args, **kwargs):
+#             _model = sender.objects.get(owner=request.user.id).filter(is_archived=retrieve_archived)
+
+#             if user_is_authorized_party:
+#                 return view_func(request, *args, **kwargs)
+#             else:
+#                 return HttpResponse("You're not authorized to view this page")
+
+#         return wrapper_func
+
+#     return decorator
+
 
 def authorized_party(sender=None):
     """
-    @allowed_users(allowed_roles=('admin', 'supervisor', 'lead'))
+    @authorized_party(sender=User)
     """
 
     def decorator(view_func):
