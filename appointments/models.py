@@ -76,25 +76,32 @@ class Appointment(Model):
 
     def __str__(self):
         return self.patient.username
+
     @property
     def mark_as_completed(self):
         ...
+
     @property
     def mark_as_missed(self):
         ...
+
     def mark_as_clinic_cancellation(self):
-        """ ADMIN only view"""
+        """ADMIN only view"""
         ...
+
     def mark_as_authorized_party_cancellation(self):
         ...
+
     def mark_as_clinic_conflict(self):
         ...
+
     def mark_schedule_as_next_avaiable(self):
         ...
+
     @property
     def mark_as_inprogress(self):
         ...
-    
+
     @property
     def mark_as_unarchived(self):
         self.is_archived = False

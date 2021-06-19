@@ -12,11 +12,11 @@ from users.views import registration
 request_object = {}
 
 
-def test_memcache_functionality():
-    cache.get("foo")
-    cache.set("foo", "bar")
-    assert cache.get("foo") == "bar"
-    assert True == True
+# def test_memcache_functionality():
+#     cache.get("foo")
+#     cache.set("foo", "bar")
+#     assert cache.get("foo") == "bar"
+#     assert True == True
 
 
 class TestSiteOperation(TestCase):

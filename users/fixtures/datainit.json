@@ -1649,6 +1649,17 @@
       }
     },
     {
+      "model": "appointments.patient",
+      "pk": 2,
+      "fields": {
+        "owner": 1,
+        "sponsor": 46,
+        "gender": "NBN",
+        "ethnicity": "WHT",
+        "authorized_party": [1,43,44,45,46]
+      }
+    },
+    {
       "model": "appointments.appointment",
       "pk": 1,
       "fields": {

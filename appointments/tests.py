@@ -9,12 +9,12 @@ from django.test import AsyncRequestFactory, Client, TestCase
 
 from appointments.models import Appointment, MedicalCondition, Patient
 from appointments.views import (
-    api_create_appointment_by_patient_id,
+    api_edit_or_create_appointment_by_patient_id,
     appointment_details,
     cancel_appointment_by_appointment_id,
     make_appointment,
     view_appointments,
-    view_archived,
+    view_archived_appointments,
 )
 
 create_appointment_mapping = {
@@ -68,6 +68,7 @@ class TestAppointment(TestCase):
         cls.yara = get_user("yara.greyjoy")
         cls.theon = get_user("theon.greyjoy")
         cls.catelyn = get_user("catelyn.stark")
+        cls.washington = get_user('george.washington')
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
 
@@ -77,7 +78,21 @@ class TestAppointment(TestCase):
     def tearDownClass(cls):
         super().tearDownClass()
 
-    def test_view_archived_appointments(self):
+    def test_view_archived_appointments_appointments(self):
+        request = self.factory.get("appointments/1/archive/")
+        request.user = self.washington
+        response = view_archived_appointments(request,1)
+        archived_appointments= json_reader(response.content).get("archived_appointments")
+        assert len(archived_appointments)>0
+        assert response.status_code == 200
+
+        #         "external_identifier":"7a3f8557-e1f1-4e33-9645-6e94dba49443_ckpxal9vm0000r5veve07238f",
+        # "visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38",
+        # "scheduled_time": "2021-06-08T06:00:00Z",
+        # "start_time": "2021-06-08T20:00:40Z",
+        # "end_time": "2021-06-08T21:30:00Z",
+        # "location": "Health Department",
+        # "action_status": "SCHD"
         # is_archived
         ...
 
@@ -131,28 +146,27 @@ class TestAppointment(TestCase):
             "external_identifier"
         )
 
-    def setup_api_create_appointment_by_patient_id(self, appt_id, user=None):
+    def setup_api_edit_or_create_appointment_by_patient_id(self, appt_id, user=None):
         if user is None:
             user = AnonymousUser()
         request = self.factory.get("appointments/schedule-appointment/59")
         request.user = user
         request.POST = {**create_appointment_mapping}
-        response = api_create_appointment_by_patient_id(request, appt_id)
+        response = api_edit_or_create_appointment_by_patient_id(request, appt_id)
         if user.is_anonymous:
             return response
-        return response.content
         return json_reader(response.content)
 
-    def test_authorized_party_api_create_appointment_by_patient_id(self):
-        obj = self.setup_api_create_appointment_by_patient_id(
+    def test_authorized_party_api_edit_or_create_appointment_by_patient_id(self):
+        obj = self.setup_api_edit_or_create_appointment_by_patient_id(
             59,
             user=self.theon,
         )
         assert obj.get("created") == True
         assert obj.get("user_is_authorized_party") == True
 
-    def test_unauthorized_api_create_appointment_by_patient_id_redirect(self):
-        response = self.setup_api_create_appointment_by_patient_id(59)
+    def test_unauthorized_api_edit_or_create_appointment_by_patient_id_redirect(self):
+        response = self.setup_api_edit_or_create_appointment_by_patient_id(59)
         assert response.status_code == 302
 
     def test_user_is_authenticated_appointment_details_view(self):
