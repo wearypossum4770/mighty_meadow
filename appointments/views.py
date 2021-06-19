@@ -53,7 +53,6 @@ def api_edit_or_create_appointment_by_patient_id(request, patient_id):
     )
     context.update(
         user_is_authorized_party=user_is_authorized_party,
-        patient=list(patient.authorized_party.all())
     )
     if user_is_authorized_party:
         obj, created = Appointment.objects.get_or_create(
@@ -141,6 +140,7 @@ def view_archived_appointments(request, patient_id):
                 "scheduler": appt.scheduler.username,
                 "start_time": appt.start_time,
                 "end_time": appt.end_time,
+                "external_identifier": appt.external_identifier,
                 "location": appt.location,
                 "action_status": appt.action_status,
             }

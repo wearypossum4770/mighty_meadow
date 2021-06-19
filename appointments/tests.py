@@ -17,7 +17,9 @@ from appointments.views import (
     view_archived_appointments,
 )
 
-george_washington = {
+gw = {
+    "patient": "george.washington",
+    "scheduler": "catelyn.stark",
     "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wjcl30000qqveqfm3v3gs",
     "visit_identifier": "e90b5689-3eca-4260-9561-6de2dc5c4a38",
     "scheduled_time": "2021-06-08T06:00:00Z",
@@ -88,43 +90,20 @@ class TestAppointment(TestCase):
         request = self.factory.get("appointments/1/archive/")
         request.user = self.washington
         response = view_archived_appointments(request, 1)
-        archived_appointments = json_reader(response.content).get(
-            "archived_appointments"
-        )
-        resp = json_reader(response.content)
+        response = json_reader(response.content)
+        archived_appointments = response.get("archived_appointments")[0]
         assert len(archived_appointments) > 0
-        assert response.status_code == 200
-        assert resp.get('user_is_authorized_party') == True 
-        # assert resp.get('patient') == ''
-        # assert george_washington.get("external_identifier") == resp.get(
-        #     "external_identifier"
-        # ) 
-        
-        # assert george_washington.get("visit_identifier") == resp.get(
-        #     "visit_identifier"
-        # ) 
-        
-        # assert george_washington.get("scheduled_time") == resp.get(
-        #     "scheduled_time"
-        # ) 
-        
-        # assert george_washington.get("start_time") == resp.get(
-        #     "start_time"
-        # ) 
-        
-        # assert george_washington.get("end_time") == resp.get(
-        #     "end_time"
-        # ) 
-        
-        # assert george_washington.get("location") == resp.get(
-        #     "location"
-        # ) 
-        
-        # assert george_washington.get("action_status") == resp.get(
-        #     "action_status"
-        # ) 
-        
-        
+        assert (
+            gw.get("external_identifier")
+            == archived_appointments["external_identifier"]
+        )
+        assert gw.get("start_time") == archived_appointments["start_time"]
+        assert gw.get("patient") == archived_appointments["patient"]
+        assert gw.get("scheduler") == archived_appointments["scheduler"]
+        assert gw.get("end_time") == archived_appointments["end_time"]
+        assert gw.get("location") == archived_appointments["location"]
+        assert gw.get("action_status") == archived_appointments["action_status"]
+
     def test_theon_appointment_patient(self):
         assert self.primo.patient.id == 59
 
