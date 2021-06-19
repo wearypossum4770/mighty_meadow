@@ -14,6 +14,7 @@ from appointments.views import (
     cancel_appointment_by_appointment_id,
     make_appointment,
     view_appointments,
+    view_archived,
 )
 
 create_appointment_mapping = {
@@ -69,11 +70,16 @@ class TestAppointment(TestCase):
         cls.catelyn = get_user("catelyn.stark")
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
+
         # visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
+
+    def test_view_archived_appointments(self):
+        # is_archived
+        ...
 
     def test_theon_appointment_patient(self):
         assert self.primo.patient.id == 59

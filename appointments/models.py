@@ -69,16 +69,50 @@ class Appointment(Model):
     )
     external_identifier = CharField(max_length=100, null=True, blank=True)
     is_archived = BooleanField(default=False, null=True, blank=True)
+    date_archived = DateTimeField(default=None, null=True, blank=True)
     soft_delete = BooleanField(default=False, null=True, blank=True)
     is_deleted = BooleanField(default=False, null=True, blank=True)
     deleted_at = DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.patient.username
+    @property
+    def mark_as_completed(self):
+        ...
+    @property
+    def mark_as_missed(self):
+        ...
+    def mark_as_clinic_cancellation(self):
+        """ ADMIN only view"""
+        ...
+    def mark_as_authorized_party_cancellation(self):
+        ...
+    def mark_as_clinic_conflict(self):
+        ...
+    def mark_schedule_as_next_avaiable(self):
+        ...
+    @property
+    def mark_as_inprogress(self):
+        ...
+    
+    @property
+    def mark_as_unarchived(self):
+        self.is_archived = False
+        if self.date_archived:
+            self.date_archived = None
 
     @property
-    def is_archived(self):
-        return True
+    def mark_as_archived(self):
+        self.is_archived = True
+        self.date_archived = datetime.now()
+
+    @property
+    def mark_as_deleted(self):
+        ...
+
+    @property
+    def mark_as_undeleted(self):
+        ...
 
 
 # Tech support

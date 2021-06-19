@@ -13,7 +13,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            "madien_name",
             "nickname",
             "first_name",
             "last_name",
@@ -31,7 +30,6 @@ class UserUpdateForm(ModelForm):
     class Meta:
         model = User
         fields = (
-            "madien_name",
             "nickname",
             "first_name",
             "last_name",
