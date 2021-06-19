@@ -2,7 +2,7 @@ from asgiref.sync import sync_to_async
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404, render
 
 from appointments.forms import AppointmentForm
 from appointments.models import Appointment, Patient
@@ -42,15 +42,13 @@ def user_is_clinic_staff(user):
 @user_passes_test(user_is_authenticated)
 def api_create_appointment_by_patient_id(request, patient_id):
     context = {}
-    patient = Patient.objects.get(owner=patient_id)
-    user_is_authorized_party = len(
-        [
-            user.username
-            for user in patient.authorized_party.all()
-            if user.username == request.user.username
-        ]
+    patient = get_object_or_404(Patient, owner=request.user)
+    user_is_authorized_party = patient.authorized_party.all().filter(
+        username=request.user.username
     )
-    if user_is_authorized_party:
+    return user_is_authorized_party
+    return JsonResponse({"user_is_authorized_party": user_is_authorized_party})
+    if user_is_authorized_party.exists():
         obj, created = Appointment.objects.get_or_create(
             patient_id=patient_id,
             scheduler_id=request.user.id,
@@ -81,6 +79,9 @@ def api_create_appointment_by_patient_id(request, patient_id):
 @login_required
 @user_passes_test(user_is_authenticated)
 def appointment_details(request, appointment_id):
+    """
+    Allows only the patient to see the appointment details
+    """
     appointment = get_object_or_404(Appointment, pk=appointment_id)
     if appointment.patient.username == request.user.username:
         return JsonResponse(
@@ -102,22 +103,24 @@ def archive(request):
 
 
 @login_required
+@user_passes_test(user_is_authenticated)
 def view_appointments(request):
-    # check against user
+    """
+    Allows a patient or authorized user to view appointments
+    """
     context = {}
-    appt = Appointment.objects.filter(patient=request.user.id)
-    if request.user.is_authenticated:
-        context["appointment_list"] = [
-            {
-                "scheduled_time": a.scheduled_time,
-                "start_time": a.start_time,
-                "end_time": a.end_time,
-                "location": a.location,
-                "action_status": a.action_status,
-                "external_identifier": a.external_identifier,
-            }
-            for a in appt
-        ]
+    appointments = get_list_or_404(Appointment, patient_id=request.user.id)
+    context["appointment_list"] = [
+        {
+            "scheduled_time": appt.scheduled_time,
+            "start_time": appt.start_time,
+            "end_time": appt.end_time,
+            "location": appt.location,
+            "action_status": appt.action_status,
+            "external_identifier": appt.external_identifier,
+        }
+        for appt in appointments
+    ]
     return JsonResponse(context)
 
 

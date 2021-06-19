@@ -134,6 +134,7 @@ class TestAppointment(TestCase):
         response = api_create_appointment_by_patient_id(request, appt_id)
         if user.is_anonymous:
             return response
+        return response.content
         return json_reader(response.content)
 
     def test_authorized_party_api_create_appointment_by_patient_id(self):

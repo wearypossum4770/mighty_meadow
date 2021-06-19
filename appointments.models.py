@@ -21,6 +21,78 @@ from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = settings.BASE_DIR
 User = get_user_model()
+
+
+class Appointment(Model):
+    class Action(TextChoices):
+        COMPLETE = "CMPL", _("Completed")
+        CANCELLED = "CAND", _("Canelled")
+        SCHEDULED = "SCHD", _("Scheduled")
+        IN_PROGRESS = "INPR", _("In Progress")
+        __empty__ = "('UNKNOWN')"
+
+    patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
+    scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
+    scheduled_time = DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_modified = DateTimeField(auto_now=True, null=True, blank=True)
+    start_time = DateTimeField(null=True, blank=True)
+    end_time = DateTimeField(null=True, blank=True)
+    location = CharField(max_length=20, null=True, blank=True)
+    visit_identifier = UUIDField(default=uuid4, unique=True)
+    action_status = CharField(
+        max_length=4, default=Action.__empty__, choices=Action.choices
+    )
+    external_identifier = CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.patient.username
+
+
+def appointment_cancellation(appointment_id, cancel_appointment=False):
+    if cancel_appointment:
+        appointment = get_object_or_404(Appointment, external_identifier=appointment_id)
+        appointment.action_status = Appointment.Action.CANCELLED
+        appointment.save()
+    return cancel_appointment
+
+
+def wrap_up_time():
+    ...
+
+
+def after_call_work():
+    ...
+
+
+def disposition_code():
+    ...
+
+
+# https://www.callcentrehelper.com/tag/workforce-management
+# class ConatctLog(Model):
+#     class Disposition(TextChoices):
+#         ABANDONED = "", _("Caller abandoned in queue")
+#         SCHEDULED = "SCH", _("Caller qppointment scheduled")
+#         BUSY= "BSY", _("Line Busy")
+#         CALLBACK= "CBK", _("Caller request, callback")
+#         COMPLAINT = "CMP", _("Caller wishes to file Complaint/Greievnance")
+#         COMPLETE = "CPT"
+#          TECH = "TECH" = _("Tech Support")
+# class Type:
+#     INBOUND
+#     OUTBOUND
+#     WARM_TRANSFER
+#     COLD_TRANSFER
+# class NextAction:
+# outcome = CharField(max_length=100, null=True, blank=True)
+
+# Complete
+# Disconnected number
+# Incorrect number
+# Not interested
+# Product question
+# Requires follow up
+# Requires supervisor attention
 __gender__ = {
     "M": "I identify as a male or a man (i.e. male, cis-gender male), and prefer to be called sir",
     "F": "I identify as a female or a woman (i.e. female, cis-gender female),  and prefer to be called ma'am.",
@@ -46,41 +118,6 @@ __relationship__ = {
     "PAR": "Includes both custodial, non-custodial, foster, and step parents.",
     "LAW": "",
 }
-
-
-class Appointment(Model):
-    class Action(TextChoices):
-        COMPLETE = "CMPL", _("Completed")
-        CANCELLED = "CAND", _("Canelled")
-        SCHEDULED = "SCHD", _("Scheduled")
-        IN_PROGRESS = "INPR", _("In Progress")
-        __empty__ = "('UNKNOWN')"
-
-    patient = ForeignKey(User, on_delete=CASCADE, related_name="appointment_for")
-    scheduler = ForeignKey(User, on_delete=CASCADE, related_name="created_by")
-    scheduled_time = DateTimeField(auto_now_add=True, null=True, blank=True)
-    date_modified = DateTimeField(auto_now=True, null=True, blank=True)
-    start_time = DateTimeField(null=True, blank=True)
-    end_time = DateTimeField(null=True, blank=True)
-    location = CharField(max_length=20, null=True, blank=True)
-    visit_identifier = UUIDField(default=uuid4, unique=True)
-    action_status = CharField(
-        max_length=4, default=Action.__empty__, choices=Action.choices
-    )
-    external_identifier = CharField(max_length=100, null=True, blank=True)
-    is_archived = BooleanField(default=False, null=True, blank=True)
-    soft_delete = BooleanField(default=False, null=True, blank=True)
-    is_deleted = BooleanField(default=False, null=True, blank=True)
-    deleted_at = DateTimeField(null=True, blank=True)
-
-    def __str__(self):
-        return self.patient.username
-
-    @property
-    def is_archived(self):
-        return True
-
-
 # Tech support
 class AuthorizedParty(Model):
     class Relationship(TextChoices):
@@ -169,30 +206,6 @@ class MedicalCondition(Model):
     related_condition = CharField(max_length=200, null=True, blank=True)
 
 
-# https://www.callcentrehelper.com/tag/workforce-management
-# class ConatctLog(Model):
-#     class Disposition(TextChoices):
-#         ABANDONED = "", _("Caller abandoned in queue")
-#         SCHEDULED = "SCH", _("Caller qppointment scheduled")
-#         BUSY= "BSY", _("Line Busy")
-#         CALLBACK= "CBK", _("Caller request, callback")
-#         COMPLAINT = "CMP", _("Caller wishes to file Complaint/Greievnance")
-#         COMPLETE = "CPT"
-# class Type:
-#     INBOUND
-#     OUTBOUND
-#     WARM_TRANSFER
-#     COLD_TRANSFER
-# class NextAction:
-# outcome = CharField(max_length=100, null=True, blank=True)
-
-# Complete
-# Disconnected number
-# Incorrect number
-# Not interested
-# Product question
-# Requires follow up
-# Requires supervisor attention
 # ADMIN = "ADMIN", _("Administration")
 # AGRMT = "AGRMT", _("Agreement")
 # AOF = "AOF", _("Address on File")

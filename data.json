@@ -22,7 +22,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -54,7 +53,6 @@
       "suffix": "Jr",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -86,7 +84,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -118,7 +115,6 @@
       "suffix": "Jr",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -150,7 +146,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -182,7 +177,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -214,7 +208,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -246,7 +239,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -278,7 +270,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -310,7 +301,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -342,7 +332,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -374,7 +363,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -406,7 +394,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -438,7 +425,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -470,7 +456,6 @@
       "suffix": "Jr",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -502,7 +487,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -534,7 +518,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -566,7 +549,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -598,7 +580,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -630,7 +611,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -662,7 +642,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -694,7 +673,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -726,7 +704,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -758,7 +735,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -790,7 +766,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -822,7 +797,6 @@
       "suffix": "Jr",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -854,7 +828,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -886,7 +859,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -918,7 +890,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -950,7 +921,6 @@
       "suffix": "Jr",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -982,7 +952,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1014,7 +983,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1046,7 +1014,6 @@
       "suffix": "",
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1078,7 +1045,6 @@
       "suffix": "Ike",
       "date_of_birth": "1890-10-14",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "1969-04-28",
       "retention_only": false,
@@ -1110,7 +1076,6 @@
       "suffix": "",
       "date_of_birth": "1917-05-29",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "1963-11-22",
       "retention_only": false,
@@ -1142,7 +1107,6 @@
       "suffix": "",
       "date_of_birth": "1908-08-27",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "1973-01-22",
       "retention_only": false,
@@ -1174,7 +1138,6 @@
       "suffix": "",
       "date_of_birth": "1913-01-09",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "1994-04-22",
       "retention_only": false,
@@ -1206,7 +1169,6 @@
       "suffix": "Jr",
       "date_of_birth": "1913-07-14",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "2006-12-26",
       "retention_only": false,
@@ -1238,7 +1200,6 @@
       "suffix": "Jr",
       "date_of_birth": "1924-10-01",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1270,7 +1231,6 @@
       "suffix": "",
       "date_of_birth": "1911-02-06",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "2004-06-05",
       "retention_only": false,
@@ -1302,7 +1262,6 @@
       "suffix": "",
       "date_of_birth": "1924-06-12",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": "2018-11-30",
       "retention_only": false,
@@ -1334,7 +1293,6 @@
       "suffix": "",
       "date_of_birth": "1946-08-19",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1366,7 +1324,6 @@
       "suffix": "",
       "date_of_birth": "1946-07-06",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1398,7 +1355,6 @@
       "suffix": "II",
       "date_of_birth": "1961-08-04",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1430,7 +1386,6 @@
       "suffix": "Sr",
       "date_of_birth": "1946-06-14",
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1462,7 +1417,6 @@
       "suffix": "Jr",
       "date_of_birth": "1942-11-20",
       "is_patient": true,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1494,7 +1448,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1526,7 +1479,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1558,7 +1510,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1590,7 +1541,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1622,7 +1572,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1654,7 +1603,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1686,7 +1634,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1718,7 +1665,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1750,7 +1696,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1782,7 +1727,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1814,7 +1758,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1846,7 +1789,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1878,7 +1820,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1910,7 +1851,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1942,7 +1882,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -1974,7 +1913,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2006,7 +1944,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2038,7 +1975,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2070,7 +2006,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2102,7 +2037,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2134,7 +2068,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2166,7 +2099,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2198,7 +2130,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2230,7 +2161,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2262,7 +2192,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2294,7 +2223,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2326,7 +2254,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2358,7 +2285,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2390,7 +2316,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2422,7 +2347,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2454,7 +2378,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2486,7 +2409,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2518,7 +2440,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2550,7 +2471,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2582,7 +2502,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2614,7 +2533,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": true,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2646,7 +2564,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": true,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -2660,7 +2577,7 @@
     "pk": 84,
     "fields": {
       "password": "pbkdf2_sha256$260000$8bLzm9BkWSuhuuTS9IsQ6Z$7FhuHPej/Ac2uNSlFwT36KWK1sTrOBdl6iniiMNoRAI=",
-      "last_login": "2021-06-08T16:45:53.035Z",
+      "last_login": "2021-06-19T15:24:42.547Z",
       "is_superuser": true,
       "username": "admin",
       "email": "",
@@ -2678,7 +2595,6 @@
       "suffix": null,
       "date_of_birth": null,
       "is_patient": false,
-      "is_authorized_party": false,
       "is_clinic_staff": false,
       "date_of_death": null,
       "retention_only": false,
@@ -3625,24 +3541,71 @@
     }
   },
   {
-    "model": "appointments.patient",
+    "model": "appointments.appointment",
     "pk": 1,
     "fields": {
-      "owner": 59,
-      "sponsor": 83,
-      "gender": "NBN",
-      "ethnicity": "WHT",
-      "authorized_party": []
+      "patient": 1,
+      "scheduler": 50,
+      "scheduled_time": "2021-06-08T06:00:00Z",
+      "date_modified": "2021-06-19T15:14:31.672Z",
+      "start_time": "2021-06-08T20:00:40Z",
+      "end_time": "2021-06-08T21:30:00Z",
+      "location": null,
+      "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e1",
+      "action_status": "SCHD",
+      "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wjcl30000qqveqfm3v3gs",
+      "soft_delete": false,
+      "is_deleted": false,
+      "deleted_at": null
+    }
+  },
+  {
+    "model": "appointments.appointment",
+    "pk": 2,
+    "fields": {
+      "patient": 59,
+      "scheduler": 50,
+      "scheduled_time": "2021-06-08T06:00:00Z",
+      "date_modified": "2021-06-19T15:14:31.672Z",
+      "start_time": "2021-06-08T20:00:40Z",
+      "end_time": "2021-06-08T21:30:00Z",
+      "location": null,
+      "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e2",
+      "action_status": "SCHD",
+      "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wygrl0000ygvekp9sycit",
+      "soft_delete": false,
+      "is_deleted": false,
+      "deleted_at": null
+    }
+  },
+  {
+    "model": "appointments.appointment",
+    "pk": 3,
+    "fields": {
+      "patient": 59,
+      "scheduler": 50,
+      "scheduled_time": "2021-06-08T06:00:00Z",
+      "date_modified": "2021-06-19T15:14:31.672Z",
+      "start_time": "2021-06-08T20:00:40Z",
+      "end_time": "2021-06-08T21:30:00Z",
+      "location": null,
+      "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e3",
+      "action_status": "SCHD",
+      "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wyhoh0001ygveoqhor429",
+      "soft_delete": false,
+      "is_deleted": false,
+      "deleted_at": null
     }
   },
   {
     "model": "appointments.patient",
-    "pk": 2,
+    "pk": 1,
     "fields": {
       "owner": 59,
       "sponsor": 82,
       "gender": "NBN",
       "ethnicity": "WHT",
+      "internal_notes": null,
       "authorized_party": [59, 82, 83]
     }
   },
@@ -3650,6 +3613,9 @@
     "model": "appointments.medicalcondition",
     "pk": 1,
     "fields": {
+      "signature_required": false,
+      "blue_ink_required": false,
+      "enrollment_required": false,
       "is_symptomatic": false,
       "code_value": "Z20.822",
       "coding_system": "icd_10",
@@ -3663,6 +3629,9 @@
     "model": "appointments.medicalcondition",
     "pk": 2,
     "fields": {
+      "signature_required": false,
+      "blue_ink_required": false,
+      "enrollment_required": false,
       "is_symptomatic": false,
       "code_value": "Z11.52",
       "coding_system": "icd_10",
@@ -3676,6 +3645,9 @@
     "model": "appointments.medicalcondition",
     "pk": 3,
     "fields": {
+      "signature_required": false,
+      "blue_ink_required": false,
+      "enrollment_required": false,
       "is_symptomatic": false,
       "code_value": "Z86.16",
       "coding_system": "icd_10",
@@ -3689,6 +3661,9 @@
     "model": "appointments.medicalcondition",
     "pk": 4,
     "fields": {
+      "signature_required": false,
+      "blue_ink_required": false,
+      "enrollment_required": false,
       "is_symptomatic": false,
       "code_value": "U07.1",
       "coding_system": "icd_10",
@@ -3702,6 +3677,9 @@
     "model": "appointments.medicalcondition",
     "pk": 5,
     "fields": {
+      "signature_required": false,
+      "blue_ink_required": false,
+      "enrollment_required": false,
       "is_symptomatic": false,
       "code_value": "Z20.828",
       "coding_system": "icd_10",
@@ -3709,45 +3687,6 @@
       "used_to_diagnose": "COVID-19 Exposure",
       "condition_description": "Contact with and (suspected) exposure to other viral communicable diseases",
       "related_condition": "fever"
-    }
-  },
-  {
-    "model": "appointments.appointment",
-    "pk": 1,
-    "fields": {
-      "patient": 1,
-      "scheduler": 50,
-      "scheduled_time": "2021-06-08T06:00:00Z",
-      "start_time": "2021-06-08T20:00:40Z",
-      "end_time": "2021-06-08T21:30:00Z",
-      "location": null,
-      "action_status": "SCHD"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 1,
-    "fields": {
-      "action_time": "2021-06-08T16:46:49.232Z",
-      "user": 84,
-      "content_type": 6,
-      "object_id": "2",
-      "object_repr": "theon.greyjoy",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 2,
-    "fields": {
-      "action_time": "2021-06-08T20:08:14.664Z",
-      "user": 84,
-      "content_type": 4,
-      "object_id": "1",
-      "object_repr": "Appointment object (1)",
-      "action_flag": 2,
-      "change_message": "[{\"changed\": {\"fields\": [\"Scheduled time\", \"Start time\", \"End time\", \"Action status\"]}}]"
     }
   },
   {
@@ -3898,251 +3837,287 @@
     "model": "auth.permission",
     "pk": 17,
     "fields": {
-      "name": "Can add medical condition",
+      "name": "Can add authorized party",
       "content_type": 5,
-      "codename": "add_medicalcondition"
+      "codename": "add_authorizedparty"
     }
   },
   {
     "model": "auth.permission",
     "pk": 18,
     "fields": {
-      "name": "Can change medical condition",
+      "name": "Can change authorized party",
       "content_type": 5,
-      "codename": "change_medicalcondition"
+      "codename": "change_authorizedparty"
     }
   },
   {
     "model": "auth.permission",
     "pk": 19,
     "fields": {
-      "name": "Can delete medical condition",
+      "name": "Can delete authorized party",
       "content_type": 5,
-      "codename": "delete_medicalcondition"
+      "codename": "delete_authorizedparty"
     }
   },
   {
     "model": "auth.permission",
     "pk": 20,
     "fields": {
-      "name": "Can view medical condition",
+      "name": "Can view authorized party",
       "content_type": 5,
-      "codename": "view_medicalcondition"
+      "codename": "view_authorizedparty"
     }
   },
   {
     "model": "auth.permission",
     "pk": 21,
     "fields": {
-      "name": "Can add patient",
+      "name": "Can add medical condition",
       "content_type": 6,
-      "codename": "add_patient"
+      "codename": "add_medicalcondition"
     }
   },
   {
     "model": "auth.permission",
     "pk": 22,
     "fields": {
-      "name": "Can change patient",
+      "name": "Can change medical condition",
       "content_type": 6,
-      "codename": "change_patient"
+      "codename": "change_medicalcondition"
     }
   },
   {
     "model": "auth.permission",
     "pk": 23,
     "fields": {
-      "name": "Can delete patient",
+      "name": "Can delete medical condition",
       "content_type": 6,
-      "codename": "delete_patient"
+      "codename": "delete_medicalcondition"
     }
   },
   {
     "model": "auth.permission",
     "pk": 24,
     "fields": {
-      "name": "Can view patient",
+      "name": "Can view medical condition",
       "content_type": 6,
-      "codename": "view_patient"
+      "codename": "view_medicalcondition"
     }
   },
   {
     "model": "auth.permission",
     "pk": 25,
     "fields": {
-      "name": "Can add log entry",
+      "name": "Can add patient",
       "content_type": 7,
-      "codename": "add_logentry"
+      "codename": "add_patient"
     }
   },
   {
     "model": "auth.permission",
     "pk": 26,
     "fields": {
-      "name": "Can change log entry",
+      "name": "Can change patient",
       "content_type": 7,
-      "codename": "change_logentry"
+      "codename": "change_patient"
     }
   },
   {
     "model": "auth.permission",
     "pk": 27,
     "fields": {
-      "name": "Can delete log entry",
+      "name": "Can delete patient",
       "content_type": 7,
-      "codename": "delete_logentry"
+      "codename": "delete_patient"
     }
   },
   {
     "model": "auth.permission",
     "pk": 28,
     "fields": {
-      "name": "Can view log entry",
+      "name": "Can view patient",
       "content_type": 7,
-      "codename": "view_logentry"
+      "codename": "view_patient"
     }
   },
   {
     "model": "auth.permission",
     "pk": 29,
     "fields": {
-      "name": "Can add permission",
+      "name": "Can add log entry",
       "content_type": 8,
-      "codename": "add_permission"
+      "codename": "add_logentry"
     }
   },
   {
     "model": "auth.permission",
     "pk": 30,
     "fields": {
-      "name": "Can change permission",
+      "name": "Can change log entry",
       "content_type": 8,
-      "codename": "change_permission"
+      "codename": "change_logentry"
     }
   },
   {
     "model": "auth.permission",
     "pk": 31,
     "fields": {
-      "name": "Can delete permission",
+      "name": "Can delete log entry",
       "content_type": 8,
-      "codename": "delete_permission"
+      "codename": "delete_logentry"
     }
   },
   {
     "model": "auth.permission",
     "pk": 32,
     "fields": {
-      "name": "Can view permission",
+      "name": "Can view log entry",
       "content_type": 8,
-      "codename": "view_permission"
+      "codename": "view_logentry"
     }
   },
   {
     "model": "auth.permission",
     "pk": 33,
     "fields": {
-      "name": "Can add group",
+      "name": "Can add permission",
       "content_type": 9,
-      "codename": "add_group"
+      "codename": "add_permission"
     }
   },
   {
     "model": "auth.permission",
     "pk": 34,
     "fields": {
-      "name": "Can change group",
+      "name": "Can change permission",
       "content_type": 9,
-      "codename": "change_group"
+      "codename": "change_permission"
     }
   },
   {
     "model": "auth.permission",
     "pk": 35,
     "fields": {
-      "name": "Can delete group",
+      "name": "Can delete permission",
       "content_type": 9,
-      "codename": "delete_group"
+      "codename": "delete_permission"
     }
   },
   {
     "model": "auth.permission",
     "pk": 36,
     "fields": {
-      "name": "Can view group",
+      "name": "Can view permission",
       "content_type": 9,
-      "codename": "view_group"
+      "codename": "view_permission"
     }
   },
   {
     "model": "auth.permission",
     "pk": 37,
     "fields": {
-      "name": "Can add content type",
+      "name": "Can add group",
       "content_type": 10,
-      "codename": "add_contenttype"
+      "codename": "add_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 38,
     "fields": {
-      "name": "Can change content type",
+      "name": "Can change group",
       "content_type": 10,
-      "codename": "change_contenttype"
+      "codename": "change_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 39,
     "fields": {
-      "name": "Can delete content type",
+      "name": "Can delete group",
       "content_type": 10,
-      "codename": "delete_contenttype"
+      "codename": "delete_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 40,
     "fields": {
-      "name": "Can view content type",
+      "name": "Can view group",
       "content_type": 10,
-      "codename": "view_contenttype"
+      "codename": "view_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 41,
     "fields": {
-      "name": "Can add session",
+      "name": "Can add content type",
       "content_type": 11,
-      "codename": "add_session"
+      "codename": "add_contenttype"
     }
   },
   {
     "model": "auth.permission",
     "pk": 42,
     "fields": {
-      "name": "Can change session",
+      "name": "Can change content type",
       "content_type": 11,
-      "codename": "change_session"
+      "codename": "change_contenttype"
     }
   },
   {
     "model": "auth.permission",
     "pk": 43,
     "fields": {
-      "name": "Can delete session",
+      "name": "Can delete content type",
       "content_type": 11,
-      "codename": "delete_session"
+      "codename": "delete_contenttype"
     }
   },
   {
     "model": "auth.permission",
     "pk": 44,
     "fields": {
-      "name": "Can view session",
+      "name": "Can view content type",
       "content_type": 11,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 12,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 12,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 12,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 12,
       "codename": "view_session"
     }
   },
@@ -4169,44 +4144,49 @@
   {
     "model": "contenttypes.contenttype",
     "pk": 5,
-    "fields": { "app_label": "appointments", "model": "medicalcondition" }
+    "fields": { "app_label": "appointments", "model": "authorizedparty" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 6,
-    "fields": { "app_label": "appointments", "model": "patient" }
+    "fields": { "app_label": "appointments", "model": "medicalcondition" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 7,
-    "fields": { "app_label": "admin", "model": "logentry" }
+    "fields": { "app_label": "appointments", "model": "patient" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 8,
-    "fields": { "app_label": "auth", "model": "permission" }
+    "fields": { "app_label": "admin", "model": "logentry" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 9,
-    "fields": { "app_label": "auth", "model": "group" }
+    "fields": { "app_label": "auth", "model": "permission" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 10,
-    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+    "fields": { "app_label": "auth", "model": "group" }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 11,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
     "fields": { "app_label": "sessions", "model": "session" }
   },
   {
     "model": "sessions.session",
-    "pk": "95acn3884z72w6hg61my2uh7on36m8np",
+    "pk": "mggknzdx9b0v7a123tbzbgn7zbrf076s",
     "fields": {
-      "session_data": ".eJxVjDsOwjAQBe_iGlle_7KhpOcM1nrXwgHkSHFSIe4OkVJA-2bmvVSiba1p62VJk6izQq9Ov2MmfpS2E7lTu82a57YuU9a7og_a9XWW8rwc7t9BpV6_tZMBeDRgAxthCiV6llyCcXYgQwVdHBEsg89sgQMIIEVEZocYAqr3BwZzN50:1lqerR:_xvMDdyx-UWs7XiA_ioJlCkAD2_ZhWX3LAYBLlZhOp0",
-      "expire_date": "2021-06-22T16:45:53.097Z"
+      "session_data": ".eJxVjMsOwiAQRf-FtSE8SgCX7v0GMjMMUjWQlHZl_Hdt0oVu7znnvkSCba1pG7ykOYuzCJM4_Y4I9OC2k3yHduuSeluXGeWuyIMOee2Zn5fD_TuoMOq3jhHJGjS6uMDBkVGgtVZORQ3BeGJEC46ctoULKKaQvZ-iKozOZsPi_QEEDTha:1lucpu:ePJCvMIWOPX5RJAkJ7fG9pe_ibtPtqTQSN7aI1HyZ3A",
+      "expire_date": "2021-07-03T15:24:42.558Z"
     }
   }
 ]
