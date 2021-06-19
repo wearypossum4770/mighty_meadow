@@ -3,13 +3,17 @@ from django.urls import path
 from appointments.views import (
     api_edit_or_create_appointment_by_patient_id,
     appointment_details,
-    view_archived_appointments,    
     cancel_appointment_by_appointment_id,
     view_appointments,
+    view_archived_appointments,
 )
 
 urlpatterns = [
-    path("appointments/<int:patient_id>/archive/",view_archived_appointments, name="appt-archive"),
+    path(
+        "appointments/<int:patient_id>/archive/",
+        view_archived_appointments,
+        name="appt-archive",
+    ),
     path(
         "appointments/<appointment_id/cancel/",
         cancel_appointment_by_appointment_id,

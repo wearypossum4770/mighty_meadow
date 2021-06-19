@@ -17,6 +17,15 @@ from appointments.views import (
     view_archived_appointments,
 )
 
+george_washington = {
+    "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wjcl30000qqveqfm3v3gs",
+    "visit_identifier": "e90b5689-3eca-4260-9561-6de2dc5c4a38",
+    "scheduled_time": "2021-06-08T06:00:00Z",
+    "start_time": "2021-06-08T20:00:40Z",
+    "end_time": "2021-06-08T21:30:00Z",
+    "location": "Health Department",
+    "action_status": "SCHD",
+}
 create_appointment_mapping = {
     "visit_identifier": "db166e20-82cb-43b8-baf1-29c298d5fff9",
     "end_time": "2021-07-08T21:30:00Z",
@@ -25,8 +34,7 @@ create_appointment_mapping = {
     "start_time": "2021-07-08T20:00:40Z",
     "action_status": "SCHD",
 }
-# "ca6bb4b5-2aff-48f9-9b01-72dc7d82421f_ckpxb29iy0000anveffz3ktbu"
-# external_identifier:'7a3f8557-e1f1-4e33-9645-6e94dba49443_ckpxal9vm0000r5veve07238f'
+
 description = "Contact with and (suspected) exposure to COVID-19"
 
 
@@ -68,11 +76,9 @@ class TestAppointment(TestCase):
         cls.yara = get_user("yara.greyjoy")
         cls.theon = get_user("theon.greyjoy")
         cls.catelyn = get_user("catelyn.stark")
-        cls.washington = get_user('george.washington')
+        cls.washington = get_user("george.washington")
         cls.clinic_appointments = Appointment.objects.all()
         cls.primo = Appointment.objects.get(pk=2)
-
-        # visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38
 
     @classmethod
     def tearDownClass(cls):
@@ -81,21 +87,44 @@ class TestAppointment(TestCase):
     def test_view_archived_appointments_appointments(self):
         request = self.factory.get("appointments/1/archive/")
         request.user = self.washington
-        response = view_archived_appointments(request,1)
-        archived_appointments= json_reader(response.content).get("archived_appointments")
-        assert len(archived_appointments)>0
+        response = view_archived_appointments(request, 1)
+        archived_appointments = json_reader(response.content).get(
+            "archived_appointments"
+        )
+        resp = json_reader(response.content)
+        assert len(archived_appointments) > 0
         assert response.status_code == 200
-
-        #         "external_identifier":"7a3f8557-e1f1-4e33-9645-6e94dba49443_ckpxal9vm0000r5veve07238f",
-        # "visit_identifier":"e90b5689-3eca-4260-9561-6de2dc5c4a38",
-        # "scheduled_time": "2021-06-08T06:00:00Z",
-        # "start_time": "2021-06-08T20:00:40Z",
-        # "end_time": "2021-06-08T21:30:00Z",
-        # "location": "Health Department",
-        # "action_status": "SCHD"
-        # is_archived
-        ...
-
+        assert resp.get('user_is_authorized_party') == True 
+        # assert resp.get('patient') == ''
+        # assert george_washington.get("external_identifier") == resp.get(
+        #     "external_identifier"
+        # ) 
+        
+        # assert george_washington.get("visit_identifier") == resp.get(
+        #     "visit_identifier"
+        # ) 
+        
+        # assert george_washington.get("scheduled_time") == resp.get(
+        #     "scheduled_time"
+        # ) 
+        
+        # assert george_washington.get("start_time") == resp.get(
+        #     "start_time"
+        # ) 
+        
+        # assert george_washington.get("end_time") == resp.get(
+        #     "end_time"
+        # ) 
+        
+        # assert george_washington.get("location") == resp.get(
+        #     "location"
+        # ) 
+        
+        # assert george_washington.get("action_status") == resp.get(
+        #     "action_status"
+        # ) 
+        
+        
     def test_theon_appointment_patient(self):
         assert self.primo.patient.id == 59
 
@@ -120,7 +149,7 @@ class TestAppointment(TestCase):
         assert self.primo.action_status == "SCHD"
 
     def test_clinic_appointments_list(self):
-        assert len(self.clinic_appointments) == 3
+        assert len(self.clinic_appointments) == 4
 
     def test_patient_logged_in(self):
         logged_in = self.client.login(
@@ -229,7 +258,7 @@ class TestPatient(TestCase):
         assert self.theon_greyjoy.owner.username == "theon.greyjoy"
 
     def test_patient_sponsor(self):
-        assert self.theon_greyjoy.sponsor.username == "yara.greyjoy"
+        assert self.theon_greyjoy.sponsor.username == "balon.greyjoy"
 
     def test_patient_gender(self):
         assert self.theon_greyjoy.gender == "NBN"
@@ -283,8 +312,3 @@ class TestMedicalCondition(TestCase):
 
     def test_medical_condition_enrollment_required(self):
         assert self.covid_19.enrollment_required == False
-
-
-# patient
-
-# scheduler

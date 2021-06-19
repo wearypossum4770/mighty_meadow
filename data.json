@@ -2576,14 +2576,14 @@
     "model": "users.user",
     "pk": 84,
     "fields": {
-      "password": "pbkdf2_sha256$260000$8bLzm9BkWSuhuuTS9IsQ6Z$7FhuHPej/Ac2uNSlFwT36KWK1sTrOBdl6iniiMNoRAI=",
-      "last_login": "2021-06-19T15:24:42.547Z",
+      "password": "pbkdf2_sha256$260000$wXSB7fYlO1Q7MK3OHNO9KD$C/j17nOtKRpvdUl4sYcK5QNqaMwWK1iB8t+bNLMijkA=",
+      "last_login": "2021-06-19T19:11:24.977Z",
       "is_superuser": true,
       "username": "admin",
       "email": "",
       "is_staff": true,
       "is_active": true,
-      "date_joined": "2021-06-08T16:45:30.514Z",
+      "date_joined": "2021-06-19T19:11:14.241Z",
       "madien_name": null,
       "nickname": null,
       "first_name": null,
@@ -3546,14 +3546,16 @@
     "fields": {
       "patient": 1,
       "scheduler": 50,
-      "scheduled_time": "2021-06-08T06:00:00Z",
-      "date_modified": "2021-06-19T15:14:31.672Z",
-      "start_time": "2021-06-08T20:00:40Z",
-      "end_time": "2021-06-08T21:30:00Z",
-      "location": null,
+      "scheduled_time": null,
+      "date_modified": "2021-06-19T19:17:16.926Z",
+      "start_time": "2021-06-19T18:00:00Z",
+      "end_time": "2021-06-19T19:15:55Z",
+      "location": "Health Department",
       "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e1",
       "action_status": "SCHD",
       "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wjcl30000qqveqfm3v3gs",
+      "is_archived": true,
+      "date_archived": null,
       "soft_delete": false,
       "is_deleted": false,
       "deleted_at": null
@@ -3569,10 +3571,12 @@
       "date_modified": "2021-06-19T15:14:31.672Z",
       "start_time": "2021-06-08T20:00:40Z",
       "end_time": "2021-06-08T21:30:00Z",
-      "location": null,
-      "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e2",
+      "location": "Health Department",
+      "visit_identifier": "72f7024f-58e8-48b7-a9be-a44bb7165b53",
       "action_status": "SCHD",
-      "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wygrl0000ygvekp9sycit",
+      "external_identifier": "24c59426-c9d8-42b7-8ccc-c49f277011c5_ckpx9nr6i0000jkvetomboc02",
+      "is_archived": false,
+      "date_archived": null,
       "soft_delete": false,
       "is_deleted": false,
       "deleted_at": null
@@ -3582,7 +3586,28 @@
     "model": "appointments.appointment",
     "pk": 3,
     "fields": {
-      "patient": 59,
+      "patient": 46,
+      "scheduler": 44,
+      "scheduled_time": "2021-06-08T06:00:00Z",
+      "date_modified": null,
+      "start_time": "2021-06-08T20:00:40Z",
+      "end_time": "2021-06-08T21:30:00Z",
+      "location": "Health Department",
+      "visit_identifier": "33840855-e78a-4054-98c5-5e72e63f09d9",
+      "action_status": "SCHD",
+      "external_identifier": "ca6bb4b5-2aff-48f9-9b01-72dc7d82421f_ckpxb29iy0000anveffz3ktbu",
+      "is_archived": false,
+      "date_archived": null,
+      "soft_delete": false,
+      "is_deleted": false,
+      "deleted_at": null
+    }
+  },
+  {
+    "model": "appointments.appointment",
+    "pk": 4,
+    "fields": {
+      "patient": 46,
       "scheduler": 50,
       "scheduled_time": "2021-06-08T06:00:00Z",
       "date_modified": "2021-06-19T15:14:31.672Z",
@@ -3592,6 +3617,8 @@
       "visit_identifier": "2bf839b5-5545-4e5b-ab09-214367cc54e3",
       "action_status": "SCHD",
       "external_identifier": "6fb11e37-4ba5-46d1-88b7-2b944ab6468f_ckq3wyhoh0001ygveoqhor429",
+      "is_archived": false,
+      "date_archived": null,
       "soft_delete": false,
       "is_deleted": false,
       "deleted_at": null
@@ -3602,11 +3629,35 @@
     "pk": 1,
     "fields": {
       "owner": 59,
-      "sponsor": 82,
+      "sponsor": 83,
       "gender": "NBN",
       "ethnicity": "WHT",
       "internal_notes": null,
       "authorized_party": [59, 82, 83]
+    }
+  },
+  {
+    "model": "appointments.patient",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "sponsor": 46,
+      "gender": "NBN",
+      "ethnicity": "WHT",
+      "internal_notes": null,
+      "authorized_party": [1, 43, 44, 45, 46]
+    }
+  },
+  {
+    "model": "appointments.patient",
+    "pk": 3,
+    "fields": {
+      "owner": 46,
+      "sponsor": 44,
+      "gender": "NBN",
+      "ethnicity": "WHT",
+      "internal_notes": null,
+      "authorized_party": [1, 43, 44, 45, 46]
     }
   },
   {
@@ -3687,6 +3738,19 @@
       "used_to_diagnose": "COVID-19 Exposure",
       "condition_description": "Contact with and (suspected) exposure to other viral communicable diseases",
       "related_condition": "fever"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2021-06-19T19:17:16.928Z",
+      "user": 84,
+      "content_type": 4,
+      "object_id": "1",
+      "object_repr": "george.washington",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Start time\", \"End time\", \"Location\", \"Visit identifier\", \"Action status\", \"External identifier\", \"Is archived\"]}}]"
     }
   },
   {
@@ -4183,10 +4247,10 @@
   },
   {
     "model": "sessions.session",
-    "pk": "mggknzdx9b0v7a123tbzbgn7zbrf076s",
+    "pk": "yx2s0ww08m0nz776sp0ryn5z4c8nxet1",
     "fields": {
-      "session_data": ".eJxVjMsOwiAQRf-FtSE8SgCX7v0GMjMMUjWQlHZl_Hdt0oVu7znnvkSCba1pG7ykOYuzCJM4_Y4I9OC2k3yHduuSeluXGeWuyIMOee2Zn5fD_TuoMOq3jhHJGjS6uMDBkVGgtVZORQ3BeGJEC46ctoULKKaQvZ-iKozOZsPi_QEEDTha:1lucpu:ePJCvMIWOPX5RJAkJ7fG9pe_ibtPtqTQSN7aI1HyZ3A",
-      "expire_date": "2021-07-03T15:24:42.558Z"
+      "session_data": ".eJxVjMEOwiAQBf-FsyFAYQGP3v0GssAiVQNJaU_Gf9cmPej1zcx7sYDbWsM2aAlzZmfmNDv9jhHTg9pO8h3brfPU27rMke8KP-jg157peTncv4OKo35rMEVIbxSgJMqSEqCw1mljsvJCaQklRk0lJ0wenZ5o8s5IlQAskJ7Y-wMAuTe2:1lugNJ:gGgrm1P7BGAAyXT6FFi0m_mc6UjeoYk9aZb7TeZtpW0",
+      "expire_date": "2021-07-03T19:11:25.038Z"
     }
   }
 ]

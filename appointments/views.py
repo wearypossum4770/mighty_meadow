@@ -41,16 +41,19 @@ def user_is_patient(user):
 def user_is_clinic_staff(user):
     return user.is_clinic_staff
 
+
 @login_required
 @user_passes_test(user_is_authenticated)
 def api_edit_or_create_appointment_by_patient_id(request, patient_id):
     context = {}
-    patient = Patient.objects.get(owner=patient_id)
+    _u = get_user_model().objects.get(pk=patient_id)
+    patient = Patient.objects.get(owner=_u)
     user_is_authorized_party = (
         patient.authorized_party.all().filter(username=request.user.username).exists()
     )
     context.update(
         user_is_authorized_party=user_is_authorized_party,
+        patient=list(patient.authorized_party.all())
     )
     if user_is_authorized_party:
         obj, created = Appointment.objects.get_or_create(
@@ -121,12 +124,17 @@ def view_archived(request):
 @login_required
 @user_passes_test(user_is_authenticated)
 def view_archived_appointments(request, patient_id):
-    patient = Patient.objects.get(owner=patient_id)
+    context = {}
+
+    patient = Patient.objects.get(owner_id=patient_id)
     user_is_authorized_party = (
         patient.authorized_party.all().filter(username=request.user.username).exists()
     )
+    context.update(
+        user_is_authorized_party=user_is_authorized_party,
+    )
     if user_is_authorized_party:
-        appointments = get_list_or_404(Appointment,owner=patient_id, is_archived=True)
+        appointments = get_list_or_404(Appointment, patient_id=patient_id)
         archived_appointments = [
             {
                 "patient": appt.patient.username,
@@ -138,7 +146,8 @@ def view_archived_appointments(request, patient_id):
             }
             for appt in appointments
         ]
-        return JsonResponse({"archived_appointments": archived_appointments})
+        context.update(archived_appointments=archived_appointments)
+    return JsonResponse(context)
 
 
 @login_required

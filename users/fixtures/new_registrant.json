@@ -1,10 +1,10 @@
 {
-        "first_name": "Genryūsai",
-        "middle_name": "Shigekuni",
-        "last_name": "Yamamoto",
-        "random": "something",
-        "password1": "RzMdsJLufx2FvVi",
-        "password2": "RzMdsJLufx2FvVi",
-        "email": "genryusai.shigekuni.yamamoto@soul.society.com",
-        "username": "genryusai.shigekuni.yamamoto"
-    }
+  "first_name": "Genryūsai",
+  "middle_name": "Shigekuni",
+  "last_name": "Yamamoto",
+  "random": "something",
+  "password1": "RzMdsJLufx2FvVi",
+  "password2": "RzMdsJLufx2FvVi",
+  "email": "genryusai.shigekuni.yamamoto@soul.society.com",
+  "username": "genryusai.shigekuni.yamamoto"
+}
